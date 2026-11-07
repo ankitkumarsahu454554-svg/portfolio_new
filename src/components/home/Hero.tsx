@@ -13,12 +13,39 @@ export function Hero() {
   return (
     <section className="relative min-h-[92vh] w-full overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-center bg-[#090A0F] bg-subtle-mesh">
       {/* Refined ambient illumination */}
-      <div className="pointer-events-none absolute top-1/4 right-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/[0.04] blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-10 left-12 h-[380px] w-[380px] rounded-full bg-indigo-500/[0.04] blur-[140px]" />
+      <div className="pointer-events-none absolute top-1/4 left-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/[0.04] blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-10 right-12 h-[380px] w-[380px] rounded-full bg-indigo-500/[0.04] blur-[140px]" />
 
       <Container size="wide" className="relative z-10">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
-          {/* Left Column: Professional Identity & Scope (7 cols) */}
+          {/* Left Column: Clean, Pristine Profile Portrait (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center lg:justify-start relative"
+          >
+            {/* Subtle Computational Graph Canvas in the background */}
+            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-3xl overflow-hidden opacity-35">
+              <NeuralFlowCanvas />
+            </div>
+
+            {/* Clean, pure photograph presentation in an elegant frame */}
+            <div className="relative w-full max-w-[320px] sm:max-w-[340px] rounded-2xl border border-white/[0.12] bg-[#111319] p-3 shadow-[0_12px_40px_rgba(0,0,0,0.7)] transition-all duration-500 hover:border-sky-400/30 hover:shadow-[0_16px_48px_rgba(56,189,248,0.12)]">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#090A0F]">
+                <Image
+                  src={SITE_CONFIG.profileImagePath}
+                  alt="Ankit Kumar Sahu - Portrait"
+                  fill
+                  sizes="(max-width: 640px) 300px, 340px"
+                  priority
+                  className="object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Professional Identity & Information (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -114,33 +141,6 @@ export function Hero() {
               </Button>
             </motion.div>
           </div>
-
-          {/* Right Column: Clean, Pristine Profile Portrait (Zero distracting overlays or tags around the photo) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex justify-center relative"
-          >
-            {/* Subtle Computational Graph Canvas in the background */}
-            <div className="absolute -inset-4 sm:-inset-6 -z-10 rounded-3xl overflow-hidden opacity-35">
-              <NeuralFlowCanvas />
-            </div>
-
-            {/* Clean, pure photograph presentation in an elegant frame */}
-            <div className="relative w-full max-w-[320px] sm:max-w-[340px] rounded-2xl border border-white/[0.12] bg-[#111319] p-3 shadow-[0_12px_40px_rgba(0,0,0,0.7)] transition-all duration-500 hover:border-sky-400/30 hover:shadow-[0_16px_48px_rgba(56,189,248,0.12)]">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#090A0F]">
-                <Image
-                  src={SITE_CONFIG.profileImagePath}
-                  alt="Ankit Kumar Sahu - Portrait"
-                  fill
-                  sizes="(max-width: 640px) 300px, 340px"
-                  priority
-                  className="object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.02]"
-                />
-              </div>
-            </div>
-          </motion.div>
         </div>
       </Container>
     </section>

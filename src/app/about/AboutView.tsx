@@ -21,9 +21,30 @@ export function AboutView() {
           description="An analytical computer science undergraduate at NIST University specializing in Data Science, Machine Learning architectures, and production software engineering."
         />
 
-        {/* Narrative & Cinematic Portrait Row */}
+        {/* Narrative & Cinematic Portrait Row (Portrait on Left, Information on Right) */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 items-start pb-16 border-b border-white/[0.08]">
-          {/* Left Column: Biography & Academic Focus */}
+          {/* Left Column: Clean, Pristine Portrait (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center lg:justify-start"
+          >
+            <div className="w-full max-w-[320px] sm:max-w-[340px] rounded-2xl border border-white/[0.12] bg-[#111319] p-3 shadow-[0_12px_40px_rgba(0,0,0,0.7)] hover:border-sky-400/30 transition-all duration-500">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#090A0F]">
+                <Image
+                  src={SITE_CONFIG.profileImagePath}
+                  alt="Ankit Kumar Sahu - Portrait"
+                  fill
+                  sizes="(max-width: 640px) 300px, 340px"
+                  priority
+                  className="object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Biography & Academic Focus (7 cols) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,27 +96,6 @@ export function AboutView() {
                 <Mail className="mr-2 h-4 w-4" />
                 <span>GET IN TOUCH</span>
               </Button>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Clean, Pristine Portrait (Zero distracting overlay tags or clutter around the photo) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex justify-center"
-          >
-            <div className="w-full max-w-[320px] sm:max-w-[340px] rounded-2xl border border-white/[0.12] bg-[#111319] p-3 shadow-[0_12px_40px_rgba(0,0,0,0.7)] hover:border-sky-400/30 transition-all duration-500">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#090A0F]">
-                <Image
-                  src={SITE_CONFIG.profileImagePath}
-                  alt="Ankit Kumar Sahu - Portrait"
-                  fill
-                  sizes="(max-width: 640px) 300px, 340px"
-                  priority
-                  className="object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.02]"
-                />
-              </div>
             </div>
           </motion.div>
         </div>
