@@ -9,24 +9,24 @@
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
 
-  /* Designer Palette: Rich Obsidian, Titanium & Ice Azure */
-  --bg-base: #090a0f;
-  --bg-surface: #111319;
-  --bg-elevated: #161922;
-  --bg-subtle: #1c202c;
+  /* Senior Designer Natural Light Palette */
+  --bg-base: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --bg-subtle: #e2e8f0;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
   --text-muted: #64748b;
 
-  /* Surgical Accents */
-  --accent-cyan: #38bdf8;
-  --accent-indigo: #6366f1;
-  --accent-emerald: #34d399;
+  /* Natural Lighting Accents */
+  --accent-cyan: #0284c7;
+  --accent-indigo: #4f46e5;
+  --accent-emerald: #059669;
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(56, 189, 248, 0.35);
-  --border-highlight: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-hover: rgba(2, 132, 199, 0.35);
+  --border-highlight: rgba(15, 23, 42, 0.15);
 }
 
 * {
@@ -49,10 +49,10 @@ body {
   min-height: 100vh;
 }
 
-/* Custom Selection */
+/* Custom Selection in natural soft sky blue */
 ::selection {
-  background-color: rgba(56, 189, 248, 0.25);
-  color: #ffffff;
+  background-color: rgba(2, 132, 199, 0.18);
+  color: #0f172a;
 }
 
 /* Scrollbar */
@@ -63,70 +63,50 @@ body {
   background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1c202c;
+  background: #cbd5e1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
+  background: #0284c7;
 }
 
-/* Subtle, Elegant Background Mesh Gradient */
-.bg-subtle-mesh {
+/* Natural Ambient Daylight Lighting Gradient Mesh */
+.bg-natural-light {
   background-image: 
-    radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
-    radial-gradient(at 85% 25%, rgba(56, 189, 248, 0.07) 0px, transparent 45%),
-    radial-gradient(at 50% 85%, rgba(52, 211, 153, 0.05) 0px, transparent 50%);
+    radial-gradient(at 15% 15%, rgba(254, 243, 199, 0.45) 0px, transparent 50%),
+    radial-gradient(at 85% 20%, rgba(224, 242, 254, 0.6) 0px, transparent 48%),
+    radial-gradient(at 50% 85%, rgba(238, 242, 255, 0.5) 0px, transparent 55%);
 }
 
-/* Fine-dot matrix pattern */
+/* Fine-dot matrix pattern for natural light */
 .bg-tech-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* Designer Card System with smooth spring transition */
+/* Natural Light Card System with soft diffuse elevation */
 .premium-card {
-  background: #111319;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .premium-card:hover {
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 0 24px -2px rgba(56, 189, 248, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(2, 132, 199, 0.08);
   transform: translateY(-3px);
 }
 
-/* Lenis Smooth Scrolling */
-html.lenis, html.lenis body {
-  height: auto;
+/* Utility for smooth image containers */
+.portrait-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.95));
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Smooth Focus Outlines */
+:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
 }

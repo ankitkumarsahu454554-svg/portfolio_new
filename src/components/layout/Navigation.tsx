@@ -14,7 +14,7 @@ export function Navigation() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#090A0F]/85 backdrop-blur-md transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-200/80 bg-[#F8FAFC]/85 backdrop-blur-md transition-all duration-300">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 md:px-8">
           {/* Brand & Identity */}
           <Link
@@ -23,12 +23,12 @@ export function Navigation() {
             aria-label="Ankit Kumar Sahu - Home"
           >
             <div className="flex items-center gap-2">
-              <span className="font-heading text-lg font-semibold tracking-tight text-white">
+              <span className="font-heading text-lg font-semibold tracking-tight text-slate-900">
                 Ankit Kumar Sahu
               </span>
-              <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-600" />
             </div>
-            <span className="font-mono text-[10px] text-slate-400 tracking-wider">
+            <span className="font-mono text-[10px] text-slate-500 tracking-wider font-medium">
               CSE (DATA SCIENCE) • NIST UNIVERSITY
             </span>
           </Link>
@@ -47,12 +47,12 @@ export function Navigation() {
                   href={item.href}
                   className={cn(
                     'group relative font-mono text-xs tracking-wider transition-colors duration-200 py-1.5',
-                    isActive ? 'text-sky-400 font-medium' : 'text-slate-300 hover:text-white'
+                    isActive ? 'text-sky-600 font-semibold' : 'text-slate-600 hover:text-slate-950 font-medium'
                   )}
                 >
                   <span>{item.title}</span>
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-sky-400 shadow-[0_0_8px_#38BDF8]" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-sky-600 rounded-full" />
                   )}
                 </Link>
               );
@@ -75,7 +75,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex md:hidden items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] p-2 text-white hover:border-sky-400/60 transition-colors"
+            className="flex md:hidden items-center justify-center rounded-lg border border-slate-300 bg-white p-2 text-slate-800 hover:border-slate-400 transition-colors shadow-sm"
             aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,7 +84,7 @@ export function Navigation() {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-b border-white/10 bg-[#090A0F]/98 px-6 py-6 space-y-4">
+          <div className="md:hidden border-b border-slate-200 bg-white/98 px-6 py-6 space-y-4 shadow-xl">
             <nav className="flex flex-col space-y-3">
               {NAV_ITEMS.map((item) => {
                 const isActive =
@@ -98,12 +98,12 @@ export function Navigation() {
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      'flex items-center justify-between border-b border-white/[0.06] pb-2 font-mono text-sm tracking-wide transition-colors',
-                      isActive ? 'text-sky-400 font-medium' : 'text-slate-300 hover:text-white'
+                      'flex items-center justify-between border-b border-slate-100 pb-2 font-mono text-sm tracking-wide transition-colors',
+                      isActive ? 'text-sky-600 font-semibold' : 'text-slate-700 hover:text-slate-950'
                     )}
                   >
                     <span>{item.title}</span>
-                    <ArrowUpRight className="h-4 w-4 text-slate-500" />
+                    <ArrowUpRight className="h-4 w-4 text-slate-400" />
                   </Link>
                 );
               })}

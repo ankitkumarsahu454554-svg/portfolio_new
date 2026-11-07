@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="relative bg-[#090A0F]">
+    <div className="relative bg-[#F8FAFC]">
       {/* Hero Section */}
       <Hero />
 
@@ -32,20 +32,20 @@ export default function HomePage() {
       <ExperiencePreview />
 
       {/* Technical Collaboration Call To Action */}
-      <section className="relative py-20 md:py-28 border-t border-white/[0.08] overflow-hidden bg-[#090A0F] bg-subtle-mesh">
-        <div className="pointer-events-none absolute -bottom-32 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-sky-500/[0.05] blur-[140px]" />
+      <section className="relative py-20 md:py-28 border-t border-slate-200 overflow-hidden bg-[#F8FAFC] bg-natural-light">
+        <div className="pointer-events-none absolute -bottom-32 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-sky-200/40 blur-[140px]" />
 
         <Container size="wide" className="relative z-10 text-center">
-          <Badge variant="electric" dot pulse className="mb-5">
+          <Badge variant="electric" dot pulse className="mb-5 shadow-sm">
             OPEN FOR TECHNICAL COLLABORATION
           </Badge>
 
-          <h2 className="mx-auto max-w-3xl font-heading text-3xl font-normal tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h2 className="mx-auto max-w-3xl font-heading text-3xl font-normal tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
             Engineering High-Impact Systems <br />
-            <span className="text-sky-300 font-light">& Applied Machine Learning</span>
+            <span className="text-sky-700 font-light">& Applied Machine Learning</span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl font-sans text-sm text-slate-300 md:text-base leading-relaxed">
+          <p className="mx-auto mt-4 max-w-xl font-sans text-sm text-slate-700 md:text-base leading-relaxed">
             Interested in discussing machine learning architectures, healthcare data pipelines, software systems, or technical research? Let&apos;s connect.
           </p>
 

@@ -6,7 +6,7 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
 
 export const viewport: Viewport = {
-  themeColor: '#090A0F',
+  themeColor: '#F8FAFC',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,

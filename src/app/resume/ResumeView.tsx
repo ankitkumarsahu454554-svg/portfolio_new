@@ -23,7 +23,7 @@ export function ResumeView() {
   const rawPdfUrl = SITE_CONFIG.resumePath;
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#090A0F] bg-subtle-mesh">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#F8FAFC] bg-natural-light min-h-screen">
       <Container size="wide">
         <SectionHeader
           index="04"
@@ -38,7 +38,7 @@ export function ResumeView() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 rounded-2xl border border-white/[0.08] bg-[#111319] p-6 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+          className="mb-8 rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm"
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             {/* Metadata Summary */}
@@ -47,20 +47,20 @@ export function ResumeView() {
                 <Badge variant="electric" dot pulse className="text-[10px]">
                   VERIFIED DOCUMENT
                 </Badge>
-                <span className="font-mono text-xs text-white font-medium">
+                <span className="font-mono text-xs text-slate-900 font-semibold">
                   Ankit_Kumar_Sahu_Resume.pdf
                 </span>
-                <span className="hidden sm:inline font-mono text-xs text-slate-500">•</span>
-                <span className="font-mono text-xs text-slate-400">184 KB</span>
-                <span className="hidden sm:inline font-mono text-xs text-slate-500">•</span>
-                <span className="font-mono text-xs text-sky-400">VECTOR PDF (100% SCALE)</span>
+                <span className="hidden sm:inline font-mono text-xs text-slate-400">•</span>
+                <span className="font-mono text-xs text-slate-600">184 KB</span>
+                <span className="hidden sm:inline font-mono text-xs text-slate-400">•</span>
+                <span className="font-mono text-xs text-sky-700 font-medium">VECTOR PDF (100% SCALE)</span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-xs text-slate-300">
-                <span>CANDIDATE: <strong className="text-white">{SITE_CONFIG.name}</strong></span>
-                <span>DEGREE: <strong className="text-white">B-Tech CSE (Data Science)</strong></span>
-                <span>INSTITUTION: <strong className="text-white">NIST University</strong></span>
-                <span>CGPA: <strong className="text-sky-300">{SITE_CONFIG.cgpa}</strong></span>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-xs text-slate-700">
+                <span>CANDIDATE: <strong className="text-slate-900">{SITE_CONFIG.name}</strong></span>
+                <span>DEGREE: <strong className="text-slate-900">B-Tech CSE (Data Science)</strong></span>
+                <span>INSTITUTION: <strong className="text-slate-900">NIST University</strong></span>
+                <span>CGPA: <strong className="text-sky-700 font-bold">{SITE_CONFIG.cgpa}</strong></span>
               </div>
             </div>
 
@@ -94,23 +94,23 @@ export function ResumeView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-[880px] relative rounded-2xl border border-white/[0.12] bg-[#111319] shadow-[0_12px_40px_rgba(0,0,0,0.8)] overflow-hidden"
+          className="mx-auto max-w-[880px] relative rounded-2xl border border-slate-300 bg-white shadow-xl overflow-hidden"
         >
           {/* Frame Top Bar */}
-          <div className="flex items-center justify-between border-b border-white/[0.08] bg-[#0E1017] px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between border-b border-slate-200 bg-slate-100/90 px-4 py-3 sm:px-6">
             <div className="flex items-center gap-2.5">
-              <FileText className="h-4 w-4 text-sky-400" />
-              <span className="font-mono text-xs text-white">
+              <FileText className="h-4 w-4 text-sky-700" />
+              <span className="font-mono text-xs text-slate-800 font-semibold">
                 DOCUMENT VIEWER // ANKIT KUMAR SAHU (100% SCALE)
               </span>
             </div>
 
-            <div className="flex items-center gap-3 font-mono text-xs text-slate-400">
+            <div className="flex items-center gap-3 font-mono text-xs text-slate-600">
               <a
                 href={rawPdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-sky-400 hover:underline"
+                className="flex items-center gap-1 text-sky-700 hover:underline font-medium"
               >
                 <span>OPEN FULLSCREEN</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -120,16 +120,16 @@ export function ResumeView() {
 
           {/* Loader Fallback */}
           {!isIframeLoaded && (
-            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-[#111319]/95 backdrop-blur-sm">
-              <div className="h-10 w-10 animate-spin rounded-full border-2 border-sky-400/20 border-t-sky-400" />
-              <p className="mt-4 font-mono text-xs text-slate-400 uppercase tracking-widest">
+            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-white/95 backdrop-blur-sm">
+              <div className="h-10 w-10 animate-spin rounded-full border-2 border-sky-300 border-t-sky-600" />
+              <p className="mt-4 font-mono text-xs text-slate-600 uppercase tracking-widest font-medium">
                 LOADING RESUME AT 100% SCALE...
               </p>
             </div>
           )}
 
           {/* PDF Viewer Frame configured to exactly 100% scale */}
-          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1050px] lg:h-[1150px] bg-[#090A0F]">
+          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1050px] lg:h-[1150px] bg-slate-50">
             <iframe
               src={pdfUrl}
               title="Ankit Kumar Sahu — Professional Resume PDF"
@@ -139,16 +139,16 @@ export function ResumeView() {
           </div>
 
           {/* Frame Footer */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.08] bg-[#0E1017] px-4 py-3 sm:px-6 font-mono text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200 bg-slate-100/90 px-4 py-3 sm:px-6 font-mono text-xs text-slate-600">
             <p className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-sky-400" />
+              <ShieldCheck className="h-4 w-4 text-sky-700" />
               <span>ORIGINAL AUTHENTIC RESUME • VERIFIED NIST UNIVERSITY</span>
             </p>
 
             <a
               href={rawPdfUrl}
               download="Ankit_Kumar_Sahu_Resume.pdf"
-              className="text-sky-400 hover:underline flex items-center gap-1"
+              className="text-sky-700 hover:underline flex items-center gap-1 font-semibold"
             >
               <Download className="h-3.5 w-3.5" />
               <span>SAVE A LOCAL COPY</span>

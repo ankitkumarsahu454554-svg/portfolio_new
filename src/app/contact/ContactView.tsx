@@ -38,7 +38,7 @@ export function ContactView() {
   };
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#090A0F] bg-subtle-mesh">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#F8FAFC] bg-natural-light min-h-screen">
       <Container size="wide">
         <SectionHeader
           index="05"
@@ -51,12 +51,12 @@ export function ContactView() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Message Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-6 sm:p-10 backdrop-blur-sm shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-              <div className="border-b border-white/[0.08] pb-4 mb-6">
-                <h3 className="font-heading text-xl font-medium text-white">Send a Message</h3>
-                <p className="font-sans text-xs text-slate-400 mt-1">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-sm">
+              <div className="border-b border-slate-200 pb-4 mb-6">
+                <h3 className="font-heading text-xl font-semibold text-slate-900">Send a Message</h3>
+                <p className="font-sans text-xs text-slate-600 mt-1">
                   Fill out the form below or email me directly at{' '}
-                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-sky-400 hover:underline font-mono">
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-sky-700 hover:underline font-mono font-medium">
                     {SITE_CONFIG.email}
                   </a>
                 </p>
@@ -64,13 +64,13 @@ export function ContactView() {
 
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/30 bg-sky-400/10 text-sky-400">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-sky-300 bg-sky-50 text-sky-700">
                     <Check className="h-6 w-6" />
                   </div>
-                  <h3 className="font-heading text-2xl text-white">Message Dispatched</h3>
-                  <p className="font-sans text-sm text-slate-300 max-w-md mx-auto">
+                  <h3 className="font-heading text-2xl font-semibold text-slate-900">Message Dispatched</h3>
+                  <p className="font-sans text-sm text-slate-700 max-w-md mx-auto">
                     Thank you, {formData.name}. Your note has been received. I will reply to{' '}
-                    <span className="text-sky-300 font-mono">{formData.email}</span> shortly.
+                    <span className="text-sky-700 font-mono font-semibold">{formData.email}</span> shortly.
                   </p>
                   <Button
                     variant="ghost"
@@ -92,8 +92,8 @@ export function ContactView() {
                 <form onSubmit={handleSubmit} className="space-y-6 font-mono text-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-slate-300 uppercase tracking-wider block font-semibold">
-                        YOUR NAME / ORGANIZATION <span className="text-sky-400">*</span>
+                      <label htmlFor="name" className="text-slate-700 uppercase tracking-wider block font-bold">
+                        YOUR NAME / ORGANIZATION <span className="text-sky-600">*</span>
                       </label>
                       <input
                         id="name"
@@ -102,13 +102,13 @@ export function ContactView() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Engineering Lead / Researcher"
-                        className="w-full rounded-lg border border-white/10 bg-[#161922] px-4 py-3 text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400 font-sans"
+                        className="w-full rounded-lg border border-slate-300 bg-slate-50/70 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-slate-300 uppercase tracking-wider block font-semibold">
-                        EMAIL ADDRESS <span className="text-sky-400">*</span>
+                      <label htmlFor="email" className="text-slate-700 uppercase tracking-wider block font-bold">
+                        EMAIL ADDRESS <span className="text-sky-600">*</span>
                       </label>
                       <input
                         id="email"
@@ -117,20 +117,20 @@ export function ContactView() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="you@domain.com"
-                        className="w-full rounded-lg border border-white/10 bg-[#161922] px-4 py-3 text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400 font-sans"
+                        className="w-full rounded-lg border border-slate-300 bg-slate-50/70 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="opportunityType" className="text-slate-300 uppercase tracking-wider block font-semibold">
+                    <label htmlFor="opportunityType" className="text-slate-700 uppercase tracking-wider block font-bold">
                       INQUIRY / DISCUSSION TYPE
                     </label>
                     <select
                       id="opportunityType"
                       value={formData.opportunityType}
                       onChange={(e) => setFormData({ ...formData, opportunityType: e.target.value })}
-                      className="w-full rounded-lg border border-white/10 bg-[#161922] px-4 py-3 text-white focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400 font-sans"
+                      className="w-full rounded-lg border border-slate-300 bg-slate-50/70 px-4 py-3 text-slate-900 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans"
                     >
                       <option>Project Collaboration</option>
                       <option>Technical Architecture Inquiry</option>
@@ -141,8 +141,8 @@ export function ContactView() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-slate-300 uppercase tracking-wider block font-semibold">
-                      MESSAGE DETAILS <span className="text-sky-400">*</span>
+                    <label htmlFor="message" className="text-slate-700 uppercase tracking-wider block font-bold">
+                      MESSAGE DETAILS <span className="text-sky-600">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -151,7 +151,7 @@ export function ContactView() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please share details regarding the technical challenge or topic..."
-                      className="w-full rounded-lg border border-white/10 bg-[#161922] px-4 py-3 text-white placeholder-slate-500 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-400 font-sans"
+                      className="w-full rounded-lg border border-slate-300 bg-slate-50/70 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500 font-sans"
                     />
                   </div>
 
@@ -166,8 +166,8 @@ export function ContactView() {
           {/* Right Column: Direct Info & Profile Thumbnail */}
           <div className="space-y-6 lg:col-span-5">
             {/* Profile Card */}
-            <div className="flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-[#111319] p-4 sm:p-5 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
-              <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-sky-400/30 bg-[#090A0F]">
+            <div className="flex items-center gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-sm">
+              <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-2xs">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt={SITE_CONFIG.name}
@@ -179,40 +179,40 @@ export function ContactView() {
               </div>
               <div className="space-y-0.5 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="font-heading text-sm sm:text-base text-white font-medium truncate">
+                  <span className="font-heading text-sm sm:text-base text-slate-900 font-semibold truncate">
                     {SITE_CONFIG.name}
                   </span>
                   <Badge variant="electric" dot pulse className="text-[9px] px-1.5 py-0.5">
                     AVAILABLE
                   </Badge>
                 </div>
-                <p className="font-mono text-xs text-sky-400 truncate">
+                <p className="font-mono text-xs text-sky-700 font-medium truncate">
                   B-Tech CSE (Data Science)
                 </p>
-                <p className="font-mono text-[11px] text-slate-400 truncate">
+                <p className="font-mono text-[11px] text-slate-500 truncate">
                   NIST University • CGPA: 8.75 / 10
                 </p>
               </div>
             </div>
 
             {/* Direct Email Card */}
-            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-5 sm:p-6 backdrop-blur-sm space-y-2">
-              <span className="font-mono text-xs text-sky-400 uppercase tracking-widest block font-semibold">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm space-y-2">
+              <span className="font-mono text-xs text-sky-700 uppercase tracking-widest block font-bold">
                 EMAIL ADDRESS
               </span>
-              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-[#161922] p-3 font-mono text-xs text-white">
-                <a href={`mailto:${SITE_CONFIG.email}`} className="text-sky-300 truncate mr-2 hover:underline">
+              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-3 font-mono text-xs text-slate-900">
+                <a href={`mailto:${SITE_CONFIG.email}`} className="text-sky-700 truncate mr-2 hover:underline font-semibold">
                   {SITE_CONFIG.email}
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors flex-shrink-0"
+                  className="flex items-center gap-1.5 text-slate-500 hover:text-slate-900 transition-colors flex-shrink-0"
                   title="Copy email to clipboard"
                 >
                   {copiedEmail ? (
                     <>
-                      <Check className="h-3.5 w-3.5 text-sky-400" />
-                      <span className="text-[10px] text-sky-400">COPIED</span>
+                      <Check className="h-3.5 w-3.5 text-sky-600" />
+                      <span className="text-[10px] text-sky-600 font-bold">COPIED</span>
                     </>
                   ) : (
                     <>
@@ -225,21 +225,21 @@ export function ContactView() {
             </div>
 
             {/* Direct Phone Card */}
-            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-5 sm:p-6 backdrop-blur-sm space-y-2">
-              <span className="font-mono text-xs text-slate-400 uppercase tracking-widest block font-semibold">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm space-y-2">
+              <span className="font-mono text-xs text-slate-500 uppercase tracking-widest block font-bold">
                 TELEPHONE / WHATSAPP
               </span>
-              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-[#161922] p-3 font-mono text-xs text-white">
-                <span className="text-slate-200">{SITE_CONFIG.phone}</span>
+              <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 p-3 font-mono text-xs text-slate-900">
+                <span className="text-slate-800 font-medium">{SITE_CONFIG.phone}</span>
                 <button
                   onClick={handleCopyPhone}
-                  className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors flex-shrink-0"
+                  className="flex items-center gap-1.5 text-slate-500 hover:text-slate-900 transition-colors flex-shrink-0"
                   title="Copy phone to clipboard"
                 >
                   {copiedPhone ? (
                     <>
-                      <Check className="h-3.5 w-3.5 text-sky-400" />
-                      <span className="text-[10px] text-sky-400">COPIED</span>
+                      <Check className="h-3.5 w-3.5 text-sky-600" />
+                      <span className="text-[10px] text-sky-600 font-bold">COPIED</span>
                     </>
                   ) : (
                     <>
@@ -252,8 +252,8 @@ export function ContactView() {
             </div>
 
             {/* Social Networks & Resume */}
-            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-5 sm:p-6 backdrop-blur-sm space-y-3">
-              <span className="font-mono text-xs text-slate-400 uppercase tracking-widest block font-semibold">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm space-y-3">
+              <span className="font-mono text-xs text-slate-500 uppercase tracking-widest block font-bold">
                 PROFESSIONAL PROFILES
               </span>
               <div className="space-y-2 font-mono text-xs">
@@ -263,10 +263,10 @@ export function ContactView() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between py-1.5 border-b border-white/[0.04] text-slate-300 hover:text-sky-300 transition-colors"
+                    className="flex items-center justify-between py-1.5 border-b border-slate-100 text-slate-700 hover:text-sky-700 transition-colors"
                   >
-                    <span>{s.label}</span>
-                    <span className="text-slate-500">{s.handle}</span>
+                    <span className="font-medium">{s.label}</span>
+                    <span className="text-slate-400">{s.handle}</span>
                   </a>
                 ))}
               </div>

@@ -29,7 +29,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseClasses =
-      'group relative inline-flex items-center justify-center font-mono font-medium uppercase tracking-wider transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none select-none rounded-xl';
+      'group relative inline-flex items-center justify-center font-mono font-medium uppercase tracking-wider transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none select-none rounded-xl';
 
     const sizeClasses = {
       sm: 'text-xs px-3.5 py-1.5 gap-2',
@@ -39,13 +39,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantClasses = {
       primary:
-        'bg-sky-400 text-slate-950 font-semibold hover:bg-sky-300 shadow-[0_0_18px_rgba(56,189,248,0.25)] hover:shadow-[0_0_28px_rgba(56,189,248,0.4)] border border-sky-400 hover:-translate-y-0.5 active:translate-y-0',
+        'bg-[#0F172A] text-white font-semibold hover:bg-slate-800 shadow-[0_4px_14px_rgba(15,23,42,0.18)] hover:shadow-[0_6px_20px_rgba(15,23,42,0.25)] border border-[#0F172A] hover:-translate-y-0.5 active:translate-y-0',
       secondary:
-        'bg-[#111319] text-sky-400 border border-sky-400/30 hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.2)] hover:text-white hover:-translate-y-0.5 active:translate-y-0',
+        'bg-white text-slate-800 border border-slate-300 shadow-sm hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950 hover:-translate-y-0.5 active:translate-y-0',
       ghost:
-        'bg-[#111319] text-slate-300 border border-white/10 hover:border-white/25 hover:text-white hover:bg-[#161922] hover:-translate-y-0.5 active:translate-y-0',
+        'bg-transparent text-slate-700 border border-slate-200/80 hover:border-slate-300 hover:text-slate-950 hover:bg-slate-100/70 hover:-translate-y-0.5 active:translate-y-0',
       terminal:
-        'bg-transparent text-slate-300 hover:text-sky-300 hover:tracking-widest font-mono border-b border-white/20 hover:border-sky-400 px-1 py-1',
+        'bg-transparent text-slate-600 hover:text-sky-600 hover:tracking-widest font-mono border-b border-slate-300 hover:border-sky-600 px-1 py-1',
     };
 
     const content = (
