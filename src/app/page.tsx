@@ -32,7 +32,7 @@ export default function HomePage() {
       <ExperiencePreview />
 
       {/* Internship & Collaboration Call To Action */}
-      <section className="relative py-20 md:py-28 border-t border-white/[0.08] overflow-hidden">
+      <section className="relative py-20 md:py-28 border-t border-white/[0.08] overflow-hidden bg-[#000000]">
         <div className="bg-tech-grid pointer-events-none absolute inset-0 opacity-15" />
         <div className="pointer-events-none absolute -bottom-32 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-cyan-500/10 blur-[140px]" />
 

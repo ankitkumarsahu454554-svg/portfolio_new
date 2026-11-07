@@ -16,14 +16,17 @@ import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { SITE_CONFIG, EDUCATION_DATA } from '@/lib/constants';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export function ResumeView() {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
-  const pdfUrl = SITE_CONFIG.resumePath;
+
+  // Use explicit zoom=100 parameter to prevent browser PDF engines from expanding to 176% via FitH
+  const pdfUrl = `${SITE_CONFIG.resumePath}#zoom=100&navpanes=0&toolbar=1`;
+  const rawPdfUrl = SITE_CONFIG.resumePath;
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="04"
@@ -38,7 +41,7 @@ export function ResumeView() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 rounded-2xl border border-white/10 bg-surface-50/70 p-6 backdrop-blur-md"
+          className="mb-8 rounded-2xl border border-white/10 bg-[#0D0D0D] p-6 backdrop-blur-md"
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             {/* Metadata Summary */}
@@ -53,7 +56,7 @@ export function ResumeView() {
                 <span className="hidden sm:inline font-mono text-xs text-gray-500">•</span>
                 <span className="font-mono text-xs text-gray-400">184 KB</span>
                 <span className="hidden sm:inline font-mono text-xs text-gray-500">•</span>
-                <span className="font-mono text-xs text-cyan-400">VECTOR PDF</span>
+                <span className="font-mono text-xs text-cyan-400">VECTOR PDF (100% SCALE)</span>
               </div>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-xs text-gray-300">
@@ -67,7 +70,7 @@ export function ResumeView() {
             {/* Direct Action Buttons */}
             <div className="flex flex-wrap items-center gap-3">
               <Button
-                href={pdfUrl}
+                href={rawPdfUrl}
                 download="Ankit_Kumar_Sahu_Resume.pdf"
                 variant="primary"
                 size="md"
@@ -77,37 +80,37 @@ export function ResumeView() {
               </Button>
 
               <Button
-                href={pdfUrl}
+                href={rawPdfUrl}
                 external
                 variant="secondary"
                 size="md"
               >
                 <ExternalLink className="mr-2 h-4 w-4" />
-                <span>OPEN IN FULL TAB</span>
+                <span>OPEN FULL RESUME</span>
               </Button>
             </div>
           </div>
         </motion.div>
 
-        {/* Embedded PDF Viewer */}
+        {/* Embedded PDF Viewer with 100% initial zoom & centered natural A4 proportions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-2xl border border-white/15 bg-[#0A0C0F] shadow-[0_8px_36px_rgba(0,0,0,0.6)] overflow-hidden"
+          className="mx-auto max-w-[880px] relative rounded-2xl border border-white/15 bg-[#0D0D0D] shadow-[0_8px_36px_rgba(0,0,0,0.8)] overflow-hidden"
         >
           {/* Frame Top Bar */}
-          <div className="flex items-center justify-between border-b border-white/[0.08] bg-[#0E1117] px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between border-b border-white/[0.08] bg-[#080808] px-4 py-3 sm:px-6">
             <div className="flex items-center gap-2.5">
               <FileText className="h-4 w-4 text-lime" />
               <span className="font-mono text-xs text-white">
-                DOCUMENT VIEWER // ANKIT KUMAR SAHU
+                DOCUMENT VIEWER // ANKIT KUMAR SAHU (100% SCALE)
               </span>
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs text-gray-400">
               <a
-                href={pdfUrl}
+                href={rawPdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 text-cyan-400 hover:underline"
@@ -120,18 +123,18 @@ export function ResumeView() {
 
           {/* Loader Fallback */}
           {!isIframeLoaded && (
-            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-[#0A0C0F]/90 backdrop-blur-sm">
+            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-[#0D0D0D]/95 backdrop-blur-sm">
               <div className="h-10 w-10 animate-spin rounded-full border-2 border-lime/20 border-t-lime" />
               <p className="mt-4 font-mono text-xs text-gray-400 uppercase tracking-widest">
-                LOADING RESUME DOCUMENT...
+                LOADING RESUME AT 100% SCALE...
               </p>
             </div>
           )}
 
-          {/* PDF Viewer Frame */}
-          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1000px] lg:h-[1150px] bg-[#12151B]">
+          {/* PDF Viewer Frame configured to exactly 100% scale */}
+          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1050px] lg:h-[1150px] bg-[#000000]">
             <iframe
-              src={`${pdfUrl}#toolbar=1&navpanes=0&view=FitH`}
+              src={pdfUrl}
               title="Ankit Kumar Sahu — Professional Resume PDF"
               className="w-full h-full border-0"
               onLoad={() => setIsIframeLoaded(true)}
@@ -139,14 +142,14 @@ export function ResumeView() {
           </div>
 
           {/* Frame Footer */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.08] bg-[#0E1117] px-4 py-3 sm:px-6 font-mono text-xs text-gray-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/[0.08] bg-[#080808] px-4 py-3 sm:px-6 font-mono text-xs text-gray-400">
             <p className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-lime" />
               <span>ORIGINAL AUTHENTIC RESUME • ZERO ALTERATIONS</span>
             </p>
 
             <a
-              href={pdfUrl}
+              href={rawPdfUrl}
               download="Ankit_Kumar_Sahu_Resume.pdf"
               className="text-lime hover:underline flex items-center gap-1"
             >
@@ -164,7 +167,7 @@ export function ResumeView() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
             {/* Education Summary */}
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 space-y-3">
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 space-y-3">
               <div className="flex items-center gap-2 text-lime font-semibold">
                 <GraduationCap className="h-4 w-4" />
                 <span>EDUCATION</span>
@@ -178,7 +181,7 @@ export function ResumeView() {
             </div>
 
             {/* Experience Summary */}
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 space-y-3">
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 space-y-3">
               <div className="flex items-center gap-2 text-cyan-400 font-semibold">
                 <Briefcase className="h-4 w-4" />
                 <span>INTERNSHIPS</span>
@@ -191,8 +194,8 @@ export function ResumeView() {
               </div>
             </div>
 
-            {/* Projects Summary */}
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 space-y-3">
+            {/* Projects Summary (3 Genuine Projects) */}
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 space-y-3">
               <div className="flex items-center gap-2 text-lime font-semibold">
                 <Code2 className="h-4 w-4" />
                 <span>CORE PROJECTS</span>

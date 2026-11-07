@@ -10,36 +10,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#08090B',
-        foreground: '#EDEDED',
+        background: '#000000',
+        foreground: '#FFFFFF',
         surface: {
-          50: '#0C0E12',
-          100: '#11141A',
-          200: '#171B24',
-          300: '#1F2430',
-          400: '#2D3445',
+          50: '#080808',
+          100: '#0D0D0D',
+          200: '#141414',
+          300: '#1A1A1A',
+          400: '#262626',
         },
         lime: {
           DEFAULT: '#C7FF55',
           hover: '#D6FF7A',
-          muted: 'rgba(199, 255, 85, 0.15)',
+          muted: 'rgba(199, 255, 85, 0.12)',
           glow: 'rgba(199, 255, 85, 0.35)',
         },
         electric: {
           DEFAULT: '#00F0FF',
           hover: '#38F4FF',
-          muted: 'rgba(0, 240, 255, 0.15)',
+          muted: 'rgba(0, 240, 255, 0.12)',
           glow: 'rgba(0, 240, 255, 0.35)',
         },
-        metallic: {
-          light: '#E6E9EF',
-          muted: '#8F9CAE',
-          dark: '#1D222A',
-        },
         border: {
-          subtle: 'rgba(255, 255, 255, 0.07)',
-          medium: 'rgba(255, 255, 255, 0.15)',
-          accent: 'rgba(199, 255, 85, 0.3)',
+          subtle: 'rgba(255, 255, 255, 0.08)',
+          medium: 'rgba(255, 255, 255, 0.16)',
+          accent: 'rgba(0, 240, 255, 0.3)',
         },
       },
       fontFamily: {
@@ -63,4 +58,3 @@ const config: Config = {
 };
 
 export default config;
-

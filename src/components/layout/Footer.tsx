@@ -6,7 +6,7 @@ import { ArrowUpRight, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-reac
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-[#060709] pt-16 pb-12 text-gray-400">
+    <footer className="relative border-t border-white/10 bg-[#000000] pt-16 pb-12 text-gray-400">
       <div className="bg-tech-grid pointer-events-none absolute inset-0 opacity-10" />
 
       <Container size="wide" className="relative z-10">

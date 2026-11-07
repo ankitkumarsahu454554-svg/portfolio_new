@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Github, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Badge } from '@/components/ui/Badge';
@@ -11,28 +12,32 @@ import { PROJECTS } from '@/lib/constants';
 
 export function FeaturedWorksPreview() {
   return (
-    <section id="projects" className="relative py-20 md:py-28 border-t border-white/[0.08]">
+    <section id="projects" className="relative py-20 md:py-28 border-t border-white/[0.08] bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="02"
           tag="ENGINEERING PORTFOLIO"
           title="Featured Technical Projects"
           subtitle="Applied Computer Science & AI"
-          description="A selection of machine learning architectures, healthcare data pipelines, enterprise storage utilities, and aerospace telemetry systems I have built with full source code on GitHub."
+          description="A selection of machine learning architectures, healthcare data pipelines, and enterprise storage utilities I have built with full source code on GitHub."
         />
 
         <div className="space-y-8">
-          {PROJECTS.map((project) => (
-            <div
+          {PROJECTS.map((project, index) => (
+            <motion.div
               key={project.id}
-              className="group relative rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-surface-100/70"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)]"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 {/* Left Header info */}
                 <div className="lg:col-span-4 space-y-3">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-semibold text-lime">PROJECT #{project.id}</span>
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-[10px] border-white/15 bg-white/[0.03]">
                       {project.category}
                     </Badge>
                   </div>
@@ -57,8 +62,7 @@ export function FeaturedWorksPreview() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-3.5 py-2 font-mono text-xs text-white hover:border-cyan-400 hover:text-cyan-400 transition-colors"
-                      data-cursor="pointer"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 bg-[#141414] px-3.5 py-2 font-mono text-xs text-white hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200"
                     >
                       <Github className="h-3.5 w-3.5" />
                       <span>Source Code</span>
@@ -108,7 +112,7 @@ export function FeaturedWorksPreview() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-gray-300"
+                          className="rounded-md border border-white/10 bg-[#141414] px-2.5 py-1 font-mono text-[11px] text-gray-300"
                         >
                           {tech}
                         </span>
@@ -117,7 +121,7 @@ export function FeaturedWorksPreview() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

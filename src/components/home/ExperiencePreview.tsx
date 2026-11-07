@@ -1,17 +1,16 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { EDUCATION_DATA, EXPERIENCE_DATA, ACHIEVEMENTS } from '@/lib/constants';
-import { GraduationCap, Briefcase, Award, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Briefcase, Award } from 'lucide-react';
 
 export function ExperiencePreview() {
   return (
-    <section id="experience-preview" className="relative py-20 md:py-28 border-t border-white/[0.08]">
+    <section id="experience-preview" className="relative py-20 md:py-28 border-t border-white/[0.08] bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="03"
@@ -25,13 +24,19 @@ export function ExperiencePreview() {
           {/* Left Column: Education & Internships (8 cols) */}
           <div className="lg:col-span-8 space-y-6">
             {/* Education Card */}
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-lime/40"
+            >
               <div className="flex items-center gap-3 border-b border-white/[0.06] pb-4 mb-4">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-lime/30 bg-lime/10 text-lime">
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="font-mono text-[10px] text-lime uppercase tracking-wider">FORMAL EDUCATION</span>
+                  <span className="font-mono text-[10px] text-lime uppercase tracking-wider font-semibold">FORMAL EDUCATION</span>
                   <h3 className="font-heading text-lg font-medium text-white">{EDUCATION_DATA[0].institution}</h3>
                 </div>
               </div>
@@ -50,40 +55,44 @@ export function ExperiencePreview() {
                   {EDUCATION_DATA[0].description}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Experience Cards */}
             <div className="space-y-4">
-              <h4 className="font-mono text-xs uppercase tracking-wider text-gray-400 flex items-center gap-2">
+              <h4 className="font-mono text-xs uppercase tracking-wider text-gray-400 flex items-center gap-2 font-semibold">
                 <Briefcase className="h-3.5 w-3.5 text-cyan-400" />
                 <span>INTERNSHIPS & TECHNICAL TRAINING</span>
               </h4>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {EXPERIENCE_DATA.map((exp) => (
-                  <div
+                {EXPERIENCE_DATA.map((exp, i) => (
+                  <motion.div
                     key={exp.organization}
-                    className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 backdrop-blur-sm space-y-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-cyan-400/40"
                   >
                     <div className="flex items-center justify-between font-mono text-xs">
-                      <span className="text-cyan-400">{exp.duration}</span>
+                      <span className="text-cyan-400 font-medium">{exp.duration}</span>
                       <span className="text-gray-400">{exp.location}</span>
                     </div>
 
                     <div>
                       <h4 className="font-heading text-base font-medium text-white">{exp.role}</h4>
-                      <p className="font-mono text-xs text-gray-300">{exp.organization}</p>
+                      <p className="font-mono text-xs text-lime">{exp.organization}</p>
                     </div>
 
                     <ul className="space-y-1.5 pt-2 border-t border-white/[0.04] font-sans text-xs text-gray-400">
-                      {exp.highlights.slice(0, 2).map((h, i) => (
-                        <li key={i} className="flex items-start gap-2">
+                      {exp.highlights.slice(0, 2).map((h, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
                           <span className="mt-1 h-1 w-1 rounded-full bg-cyan-400 flex-shrink-0" />
                           <span>{h}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -91,7 +100,13 @@ export function ExperiencePreview() {
 
           {/* Right Column: Achievements & Quick Credentials (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-7 backdrop-blur-sm space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-7 backdrop-blur-sm space-y-4"
+            >
               <div className="flex items-center gap-2 border-b border-white/[0.06] pb-3 text-lime">
                 <Award className="h-4 w-4" />
                 <span className="font-mono text-xs font-semibold uppercase tracking-wider">HONORS & RECOGNITION</span>
@@ -106,11 +121,17 @@ export function ExperiencePreview() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Quick Resume Link Box */}
-            <div className="rounded-2xl border border-lime/20 bg-lime/[0.03] p-6 backdrop-blur-sm space-y-3">
-              <span className="font-mono text-[10px] text-lime uppercase tracking-widest block font-semibold">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.03] p-6 backdrop-blur-sm space-y-3"
+            >
+              <span className="font-mono text-[10px] text-cyan-400 uppercase tracking-widest block font-semibold">
                 CURRICULUM VITAE
               </span>
               <h4 className="font-heading text-base text-white">Looking for the complete academic profile?</h4>
@@ -122,11 +143,10 @@ export function ExperiencePreview() {
                   VIEW FULL RESUME
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </Container>
     </section>
   );
 }
-

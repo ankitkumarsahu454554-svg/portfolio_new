@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowUpRight, Github, ExternalLink, Filter, Code2, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Github, Filter } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Badge } from '@/components/ui/Badge';
-import { PROJECTS, EngineeringProject } from '@/lib/constants';
+import { PROJECTS } from '@/lib/constants';
 
-const CATEGORIES = ['All Categories', 'AI / Machine Learning', 'Data Science', 'Systems & Security', 'Space Telemetry'] as const;
+const CATEGORIES = ['All Categories', 'AI / Machine Learning', 'Data Science', 'Systems & Security'] as const;
 
 export function ProjectsView() {
   const [activeCategory, setActiveCategory] = useState<string>('All Categories');
@@ -18,14 +19,14 @@ export function ProjectsView() {
       : PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="02"
           tag="ENGINEERING ARCHIVE"
           title="Technical Projects & Applied Systems"
           subtitle="Real-World Problem Solving"
-          description="A documented index of machine learning models, healthcare intake architectures, cryptographic data sanitization utilities, and sub-orbital telemetry software built by Ankit Kumar Sahu."
+          description="A documented index of machine learning models, clinical healthcare intake architectures, and cryptographic data sanitization utilities built by Ankit Kumar Sahu."
         />
 
         {/* Category Filters */}
@@ -42,7 +43,7 @@ export function ProjectsView() {
                 className={`rounded-lg px-3.5 py-1.5 font-mono text-xs transition-all duration-200 ${
                   activeCategory === cat
                     ? 'bg-lime text-black font-semibold shadow-[0_0_12px_rgba(199,255,85,0.3)]'
-                    : 'border border-white/10 bg-white/[0.02] text-gray-300 hover:border-white/30 hover:text-white'
+                    : 'border border-white/10 bg-[#0D0D0D] text-gray-300 hover:border-white/30 hover:text-white'
                 }`}
               >
                 {cat}
@@ -57,17 +58,21 @@ export function ProjectsView() {
 
         {/* Detailed Projects List */}
         <div className="space-y-10">
-          {filteredProjects.map((project) => (
-            <div
+          {filteredProjects.map((project, index) => (
+            <motion.div
               key={project.id}
-              className="group relative rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-surface-100/70"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)]"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 {/* Left Overview Column */}
                 <div className="lg:col-span-5 space-y-4">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-semibold text-lime">PROJECT #{project.id}</span>
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-[10px] border-white/15 bg-white/[0.03]">
                       {project.category}
                     </Badge>
                   </div>
@@ -92,7 +97,7 @@ export function ProjectsView() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-4 py-2 font-mono text-xs text-white hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-[#141414] px-4 py-2 font-mono text-xs text-white hover:border-cyan-400 hover:text-cyan-400 transition-all duration-200"
                     >
                       <Github className="h-4 w-4" />
                       <span>GitHub Repository</span>
@@ -142,7 +147,7 @@ export function ProjectsView() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-xs text-gray-300"
+                          className="rounded-md border border-white/10 bg-[#141414] px-2.5 py-1 font-mono text-xs text-gray-300"
                         >
                           {tech}
                         </span>
@@ -151,11 +156,10 @@ export function ProjectsView() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>
     </div>
   );
 }
-

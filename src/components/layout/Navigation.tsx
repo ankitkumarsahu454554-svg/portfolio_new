@@ -14,7 +14,7 @@ export function Navigation() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#08090B]/90 backdrop-blur-md transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#000000]/90 backdrop-blur-md transition-all duration-300">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 md:px-8">
           {/* Brand & Identity */}
           <Link
@@ -84,7 +84,7 @@ export function Navigation() {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-b border-white/10 bg-[#08090B]/98 px-6 py-6 space-y-4">
+          <div className="md:hidden border-b border-white/10 bg-[#000000]/98 px-6 py-6 space-y-4">
             <nav className="flex flex-col space-y-3">
               {NAV_ITEMS.map((item) => {
                 const isActive =

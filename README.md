@@ -33,11 +33,6 @@ This is the personal portfolio, curriculum vitae, and project archive of **Ankit
    * *Solution:* Storage media sanitization platform complying with NIST SP 800-88 Clear and Purge standards, featuring native multi-device wiping and tamper-evident audit logs.
    * *Tech:* Go, Rust, Electron, TypeScript.
 
-4. **Satellite Telemetry & CanSat Payload Systems**
-   * *Problem:* Ingestion and spatial mapping of atmospheric data during sub-orbital flights.
-   * *Solution:* Developed real-time sensor data telemetry pipelines and GIS mapping tools at India Space Lab for CanSat payloads.
-   * *Tech:* Python, C++, GIS Remote Sensing, Radio Telemetry.
-
 ---
 
 ## ✦ Tech Stack

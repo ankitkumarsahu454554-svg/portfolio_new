@@ -39,7 +39,7 @@ export const SITE_CONFIG = {
 export interface EngineeringProject {
   id: string;
   title: string;
-  category: 'AI / Machine Learning' | 'Data Science' | 'Systems & Security' | 'Space Telemetry';
+  category: 'AI / Machine Learning' | 'Data Science' | 'Systems & Security';
   summary: string;
   problem: string;
   solution: string;
@@ -97,22 +97,6 @@ export const PROJECTS: EngineeringProject[] = [
       'Developed native storage device discovery and low-level block overwrite modules in Go and Rust, designed the Electron management console, and implemented cryptographic hash verification for audit records.',
     technologies: ['Go', 'Rust', 'Electron', 'TypeScript', 'NIST SP 800-88 Guidelines'],
     metrics: 'Compliant with NIST SP 800-88 sanitization verification algorithms',
-    githubUrl: 'https://github.com/ankitkumarsahu454554-svg',
-    featured: true,
-  },
-  {
-    id: '04',
-    title: 'Satellite Telemetry & CanSat Payload Systems',
-    category: 'Space Telemetry',
-    summary: 'Real-time sensor telemetry and GIS spatial data processing for sub-orbital payloads at India Space Lab.',
-    problem:
-      'Capturing, transmitting, and analyzing high-frequency atmospheric data during sub-orbital flights requires fault-tolerant telemetry logging and real-time geospatial visualization.',
-    solution:
-      'Engineered telemetry ingestion scripts and spatial analysis pipelines to monitor pressure, temperature, altitude, and GPS coordinates from CanSat micro-payloads during recovery missions.',
-    contribution:
-      'Programmed onboard sensor telemetry modules, configured RF ground station reception scripts, and developed GIS mapping tools to visualize trajectory and descent paths.',
-    technologies: ['Python', 'C++', 'GIS Remote Sensing', 'Radio Telemetry', 'Sensor Architectures'],
-    metrics: 'Live sensor telemetry ingestion & geospatial trajectory plotting',
     githubUrl: 'https://github.com/ankitkumarsahu454554-svg',
     featured: true,
   },

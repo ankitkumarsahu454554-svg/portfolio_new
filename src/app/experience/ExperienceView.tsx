@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { EDUCATION_DATA, EXPERIENCE_DATA, ACHIEVEMENTS, SITE_CONFIG } from '@/lib/constants';
-import { GraduationCap, Briefcase, Award, CheckCircle2, Calendar, MapPin, Download, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, Briefcase, Award, Calendar, MapPin, Download } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export function ExperienceView() {
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="03"
@@ -28,7 +29,12 @@ export function ExperienceView() {
             </h3>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm space-y-4 hover:border-lime/40 transition-all duration-300"
+          >
             <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/[0.06] pb-4">
               <div>
                 <span className="font-mono text-xs text-lime font-semibold">UNDERGRADUATE DEGREE</span>
@@ -71,14 +77,14 @@ export function ExperienceView() {
                 ].map((course) => (
                   <span
                     key={course}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-gray-300"
+                    className="rounded-lg border border-white/10 bg-[#141414] px-3 py-1 font-mono text-xs text-gray-300"
                   >
                     {course}
                   </span>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Technical Internships & Industry Experience */}
@@ -91,10 +97,14 @@ export function ExperienceView() {
           </div>
 
           <div className="space-y-6">
-            {EXPERIENCE_DATA.map((exp) => (
-              <div
+            {EXPERIENCE_DATA.map((exp, index) => (
+              <motion.div
                 key={exp.organization}
-                className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm space-y-4 hover:border-cyan-400/40 transition-all duration-300"
               >
                 <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/[0.06] pb-4">
                   <div>
@@ -107,7 +117,7 @@ export function ExperienceView() {
                   </div>
 
                   <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-gray-400">
-                    <span className="rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1">
+                    <span className="rounded-md border border-white/10 bg-[#141414] px-2.5 py-1">
                       {exp.duration}
                     </span>
                     <span className="flex items-center gap-1">
@@ -130,7 +140,7 @@ export function ExperienceView() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -145,23 +155,33 @@ export function ExperienceView() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {ACHIEVEMENTS.map((ach) => (
-              <div
+            {ACHIEVEMENTS.map((ach, index) => (
+              <motion.div
                 key={ach.title}
-                className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 backdrop-blur-sm space-y-2.5"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-2.5 hover:border-lime/40 transition-all duration-300"
               >
                 <span className="font-mono text-xs font-semibold text-lime uppercase">{ach.organization}</span>
                 <h4 className="font-heading text-lg font-medium text-white">{ach.title}</h4>
                 <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed">
                   {ach.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Bottom Resume Download Banner */}
-        <div className="mt-16 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.03] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16 rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.03] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 backdrop-blur-sm"
+        >
           <div>
             <h4 className="font-heading text-xl font-medium text-white">Need a copy of my curriculum vitae for review?</h4>
             <p className="font-sans text-xs sm:text-sm text-gray-300 mt-1">
@@ -178,9 +198,8 @@ export function ExperienceView() {
             <Download className="mr-2 h-4 w-4" />
             <span>DOWNLOAD RESUME PDF</span>
           </Button>
-        </div>
+        </motion.div>
       </Container>
     </div>
   );
 }
-

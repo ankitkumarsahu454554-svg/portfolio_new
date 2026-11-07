@@ -3,16 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { GraduationCap, Code2, Brain, Database, ArrowUpRight, Download, Mail, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Download, Mail } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { SITE_CONFIG, EDUCATION_DATA, TECHNICAL_SKILLS } from '@/lib/constants';
+import { SITE_CONFIG, EDUCATION_DATA } from '@/lib/constants';
 
 export function AboutView() {
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="01"
@@ -23,7 +22,7 @@ export function AboutView() {
         />
 
         {/* Narrative & Cinematic Portrait Row */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-16 border-b border-white/[0.08]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 items-start pb-16 border-b border-white/[0.08]">
           {/* Left Column: Biography & Academic Focus */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -80,51 +79,52 @@ export function AboutView() {
             </div>
           </motion.div>
 
-          {/* Right Column: Original Portrait in Clean Futuristic Frame */}
+          {/* Right Column: Original Portrait (Reduced by ~12-15% in display width) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5"
+            className="lg:col-span-5 flex justify-center"
           >
-            <div className="rounded-2xl border border-white/15 bg-surface-50/80 p-4 sm:p-5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+            {/* Constrained card: max-w-[330px] sm:max-w-[350px] (reduced display dimensions) */}
+            <div className="w-full max-w-[330px] sm:max-w-[350px] rounded-2xl border border-white/15 bg-[#0D0D0D] p-3.5 sm:p-4 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.8)] hover:border-cyan-400/40 transition-all duration-300">
               {/* Card Header */}
-              <div className="mb-3 flex items-center justify-between border-b border-white/[0.08] pb-3 font-mono text-xs">
-                <span className="text-gray-300 font-medium">CANDIDATE DOSSIER</span>
-                <span className="text-lime font-semibold">8.75 CGPA</span>
+              <div className="mb-2.5 flex items-center justify-between border-b border-white/[0.08] pb-2 font-mono text-xs">
+                <span className="text-gray-300 font-medium text-[11px]">CANDIDATE DOSSIER</span>
+                <span className="text-lime font-semibold text-[11px]">8.75 CGPA</span>
               </div>
 
               {/* Exact Unaltered Portrait */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-[#060708]">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-[#000000]">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 420px"
+                  sizes="(max-width: 640px) 310px, 350px"
                   priority
                   className="object-cover object-top"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090B] via-transparent to-transparent opacity-60" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-60" />
 
-                <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/10 bg-[#08090B]/90 p-3 backdrop-blur-md font-mono text-xs">
-                  <p className="font-heading text-sm font-medium text-white">{SITE_CONFIG.name}</p>
-                  <p className="text-[11px] text-cyan-400">B-Tech CSE (Data Science) • 2024–2028</p>
-                  <p className="text-[10px] text-gray-400">NIST University, Odisha</p>
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-lg border border-white/10 bg-[#000000]/90 p-2.5 backdrop-blur-md font-mono text-xs">
+                  <p className="font-heading text-xs sm:text-sm font-medium text-white">{SITE_CONFIG.name}</p>
+                  <p className="text-[10px] text-cyan-400">B-Tech CSE (Data Science) • 2024–2028</p>
+                  <p className="text-[9px] text-gray-400">NIST University, Odisha</p>
                 </div>
               </div>
 
               {/* Metadata Table */}
-              <div className="mt-4 space-y-2 font-mono text-xs">
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400">
-                  <span className="text-gray-400">STATUS</span>
+              <div className="mt-3.5 space-y-2 font-mono text-xs">
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400 text-[11px]">
+                  <span>STATUS</span>
                   <span className="text-lime font-medium">Seeking Internships</span>
                 </div>
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400">
-                  <span className="text-gray-400">PRIMARY FOCUS</span>
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400 text-[11px]">
+                  <span>PRIMARY FOCUS</span>
                   <span className="text-white">AI/ML & Data Science</span>
                 </div>
-                <div className="flex items-center justify-between text-gray-400">
-                  <span className="text-gray-400">EMAIL</span>
+                <div className="flex items-center justify-between text-gray-400 text-[11px]">
+                  <span>EMAIL</span>
                   <a href={`mailto:${SITE_CONFIG.email}`} className="text-cyan-400 hover:underline">
                     {SITE_CONFIG.email}
                   </a>
@@ -144,7 +144,7 @@ export function AboutView() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-cyan-400/40">
               <span className="font-mono text-xs text-cyan-400 font-semibold block">01 / EMPIRICAL RIGOR</span>
               <h4 className="font-heading text-base text-white">Data-Driven Validation</h4>
               <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
@@ -152,7 +152,7 @@ export function AboutView() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-lime/40">
               <span className="font-mono text-xs text-lime font-semibold block">02 / SYSTEMS ARCHITECTURE</span>
               <h4 className="font-heading text-base text-white">Reliable Software Engineering</h4>
               <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
@@ -160,7 +160,7 @@ export function AboutView() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-cyan-400/40">
               <span className="font-mono text-xs text-cyan-400 font-semibold block">03 / REAL-WORLD IMPACT</span>
               <h4 className="font-heading text-base text-white">Practical Problem-Solving</h4>
               <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
@@ -179,7 +179,7 @@ export function AboutView() {
             </h3>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm space-y-4">
+          <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.06] pb-4">
               <div>
                 <h4 className="font-heading text-lg font-medium text-white">{EDUCATION_DATA[0].degree}</h4>
@@ -212,7 +212,7 @@ export function AboutView() {
                 ].map((subject) => (
                   <span
                     key={subject}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-gray-300"
+                    className="rounded-lg border border-white/10 bg-[#141414] px-3 py-1 font-mono text-xs text-gray-300"
                   >
                     {subject}
                   </span>

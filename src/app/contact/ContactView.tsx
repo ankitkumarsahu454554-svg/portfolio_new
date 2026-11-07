@@ -7,7 +7,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants';
-import { Check, Copy, Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 
 export function ContactView() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -38,7 +38,7 @@ export function ContactView() {
   };
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
       <Container size="wide">
         <SectionHeader
           index="05"
@@ -51,7 +51,7 @@ export function ContactView() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           {/* Left Column: Professional Message Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-10 backdrop-blur-sm">
+            <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-10 backdrop-blur-sm">
               <div className="border-b border-white/[0.08] pb-4 mb-6">
                 <h3 className="font-heading text-xl font-medium text-white">Send a Message</h3>
                 <p className="font-sans text-xs text-gray-400 mt-1">
@@ -102,7 +102,7 @@ export function ContactView() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Technical Recruiter / Researcher"
-                        className="w-full rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
+                        className="w-full rounded-lg border border-white/10 bg-[#141414] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
                       />
                     </div>
 
@@ -117,7 +117,7 @@ export function ContactView() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="you@company.com"
-                        className="w-full rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
+                        className="w-full rounded-lg border border-white/10 bg-[#141414] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
                       />
                     </div>
                   </div>
@@ -130,7 +130,7 @@ export function ContactView() {
                       id="opportunityType"
                       value={formData.opportunityType}
                       onChange={(e) => setFormData({ ...formData, opportunityType: e.target.value })}
-                      className="w-full rounded-lg border border-white/10 bg-[#0C0E12] px-4 py-3 text-white focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
+                      className="w-full rounded-lg border border-white/10 bg-[#141414] px-4 py-3 text-white focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
                     >
                       <option>Software Engineering Internship</option>
                       <option>AI / Machine Learning Internship</option>
@@ -151,7 +151,7 @@ export function ContactView() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please share details about the role, technical scope, or discussion topic..."
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.02] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
+                      className="w-full rounded-lg border border-white/10 bg-[#141414] px-4 py-3 text-white placeholder-gray-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans"
                     />
                   </div>
 
@@ -163,23 +163,23 @@ export function ContactView() {
             </div>
           </div>
 
-          {/* Right Column: Direct Info & Profile Thumbnail */}
+          {/* Right Column: Direct Info & Profile Thumbnail (slightly reduced size: h-14 w-14) */}
           <div className="space-y-6 lg:col-span-5">
             {/* Authentic Profile Card */}
-            <div className="flex items-center gap-4 rounded-2xl border border-white/[0.12] bg-surface-50/70 p-5 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-              <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-cyan-400/40 bg-[#0C0E12]">
+            <div className="flex items-center gap-4 rounded-2xl border border-white/[0.12] bg-[#0D0D0D] p-4 sm:p-5 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
+              <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-cyan-400/40 bg-[#000000]">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt={SITE_CONFIG.name}
                   fill
-                  sizes="64px"
+                  sizes="56px"
                   priority
                   className="object-cover object-top"
                 />
               </div>
-              <div className="space-y-1 min-w-0">
+              <div className="space-y-0.5 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="font-heading text-base text-white font-medium truncate">
+                  <span className="font-heading text-sm sm:text-base text-white font-medium truncate">
                     {SITE_CONFIG.name}
                   </span>
                   <Badge variant="lime" dot pulse className="text-[9px] px-1.5 py-0.5">
@@ -196,11 +196,11 @@ export function ContactView() {
             </div>
 
             {/* Direct Email Card */}
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-2">
+            <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-5 sm:p-6 backdrop-blur-sm space-y-2">
               <span className="font-mono text-xs text-lime uppercase tracking-widest block font-semibold">
                 EMAIL ADDRESS
               </span>
-              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] p-3 font-mono text-xs text-white">
+              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-[#141414] p-3 font-mono text-xs text-white">
                 <a href={`mailto:${SITE_CONFIG.email}`} className="text-cyan-400 truncate mr-2 hover:underline">
                   {SITE_CONFIG.email}
                 </a>
@@ -225,11 +225,11 @@ export function ContactView() {
             </div>
 
             {/* Direct Phone Card */}
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-2">
+            <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-5 sm:p-6 backdrop-blur-sm space-y-2">
               <span className="font-mono text-xs text-gray-400 uppercase tracking-widest block font-semibold">
                 TELEPHONE / WHATSAPP
               </span>
-              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] p-3 font-mono text-xs text-white">
+              <div className="flex items-center justify-between rounded-lg border border-white/10 bg-[#141414] p-3 font-mono text-xs text-white">
                 <span className="text-gray-200">{SITE_CONFIG.phone}</span>
                 <button
                   onClick={handleCopyPhone}
@@ -252,7 +252,7 @@ export function ContactView() {
             </div>
 
             {/* Social Networks & Resume */}
-            <div className="rounded-2xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+            <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-5 sm:p-6 backdrop-blur-sm space-y-3">
               <span className="font-mono text-xs text-gray-400 uppercase tracking-widest block font-semibold">
                 PROFESSIONAL NETWORKS
               </span>
