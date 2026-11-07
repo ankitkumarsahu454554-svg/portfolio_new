@@ -3,7 +3,6 @@ import './globals.css';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { CustomCursor } from '@/components/ui/CustomCursor';
-import { NoiseOverlay } from '@/components/ui/NoiseOverlay';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
 
 export const viewport: Viewport = {
@@ -15,22 +14,23 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'ANKIT KUMAR SAHU — LIQUID / FORM // AI/ML & Creative Technologist',
-    template: '%s | LIQUID / FORM',
+    default: 'Ankit Kumar Sahu | Computer Science & Engineering (Data Science)',
+    template: '%s | Ankit Kumar Sahu',
   },
   description:
-    'Portfolio, curriculum vitae, and research archive of Ankit Kumar Sahu (NIST University), exploring AI/ML, Data Science, and real-time GPU graphics.',
+    'Portfolio, curriculum vitae, and technical projects of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University. Seeking Software Engineering, AI/ML, and Data Science internships.',
   keywords: [
     'Ankit Kumar Sahu',
-    'AI/ML',
+    'Computer Science',
     'Data Science',
+    'AI/ML',
     'NIST University',
-    'Creative Developer',
-    'Three.js',
-    'WebGL',
-    'Creative Technologist',
-    'Next.js',
+    'Software Engineering',
+    'Python',
     'PyTorch',
+    'FastAPI',
+    'React',
+    'Internship',
   ],
   authors: [{ name: 'Ankit Kumar Sahu' }],
   creator: 'Ankit Kumar Sahu',
@@ -41,10 +41,11 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   openGraph: {
-    title: 'ANKIT KUMAR SAHU — LIQUID / FORM',
-    description: 'AI/ML Enthusiast, Data Science Specialist & Creative Developer (NIST University).',
+    title: 'Ankit Kumar Sahu | Computer Science & Engineering Portfolio',
+    description:
+      'Computer Science & Engineering student at NIST University (8.75 CGPA) specializing in Data Science, AI/ML, and Software Development.',
     url: 'https://liquidform.studio',
-    siteName: 'LIQUID / FORM',
+    siteName: 'Ankit Kumar Sahu Portfolio',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -52,14 +53,15 @@ export const metadata: Metadata = {
         url: '/images/profile.png',
         width: 1200,
         height: 1600,
-        alt: 'Ankit Kumar Sahu — LIQUID / FORM Portfolio',
+        alt: 'Ankit Kumar Sahu — Portrait',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ANKIT KUMAR SAHU — LIQUID / FORM',
-    description: 'AI/ML Enthusiast, Data Science Specialist & Creative Developer.',
+    title: 'Ankit Kumar Sahu | Computer Science & Engineering Portfolio',
+    description:
+      'Computer Science & Engineering student at NIST University (8.75 CGPA) specializing in Data Science, AI/ML, and Software Development.',
     images: ['/images/profile.png'],
   },
   robots: {
@@ -92,7 +94,6 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground antialiased selection:bg-lime selection:text-black">
         <SmoothScrollProvider>
-          <NoiseOverlay />
           <CustomCursor />
           <Navigation />
           <main className="relative min-h-screen">{children}</main>

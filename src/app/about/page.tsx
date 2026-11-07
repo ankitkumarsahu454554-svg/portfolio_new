@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import { AboutView } from './AboutView';
 
 export const metadata: Metadata = {
-  title: 'About Ankit Kumar Sahu // Studio Practice & Research',
+  title: 'About Me | Ankit Kumar Sahu — CSE (Data Science) Student',
   description:
-    'Background, education at NIST University, data science research, capabilities, and philosophy of Ankit Kumar Sahu.',
+    'Academic background, technical competencies, engineering philosophy, and research interests of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University.',
 };
 
 export default function AboutPage() {

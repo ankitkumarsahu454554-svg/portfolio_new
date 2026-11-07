@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import { ContactView } from './ContactView';
 
 export const metadata: Metadata = {
-  title: 'Contact // Initiate Collaboration',
+  title: 'Contact | Ankit Kumar Sahu — Technical Opportunities & Inquiries',
   description:
-    'Direct dispatch transmission to collaborate with Ankit Kumar Sahu on AI/ML engineering, real-time WebGL, and full-stack software development.',
+    'Contact Ankit Kumar Sahu regarding Software Engineering, AI/ML, and Data Science internship opportunities. Email: ankitkumarsahu488526@gmail.com.',
 };
 
 export default function ContactPage() {

@@ -8,7 +8,7 @@ export function CustomCursor() {
   const isTouch = useIsTouchDevice();
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [isVisible, setIsVisible] = useState(false);
-  const [cursorType, setCursorType] = useState<'default' | 'pointer' | 'text' | 'view'>('default');
+  const [isPointer, setIsPointer] = useState(false);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -28,16 +28,8 @@ export function CustomCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const interactive = target.closest('a, button, [data-cursor="pointer"], input, textarea');
-      const viewTrigger = target.closest('[data-cursor="view"]');
-
-      if (viewTrigger) {
-        setCursorType('view');
-      } else if (interactive) {
-        setCursorType('pointer');
-      } else {
-        setCursorType('default');
-      }
+      const interactive = target.closest('a, button, [data-cursor="pointer"], input, textarea, select');
+      setIsPointer(Boolean(interactive));
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -68,30 +60,14 @@ export function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          width: cursorType === 'pointer' ? 48 : cursorType === 'view' ? 64 : 26,
-          height: cursorType === 'pointer' ? 48 : cursorType === 'view' ? 64 : 26,
-          borderColor:
-            cursorType === 'pointer'
-              ? 'rgba(199, 255, 85, 0.8)'
-              : cursorType === 'view'
-              ? 'rgba(0, 240, 255, 0.8)'
-              : 'rgba(255, 255, 255, 0.25)',
-          backgroundColor:
-            cursorType === 'pointer'
-              ? 'rgba(199, 255, 85, 0.08)'
-              : cursorType === 'view'
-              ? 'rgba(0, 240, 255, 0.12)'
-              : 'rgba(255, 255, 255, 0.02)',
+          width: isPointer ? 44 : 24,
+          height: isPointer ? 44 : 24,
+          borderColor: isPointer ? 'rgba(199, 255, 85, 0.8)' : 'rgba(0, 240, 255, 0.35)',
+          backgroundColor: isPointer ? 'rgba(199, 255, 85, 0.08)' : 'rgba(0, 240, 255, 0.03)',
           opacity: isVisible ? 1 : 0,
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-      >
-        {cursorType === 'view' && (
-          <span className="font-mono text-[9px] font-semibold tracking-widest text-electric">
-            VIEW
-          </span>
-        )}
-      </motion.div>
+        transition={{ type: 'spring', damping: 22, stiffness: 320 }}
+      />
 
       {/* Pinpoint Core Dot */}
       <motion.div
@@ -104,11 +80,10 @@ export function CustomCursor() {
         }}
         animate={{
           opacity: isVisible ? 1 : 0,
-          scale: cursorType === 'pointer' ? 0 : 1,
+          scale: isPointer ? 0 : 1,
         }}
         transition={{ duration: 0.15 }}
       />
     </div>
   );
 }
-

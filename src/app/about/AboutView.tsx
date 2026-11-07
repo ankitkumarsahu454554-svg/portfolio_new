@@ -3,277 +3,225 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { GraduationCap, Sparkles } from 'lucide-react';
+import { GraduationCap, Code2, Brain, Database, ArrowUpRight, Download, Mail, CheckCircle2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { SITE_CONFIG } from '@/lib/constants';
-
-const CAPABILITIES = [
-  {
-    category: 'AI & MACHINE LEARNING',
-    items: [
-      'Supervised Learning & Model Evaluation',
-      'LLM APIs, Prompt Engineering & Gemini API',
-      'PyTorch, TensorFlow, Scikit-learn',
-      'Data Preprocessing, NumPy & Pandas',
-      'Healthcare AI & Rare Disease Prediction',
-    ],
-  },
-  {
-    category: 'CREATIVE TECH & 3D WEB',
-    items: [
-      'Interactive WebGL & Shader Pipelines',
-      'Three.js & React Three Fiber (R3F)',
-      'Custom Vertex & Fragment Shaders (GLSL)',
-      'Physically-Based Rendering (PBR)',
-      'Physics-Based Interaction & Lenis Scrolling',
-    ],
-  },
-  {
-    category: 'FULL-STACK SOFTWARE',
-    items: [
-      'Next.js 14 App Router & React',
-      'FastAPI, Python & REST API Architecture',
-      'TypeScript, Go & Rust Systems Development',
-      'PostgreSQL, SQL & Database Engineering',
-      'Electron Desktop Application Development',
-    ],
-  },
-  {
-    category: 'RESEARCH & DOMAIN PRACTICES',
-    items: [
-      'Data Science Internship (Unified Mentor)',
-      'Space Technology (India Space Lab - CanSat & GIS)',
-      'Data Sanitization (NIST SP 800-88 Standards)',
-      'Multilingual OCR & Voice Symptom Collection',
-      'Prompt Wars Finalist (Google for Developers)',
-    ],
-  },
-];
-
-const TIMELINE = [
-  {
-    period: '2024 — 2028',
-    title: 'B-Tech in Computer Science Engineering (Data Science)',
-    institution: 'NIST UNIVERSITY',
-    detail: 'CGPA: 8.75 / 10. Core focus on Machine Learning, Algorithms, Data Structures, and Applied Mathematics.',
-  },
-  {
-    period: 'OCT 2026 — DEC 2026',
-    title: 'Data Science Intern',
-    institution: 'UNIFIED MENTOR PVT. LTD',
-    detail: 'Hands-on projects in data preprocessing, supervised learning models, and real-world statistical analysis.',
-  },
-  {
-    period: 'JUN 2026 — JUL 2026',
-    title: 'Space Technology & Systems Trainee',
-    institution: 'INDIA SPACE LAB',
-    detail: 'Technical training program covering drone technology, CanSat/CubeSat architectures, GIS remote sensing, and rocketry.',
-  },
-];
+import { SITE_CONFIG, EDUCATION_DATA, TECHNICAL_SKILLS } from '@/lib/constants';
 
 export function AboutView() {
   return (
     <div className="pt-28 pb-24 md:pt-36 md:pb-32">
       <Container size="wide">
         <SectionHeader
-          index="03"
-          tag="STUDIO PRACTICE & PROFILE"
-          title="ABOUT ANKIT KUMAR SAHU"
-          subtitle="AI/ML SPECIALIST & CREATIVE DEVELOPER"
-          description="Synthesizing machine learning intelligence, real-time GPU graphics, and robust software architecture."
+          index="01"
+          tag="ACADEMIC & PROFESSIONAL BACKGROUND"
+          title="About Ankit Kumar Sahu"
+          subtitle="Computer Science & Engineering Student"
+          description="An analytical computer science undergraduate at NIST University specializing in Data Science, Machine Learning architectures, and production software engineering."
         />
 
         {/* Narrative & Cinematic Portrait Row */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20 border-b border-white/[0.08]">
-          {/* Left Column: Biography & Manifesto */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-16 border-b border-white/[0.08]">
+          {/* Left Column: Biography & Academic Focus */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6 lg:col-span-7"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime/20 bg-lime/[0.04] px-3 py-1 font-mono text-xs text-lime">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>DATA SCIENCE SPECIALIST & RESEARCHER</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/[0.05] px-3 py-1 font-mono text-xs text-lime">
+              <GraduationCap className="h-3.5 w-3.5" />
+              <span>NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)</span>
             </div>
 
-            <h3 className="font-heading text-2xl sm:text-4xl font-light text-white leading-tight">
-              Engineering intelligent systems where <span className="text-lime">data science</span> meets{' '}
-              <span className="italic metallic-text">creative technology</span>.
+            <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-normal text-white leading-tight">
+              Building intelligent systems through <span className="text-cyan-400">empirical machine learning</span> and{' '}
+              <span className="text-lime">practical software engineering</span>.
             </h3>
 
-            <div className="space-y-4 font-sans text-sm sm:text-base leading-relaxed text-gray-400">
+            <div className="space-y-4 font-sans text-sm sm:text-base leading-relaxed text-gray-300">
               <p>
-                I am a Computer Science student specializing in Data Science at NIST University, with an active
-                focus in Artificial Intelligence, Machine Learning, Large Language Model training, and real-time
-                software engineering.
+                I am a Computer Science & Engineering undergraduate specializing in Data Science at{' '}
+                <strong className="text-white">NIST University</strong>, maintaining an academic record of{' '}
+                <strong className="text-lime font-semibold">8.75 / 10 CGPA</strong>. My academic journey is centered around
+                understanding algorithmic principles, implementing machine learning models from mathematical fundamentals,
+                and developing robust full-stack software.
               </p>
               <p>
-                My work spans applied AI in healthcare—such as Rare Disease Prediction engines utilizing
-                phenotype ranking and HPO analysis—to high-performance multilingual medical intake kiosks
-                (MediKiosk) and enterprise data sanitization utilities adhering to NIST SP 800-88 guidelines.
+                My technical interests span <strong className="text-white">Deep Learning in Healthcare</strong> (such as
+                candidate rare disease ranking using Human Phenotype Ontology representations),{' '}
+                <strong className="text-white">Applied Data Science</strong> (multilingual medical OCR and clinical intake systems),
+                and <strong className="text-white">Systems Software</strong> (cryptographic data sanitization tools complying with
+                NIST SP 800-88 enterprise specifications).
               </p>
               <p>
-                In the creative domain, I construct GPU-accelerated WebGL environments, physics-driven tactile
-                interfaces, and minimal editorial digital design systems that run with sub-16ms precision.
+                As an engineer, I prioritize clean architectural design, measurable performance metrics (such as Top-K accuracy and
+                Mean Reciprocal Rank), and production reliability over theoretical prototypes. I am seeking summer and fall
+                internships at leading technology companies, research organizations, IITs, and NITs where I can contribute to
+                challenging software engineering and AI/ML initiatives.
               </p>
             </div>
 
             {/* Quick Action Buttons */}
-            <div className="pt-4 flex flex-wrap gap-3.5">
-              <Button href="/resume" variant="primary" size="md" withArrow>
-                VIEW RESUME
+            <div className="pt-2 flex flex-wrap gap-3.5">
+              <Button href={SITE_CONFIG.resumePath} download="Ankit_Kumar_Sahu_Resume.pdf" variant="primary" size="md">
+                <Download className="mr-2 h-4 w-4" />
+                <span>DOWNLOAD RESUME</span>
               </Button>
-              <Button href="/work" variant="secondary" size="md">
-                INSPECT PORTFOLIO
+              <Button href="/projects" variant="secondary" size="md">
+                EXPLORE PROJECTS
               </Button>
               <Button href="/contact" variant="ghost" size="md">
-                COMMISSION WORK
+                <Mail className="mr-2 h-4 w-4" />
+                <span>GET IN TOUCH</span>
               </Button>
             </div>
           </motion.div>
 
-          {/* Right Column: Primary Cinematic Portrait Card */}
+          {/* Right Column: Original Portrait in Clean Futuristic Frame */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <div className="group relative rounded-2xl border border-white/15 bg-surface-50/70 p-4 sm:p-5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-lime/40">
-              {/* Corner crosshair badges */}
-              <div className="mb-3 flex items-center justify-between border-b border-white/[0.08] pb-3">
-                <span className="font-mono text-[11px] text-lime">
-                  + [PROFILE: ANKIT_KUMAR_SAHU]
-                </span>
-                <Badge variant="lime" dot pulse className="text-[10px]">
-                  VERIFIED
-                </Badge>
+            <div className="rounded-2xl border border-white/15 bg-surface-50/80 p-4 sm:p-5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+              {/* Card Header */}
+              <div className="mb-3 flex items-center justify-between border-b border-white/[0.08] pb-3 font-mono text-xs">
+                <span className="text-gray-300 font-medium">CANDIDATE DOSSIER</span>
+                <span className="text-lime font-semibold">8.75 CGPA</span>
               </div>
 
-              {/* Cinematic Framed Image Container */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-[#060708] shadow-inner">
+              {/* Exact Unaltered Portrait */}
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-[#060708]">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
                   sizes="(max-width: 1024px) 100vw, 420px"
                   priority
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="object-cover object-top"
                 />
-
-                {/* Subtle Cinematic Vignette Overlay */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08090B] via-transparent to-transparent opacity-60" />
 
-                {/* Bottom Overlay Telemetry on Portrait */}
-                <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/10 bg-[#08090B]/85 p-3 backdrop-blur-md">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-heading text-sm font-medium text-white">
-                        {SITE_CONFIG.curator}
-                      </p>
-                      <p className="font-mono text-[10px] text-lime">
-                        NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)
-                      </p>
-                    </div>
-                    <span className="font-mono text-[11px] font-semibold text-white">
-                      8.75 CGPA
-                    </span>
-                  </div>
+                <div className="absolute bottom-3 left-3 right-3 rounded-lg border border-white/10 bg-[#08090B]/90 p-3 backdrop-blur-md font-mono text-xs">
+                  <p className="font-heading text-sm font-medium text-white">{SITE_CONFIG.name}</p>
+                  <p className="text-[11px] text-cyan-400">B-Tech CSE (Data Science) • 2024–2028</p>
+                  <p className="text-[10px] text-gray-400">NIST University, Odisha</p>
                 </div>
               </div>
 
-              {/* Portrait Metadata Footer */}
+              {/* Metadata Table */}
               <div className="mt-4 space-y-2 font-mono text-xs">
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400">
-                  <span className="text-gray-500">LOCATION</span>
-                  <span>{SITE_CONFIG.location}</span>
+                  <span className="text-gray-400">STATUS</span>
+                  <span className="text-lime font-medium">Seeking Internships</span>
                 </div>
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400">
-                  <span className="text-gray-500">SPECIALIZATION</span>
-                  <span className="text-lime">AI/ML & DATA SCIENCE</span>
+                  <span className="text-gray-400">PRIMARY FOCUS</span>
+                  <span className="text-white">AI/ML & Data Science</span>
                 </div>
                 <div className="flex items-center justify-between text-gray-400">
-                  <span className="text-gray-500">DISPOSITION</span>
-                  <span>{SITE_CONFIG.status}</span>
+                  <span className="text-gray-400">EMAIL</span>
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-cyan-400 hover:underline">
+                    {SITE_CONFIG.email}
+                  </a>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Education & Experience Track */}
-        <div className="py-20 border-b border-white/[0.08]">
-          <div className="mb-12">
-            <span className="font-mono text-xs text-lime tracking-widest uppercase">
-              /TRAJECTORY
-            </span>
-            <h3 className="mt-2 font-heading text-3xl font-light text-white">
-              EDUCATION & TECHNICAL INTERNSHIPS
+        {/* Engineering Philosophy & Problem-Solving Approach */}
+        <div className="py-16 border-b border-white/[0.08]">
+          <div className="mb-8">
+            <span className="font-mono text-xs text-lime tracking-widest uppercase">/METHODOLOGY</span>
+            <h3 className="mt-2 font-heading text-2xl sm:text-3xl font-normal text-white">
+              Engineering & Problem-Solving Principles
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {TIMELINE.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/[0.08] bg-surface-50/40 p-6 backdrop-blur-sm space-y-3"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-lime">{item.period}</span>
-                  <GraduationCap className="h-4 w-4 text-gray-500" />
-                </div>
-                <h4 className="font-heading text-base font-light text-white">
-                  {item.title}
-                </h4>
-                <p className="font-mono text-xs text-gray-400 uppercase tracking-wider">
-                  {item.institution}
-                </p>
-                <p className="font-sans text-xs leading-relaxed text-gray-400 pt-2 border-t border-white/[0.04]">
-                  {item.detail}
-                </p>
-              </div>
-            ))}
+            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+              <span className="font-mono text-xs text-cyan-400 font-semibold block">01 / EMPIRICAL RIGOR</span>
+              <h4 className="font-heading text-base text-white">Data-Driven Validation</h4>
+              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Rather than treating machine learning as a black box, I evaluate models through strict statistical benchmarks, cross-validation, and metrics like Top-K accuracy and Mean Reciprocal Rank (MRR).
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+              <span className="font-mono text-xs text-lime font-semibold block">02 / SYSTEMS ARCHITECTURE</span>
+              <h4 className="font-heading text-base text-white">Reliable Software Engineering</h4>
+              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Writing maintainable, modular, and type-safe code using TypeScript, Python, and Go. Emphasizing clean API contracts, automated data sanitization, and structured backend pipelines.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/[0.08] bg-surface-50/50 p-6 backdrop-blur-sm space-y-3">
+              <span className="font-mono text-xs text-cyan-400 font-semibold block">03 / REAL-WORLD IMPACT</span>
+              <h4 className="font-heading text-base text-white">Practical Problem-Solving</h4>
+              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+                Focusing on software that solves concrete real-world pain points: accelerating healthcare clinical intake, diagnosing rare genetic diseases, and securing enterprise hardware against data leaks.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Technical Capabilities Matrix */}
-        <div className="pt-20">
-          <div className="mb-12">
-            <span className="font-mono text-xs text-lime tracking-widest uppercase">
-              /CAPABILITIES
-            </span>
-            <h3 className="mt-2 font-heading text-3xl font-light text-white">
-              TECHNICAL DISCIPLINES & EXPERTISE
+        {/* Education Detail */}
+        <div className="pt-16">
+          <div className="mb-8">
+            <span className="font-mono text-xs text-lime tracking-widest uppercase">/ACADEMICS</span>
+            <h3 className="mt-2 font-heading text-2xl sm:text-3xl font-normal text-white">
+              University Degree & Coursework
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CAPABILITIES.map((group) => (
-              <div
-                key={group.category}
-                className="rounded-xl border border-white/[0.08] bg-surface-50/40 p-6 backdrop-blur-sm"
-              >
-                <h4 className="border-b border-white/[0.06] pb-3 font-mono text-xs font-semibold tracking-wider text-lime">
-                  {group.category}
-                </h4>
-                <ul className="mt-4 space-y-3 font-sans text-xs text-gray-400">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1 h-1 w-1 rounded-full bg-electric flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="rounded-2xl border border-white/[0.08] bg-surface-50/60 p-6 sm:p-8 backdrop-blur-sm space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.06] pb-4">
+              <div>
+                <h4 className="font-heading text-lg font-medium text-white">{EDUCATION_DATA[0].degree}</h4>
+                <p className="font-mono text-xs text-cyan-400">{EDUCATION_DATA[0].institution} • {EDUCATION_DATA[0].location}</p>
               </div>
-            ))}
+              <div className="text-right">
+                <span className="font-mono text-sm font-semibold text-lime">{EDUCATION_DATA[0].grade}</span>
+                <p className="font-mono text-xs text-gray-400">{EDUCATION_DATA[0].duration}</p>
+              </div>
+            </div>
+
+            <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed">
+              {EDUCATION_DATA[0].description}
+            </p>
+
+            <div className="pt-2">
+              <span className="font-mono text-xs text-gray-400 uppercase tracking-wider block mb-2 font-semibold">
+                CORE TECHNICAL SUBJECTS:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'Data Structures & Algorithms',
+                  'Machine Learning Foundations',
+                  'Object-Oriented Programming (Java/C++)',
+                  'Database Management Systems (SQL)',
+                  'Operating Systems & Linux',
+                  'Probability & Statistics for Data Science',
+                  'Linear Algebra & Applied Mathematics',
+                  'Web & Distributed Systems',
+                ].map((subject) => (
+                  <span
+                    key={subject}
+                    className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-gray-300"
+                  >
+                    {subject}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </Container>
     </div>
   );
 }
-

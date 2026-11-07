@@ -1,13 +1,13 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { WorkView } from './WorkView';
+import { ProjectsView } from '@/app/projects/ProjectsView';
 
 export const metadata: Metadata = {
-  title: 'Portfolio & Deployments',
+  title: 'Projects | Ankit Kumar Sahu — AI/ML & Software Engineering',
   description:
-    'A documented archive of AI/ML systems, enterprise software, space telemetry, and real-time GPU applications by Ankit Kumar Sahu.',
+    'Technical projects by Ankit Kumar Sahu: Rare Disease Prediction AI (PyTorch), MediKiosk Medical OCR (FastAPI/React), SecureWipe Enterprise (NIST SP 800-88), and CanSat Telemetry.',
 };
 
 export default function WorkPage() {
-  return <WorkView />;
+  return <ProjectsView />;
 }
