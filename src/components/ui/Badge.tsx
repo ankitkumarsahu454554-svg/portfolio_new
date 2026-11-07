@@ -17,17 +17,17 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const variantClasses = {
-    lime: 'bg-lime-muted text-lime border-lime/30',
-    electric: 'bg-electric-muted text-electric border-electric/30',
-    neutral: 'bg-surface-200/70 text-gray-300 border-white/10',
-    outline: 'bg-transparent text-gray-400 border-white/10',
+    lime: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+    electric: 'bg-sky-500/10 text-sky-300 border-sky-500/20',
+    neutral: 'bg-white/[0.04] text-slate-300 border-white/10',
+    outline: 'bg-transparent text-slate-400 border-white/10',
   };
 
   const dotClasses = {
-    lime: 'bg-lime',
-    electric: 'bg-electric',
-    neutral: 'bg-gray-400',
-    outline: 'bg-gray-400',
+    lime: 'bg-emerald-400',
+    electric: 'bg-sky-400',
+    neutral: 'bg-slate-400',
+    outline: 'bg-slate-400',
   };
 
   return (

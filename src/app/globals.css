@@ -5,35 +5,28 @@
 @tailwind utilities;
 
 :root {
-  --font-space-grotesk: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-ibm-plex-mono: 'IBM Plex Mono', 'SF Mono', Monaco, Consolas, monospace;
+  --font-space-grotesk: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
 
-  /* Strict Deep Black Theme */
-  --background: #000000;
-  --foreground: #ffffff;
-  --surface-50: #080808;
-  --surface-100: #0d0d0d;
-  --surface-200: #141414;
-  --surface-300: #1a1a1a;
+  /* Designer Palette: Rich Obsidian, Titanium & Ice Azure */
+  --bg-base: #090a0f;
+  --bg-surface: #111319;
+  --bg-elevated: #161922;
+  --bg-subtle: #1c202c;
 
-  --text-muted: #9ca3af;
-  --text-dim: #6b7280;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
-  /* Accent Colors */
-  --lime: #c7ff55;
-  --lime-dim: rgba(199, 255, 85, 0.1);
-  --lime-glow: rgba(199, 255, 85, 0.35);
+  /* Surgical Accents */
+  --accent-cyan: #38bdf8;
+  --accent-indigo: #6366f1;
+  --accent-emerald: #34d399;
 
-  --electric: #00f0ff;
-  --electric-dim: rgba(0, 240, 255, 0.1);
-  --electric-glow: rgba(0, 240, 255, 0.35);
-
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.15);
-  --border-glow: rgba(0, 240, 255, 0.3);
-
-  --grid-line: rgba(255, 255, 255, 0.025);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(56, 189, 248, 0.35);
+  --border-highlight: rgba(255, 255, 255, 0.12);
 }
 
 * {
@@ -41,8 +34,8 @@
 }
 
 html {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -51,63 +44,61 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
   min-height: 100vh;
 }
 
 /* Custom Selection */
 ::selection {
-  background-color: var(--lime);
-  color: #000000;
+  background-color: rgba(56, 189, 248, 0.25);
+  color: #ffffff;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
-  border-radius: 2px;
+  background: #1c202c;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--electric);
+  background: #38bdf8;
 }
 
-/* Animated Digital Grid Background */
-@keyframes gridDrift {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 48px 48px;
-  }
-}
-
-.bg-tech-grid {
+/* Subtle, Elegant Background Mesh Gradient */
+.bg-subtle-mesh {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: gridDrift 24s linear infinite;
+    radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 85% 25%, rgba(56, 189, 248, 0.07) 0px, transparent 45%),
+    radial-gradient(at 50% 85%, rgba(52, 211, 153, 0.05) 0px, transparent 50%);
 }
 
-/* Card Glow & Border Transitions */
-.futuristic-card {
-  background-color: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.futuristic-card:hover {
-  border-color: rgba(0, 240, 255, 0.35);
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.08);
-  transform: translateY(-2px);
+/* Fine-dot matrix pattern */
+.bg-tech-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Lenis Recommended CSS */
+/* Designer Card System with smooth spring transition */
+.premium-card {
+  background: #111319;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 0 24px -2px rgba(56, 189, 248, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Lenis Smooth Scrolling */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -128,7 +119,7 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Respect Reduced Motion */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -137,8 +128,5 @@ html.lenis, html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-  .bg-tech-grid {
-    animation: none !important;
   }
 }

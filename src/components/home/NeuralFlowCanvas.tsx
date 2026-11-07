@@ -86,8 +86,8 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 180) {
-              const alpha = (1 - dist / 180) * 0.35;
-              ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+              const alpha = (1 - dist / 180) * 0.22;
+              ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
               ctx.lineWidth = 1;
               ctx.beginPath();
               ctx.moveTo(a.x, a.y);
@@ -98,7 +98,7 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
               const pulsePos = (Math.sin(pulseTime + i + j) + 1) / 2;
               const px = a.x + (b.x - a.x) * pulsePos;
               const py = a.y + (b.y - a.y) * pulsePos;
-              ctx.fillStyle = 'rgba(199, 255, 85, 0.75)';
+              ctx.fillStyle = 'rgba(129, 140, 248, 0.65)';
               ctx.beginPath();
               ctx.arc(px, py, 1.5, 0, Math.PI * 2);
               ctx.fill();
@@ -127,8 +127,8 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
           node.y,
           node.radius * 3
         );
-        gradient.addColorStop(0, 'rgba(0, 240, 255, 0.4)');
-        gradient.addColorStop(1, 'rgba(0, 240, 255, 0)');
+        gradient.addColorStop(0, 'rgba(56, 189, 248, 0.25)');
+        gradient.addColorStop(1, 'rgba(56, 189, 248, 0)');
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -136,7 +136,7 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
         ctx.fill();
 
         // Core node
-        ctx.fillStyle = node.layer === 0 ? '#C7FF55' : node.layer === 3 ? '#00F0FF' : '#E2E8F0';
+        ctx.fillStyle = node.layer === 0 ? '#38BDF8' : node.layer === 3 ? '#818CF8' : '#CBD5E1';
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();

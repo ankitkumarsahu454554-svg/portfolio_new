@@ -10,31 +10,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#000000',
-        foreground: '#FFFFFF',
+        background: '#090A0F',
+        foreground: '#F8FAFC',
         surface: {
-          50: '#080808',
-          100: '#0D0D0D',
-          200: '#141414',
-          300: '#1A1A1A',
-          400: '#262626',
+          50: '#0E1017',
+          100: '#111319',
+          200: '#161922',
+          300: '#1C202C',
+          400: '#282E3E',
         },
-        lime: {
-          DEFAULT: '#C7FF55',
-          hover: '#D6FF7A',
-          muted: 'rgba(199, 255, 85, 0.12)',
-          glow: 'rgba(199, 255, 85, 0.35)',
+        azure: {
+          DEFAULT: '#38BDF8',
+          hover: '#60A5FA',
+          muted: 'rgba(56, 189, 248, 0.12)',
+          glow: 'rgba(56, 189, 248, 0.3)',
         },
-        electric: {
-          DEFAULT: '#00F0FF',
-          hover: '#38F4FF',
-          muted: 'rgba(0, 240, 255, 0.12)',
-          glow: 'rgba(0, 240, 255, 0.35)',
+        indigo: {
+          DEFAULT: '#6366F1',
+          hover: '#818CF8',
+          muted: 'rgba(99, 102, 241, 0.12)',
+          glow: 'rgba(99, 102, 241, 0.3)',
+        },
+        emerald: {
+          DEFAULT: '#34D399',
+          muted: 'rgba(52, 211, 153, 0.12)',
         },
         border: {
-          subtle: 'rgba(255, 255, 255, 0.08)',
-          medium: 'rgba(255, 255, 255, 0.16)',
-          accent: 'rgba(0, 240, 255, 0.3)',
+          subtle: 'rgba(255, 255, 255, 0.07)',
+          medium: 'rgba(255, 255, 255, 0.14)',
+          highlight: 'rgba(255, 255, 255, 0.22)',
         },
       },
       fontFamily: {
@@ -43,14 +47,12 @@ const config: Config = {
         mono: ['var(--font-ibm-plex-mono)', 'monospace'],
       },
       animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 20s linear infinite',
+        'pulse-subtle': 'pulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       letterSpacing: {
         tighter: '-0.04em',
         tight: '-0.02em',
-        widest: '0.18em',
-        ultra: '0.25em',
+        widest: '0.15em',
       },
     },
   },

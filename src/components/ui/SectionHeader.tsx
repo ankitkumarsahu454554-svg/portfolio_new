@@ -23,14 +23,14 @@ export function SectionHeader({
     <div className={cn('relative mb-12 md:mb-20', className)}>
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs tracking-widest text-lime">/{index}</span>
+          <span className="font-mono text-xs tracking-widest text-sky-400">/{index}</span>
           <span className="h-3 w-[1px] bg-white/20" aria-hidden="true" />
           <Badge variant="outline" className="text-[10px]">
             {tag}
           </Badge>
         </div>
         {subtitle && (
-          <span className="font-mono text-xs tracking-wider text-gray-500 uppercase">
+          <span className="font-mono text-xs tracking-wider text-slate-500 uppercase">
             {subtitle}
           </span>
         )}
@@ -41,7 +41,7 @@ export function SectionHeader({
           {title}
         </h2>
         {description && (
-          <p className="font-sans text-sm leading-relaxed text-gray-400 md:text-base lg:col-span-4 lg:pt-2">
+          <p className="font-sans text-sm leading-relaxed text-slate-400 md:text-base lg:col-span-4 lg:pt-2">
             {description}
           </p>
         )}

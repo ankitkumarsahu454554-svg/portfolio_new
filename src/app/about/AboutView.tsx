@@ -11,7 +11,7 @@ import { SITE_CONFIG, EDUCATION_DATA } from '@/lib/constants';
 
 export function AboutView() {
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#000000]">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-[#090A0F] bg-subtle-mesh">
       <Container size="wide">
         <SectionHeader
           index="01"
@@ -30,21 +30,21 @@ export function AboutView() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6 lg:col-span-7"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/[0.05] px-3 py-1 font-mono text-xs text-lime">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/[0.06] px-3.5 py-1 font-mono text-xs text-sky-400">
               <GraduationCap className="h-3.5 w-3.5" />
               <span>NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)</span>
             </div>
 
             <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-normal text-white leading-tight">
-              Building intelligent systems through <span className="text-cyan-400">empirical machine learning</span> and{' '}
-              <span className="text-lime">practical software engineering</span>.
+              Building intelligent systems through <span className="text-sky-300">empirical machine learning</span> and{' '}
+              <span className="text-indigo-300">practical software engineering</span>.
             </h3>
 
-            <div className="space-y-4 font-sans text-sm sm:text-base leading-relaxed text-gray-300">
+            <div className="space-y-4 font-sans text-sm sm:text-base leading-relaxed text-slate-300">
               <p>
                 I am a Computer Science & Engineering undergraduate specializing in Data Science at{' '}
-                <strong className="text-white">NIST University</strong>, maintaining an academic record of{' '}
-                <strong className="text-lime font-semibold">8.75 / 10 CGPA</strong>. My academic journey is centered around
+                <strong className="text-white">NIST University</strong>, maintaining a consistent academic record of{' '}
+                <strong className="text-sky-300 font-semibold">8.75 / 10 CGPA</strong>. My academic journey is centered around
                 understanding algorithmic principles, implementing machine learning models from mathematical fundamentals,
                 and developing robust full-stack software.
               </p>
@@ -57,9 +57,8 @@ export function AboutView() {
               </p>
               <p>
                 As an engineer, I prioritize clean architectural design, measurable performance metrics (such as Top-K accuracy and
-                Mean Reciprocal Rank), and production reliability over theoretical prototypes. I am seeking summer and fall
-                internships at leading technology companies, research organizations, IITs, and NITs where I can contribute to
-                challenging software engineering and AI/ML initiatives.
+                Mean Reciprocal Rank), and production reliability over theoretical prototypes. I actively collaborate on technical
+                challenges, open-source architectures, and engineering initiatives.
               </p>
             </div>
 
@@ -79,56 +78,23 @@ export function AboutView() {
             </div>
           </motion.div>
 
-          {/* Right Column: Original Portrait (Reduced by ~12-15% in display width) */}
+          {/* Right Column: Clean, Pristine Portrait (Zero distracting overlay tags or clutter around the photo) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center"
           >
-            {/* Constrained card: max-w-[330px] sm:max-w-[350px] (reduced display dimensions) */}
-            <div className="w-full max-w-[330px] sm:max-w-[350px] rounded-2xl border border-white/15 bg-[#0D0D0D] p-3.5 sm:p-4 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.8)] hover:border-cyan-400/40 transition-all duration-300">
-              {/* Card Header */}
-              <div className="mb-2.5 flex items-center justify-between border-b border-white/[0.08] pb-2 font-mono text-xs">
-                <span className="text-gray-300 font-medium text-[11px]">CANDIDATE DOSSIER</span>
-                <span className="text-lime font-semibold text-[11px]">8.75 CGPA</span>
-              </div>
-
-              {/* Exact Unaltered Portrait */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-[#000000]">
+            <div className="w-full max-w-[320px] sm:max-w-[340px] rounded-2xl border border-white/[0.12] bg-[#111319] p-3 shadow-[0_12px_40px_rgba(0,0,0,0.7)] hover:border-sky-400/30 transition-all duration-500">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-[#090A0F]">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
-                  sizes="(max-width: 640px) 310px, 350px"
+                  sizes="(max-width: 640px) 300px, 340px"
                   priority
-                  className="object-cover object-top"
+                  className="object-cover object-top transition-transform duration-700 ease-out hover:scale-[1.02]"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-60" />
-
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 rounded-lg border border-white/10 bg-[#000000]/90 p-2.5 backdrop-blur-md font-mono text-xs">
-                  <p className="font-heading text-xs sm:text-sm font-medium text-white">{SITE_CONFIG.name}</p>
-                  <p className="text-[10px] text-cyan-400">B-Tech CSE (Data Science) • 2024–2028</p>
-                  <p className="text-[9px] text-gray-400">NIST University, Odisha</p>
-                </div>
-              </div>
-
-              {/* Metadata Table */}
-              <div className="mt-3.5 space-y-2 font-mono text-xs">
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400 text-[11px]">
-                  <span>STATUS</span>
-                  <span className="text-lime font-medium">Seeking Internships</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-white/[0.06] pb-1.5 text-gray-400 text-[11px]">
-                  <span>PRIMARY FOCUS</span>
-                  <span className="text-white">AI/ML & Data Science</span>
-                </div>
-                <div className="flex items-center justify-between text-gray-400 text-[11px]">
-                  <span>EMAIL</span>
-                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-cyan-400 hover:underline">
-                    {SITE_CONFIG.email}
-                  </a>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -137,33 +103,33 @@ export function AboutView() {
         {/* Engineering Philosophy & Problem-Solving Approach */}
         <div className="py-16 border-b border-white/[0.08]">
           <div className="mb-8">
-            <span className="font-mono text-xs text-lime tracking-widest uppercase">/METHODOLOGY</span>
+            <span className="font-mono text-xs text-sky-400 tracking-widest uppercase">/METHODOLOGY</span>
             <h3 className="mt-2 font-heading text-2xl sm:text-3xl font-normal text-white">
               Engineering & Problem-Solving Principles
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-cyan-400/40">
-              <span className="font-mono text-xs text-cyan-400 font-semibold block">01 / EMPIRICAL RIGOR</span>
+            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-sky-400/30 hover:shadow-[0_8px_30px_rgba(56,189,248,0.06)] hover:-translate-y-1">
+              <span className="font-mono text-xs text-sky-400 font-semibold block">01 / EMPIRICAL RIGOR</span>
               <h4 className="font-heading text-base text-white">Data-Driven Validation</h4>
-              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Rather than treating machine learning as a black box, I evaluate models through strict statistical benchmarks, cross-validation, and metrics like Top-K accuracy and Mean Reciprocal Rank (MRR).
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-lime/40">
-              <span className="font-mono text-xs text-lime font-semibold block">02 / SYSTEMS ARCHITECTURE</span>
+            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-indigo-400/30 hover:shadow-[0_8px_30px_rgba(99,102,241,0.06)] hover:-translate-y-1">
+              <span className="font-mono text-xs text-indigo-400 font-semibold block">02 / SYSTEMS ARCHITECTURE</span>
               <h4 className="font-heading text-base text-white">Reliable Software Engineering</h4>
-              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Writing maintainable, modular, and type-safe code using TypeScript, Python, and Go. Emphasizing clean API contracts, automated data sanitization, and structured backend pipelines.
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/[0.08] bg-[#0D0D0D] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-cyan-400/40">
-              <span className="font-mono text-xs text-cyan-400 font-semibold block">03 / REAL-WORLD IMPACT</span>
+            <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-6 backdrop-blur-sm space-y-3 transition-all duration-300 hover:border-sky-400/30 hover:shadow-[0_8px_30px_rgba(56,189,248,0.06)] hover:-translate-y-1">
+              <span className="font-mono text-xs text-sky-400 font-semibold block">03 / REAL-WORLD IMPACT</span>
               <h4 className="font-heading text-base text-white">Practical Problem-Solving</h4>
-              <p className="font-sans text-xs sm:text-sm text-gray-400 leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Focusing on software that solves concrete real-world pain points: accelerating healthcare clinical intake, diagnosing rare genetic diseases, and securing enterprise hardware against data leaks.
               </p>
             </div>
@@ -173,48 +139,48 @@ export function AboutView() {
         {/* Education Detail */}
         <div className="pt-16">
           <div className="mb-8">
-            <span className="font-mono text-xs text-lime tracking-widest uppercase">/ACADEMICS</span>
+            <span className="font-mono text-xs text-sky-400 tracking-widest uppercase">/ACADEMICS</span>
             <h3 className="mt-2 font-heading text-2xl sm:text-3xl font-normal text-white">
               University Degree & Coursework
             </h3>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0D0D0D] p-6 sm:p-8 backdrop-blur-sm space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.06] pb-4">
+          <div className="rounded-2xl border border-white/[0.08] bg-[#111319] p-6 sm:p-8 backdrop-blur-sm space-y-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-4 border-b border-white/[0.06] pb-4">
               <div>
-                <h4 className="font-heading text-lg font-medium text-white">{EDUCATION_DATA[0].degree}</h4>
-                <p className="font-mono text-xs text-cyan-400">{EDUCATION_DATA[0].institution} • {EDUCATION_DATA[0].location}</p>
+                <h4 className="font-heading text-xl font-medium text-white">{EDUCATION_DATA[0].degree}</h4>
+                <p className="font-mono text-sm text-sky-400 mt-0.5">
+                  {EDUCATION_DATA[0].institution} • {EDUCATION_DATA[0].location}
+                </p>
               </div>
-              <div className="text-right">
-                <span className="font-mono text-sm font-semibold text-lime">{EDUCATION_DATA[0].grade}</span>
-                <p className="font-mono text-xs text-gray-400">{EDUCATION_DATA[0].duration}</p>
+              <div className="font-mono text-sm font-semibold text-sky-300">
+                {EDUCATION_DATA[0].grade}
               </div>
             </div>
 
-            <p className="font-sans text-xs sm:text-sm text-gray-300 leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
               {EDUCATION_DATA[0].description}
             </p>
 
             <div className="pt-2">
-              <span className="font-mono text-xs text-gray-400 uppercase tracking-wider block mb-2 font-semibold">
+              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">
                 CORE TECHNICAL SUBJECTS:
               </span>
               <div className="flex flex-wrap gap-2">
                 {[
-                  'Data Structures & Algorithms',
+                  'Data Structures and Algorithms',
                   'Machine Learning Foundations',
-                  'Object-Oriented Programming (Java/C++)',
-                  'Database Management Systems (SQL)',
-                  'Operating Systems & Linux',
-                  'Probability & Statistics for Data Science',
-                  'Linear Algebra & Applied Mathematics',
-                  'Web & Distributed Systems',
-                ].map((subject) => (
+                  'Database Management Systems',
+                  'Object-Oriented Programming',
+                  'Probability and Statistics',
+                  'Linear Algebra for Machine Learning',
+                  'Operating Systems',
+                ].map((c) => (
                   <span
-                    key={subject}
-                    className="rounded-lg border border-white/10 bg-[#141414] px-3 py-1 font-mono text-xs text-gray-300"
+                    key={c}
+                    className="rounded-lg border border-white/[0.08] bg-[#161922] px-3 py-1 font-mono text-xs text-slate-300"
                   >
-                    {subject}
+                    {c}
                   </span>
                 ))}
               </div>

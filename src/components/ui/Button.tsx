@@ -39,13 +39,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantClasses = {
       primary:
-        'bg-lime text-black font-semibold hover:bg-lime-hover shadow-[0_0_18px_rgba(199,255,85,0.25)] hover:shadow-[0_0_28px_rgba(199,255,85,0.4)] border border-lime hover:-translate-y-0.5 active:translate-y-0',
+        'bg-sky-400 text-slate-950 font-semibold hover:bg-sky-300 shadow-[0_0_18px_rgba(56,189,248,0.25)] hover:shadow-[0_0_28px_rgba(56,189,248,0.4)] border border-sky-400 hover:-translate-y-0.5 active:translate-y-0',
       secondary:
-        'bg-[#0D0D0D] text-electric border border-electric/30 hover:border-electric hover:shadow-[0_0_20px_rgba(0,240,255,0.25)] hover:text-white hover:-translate-y-0.5 active:translate-y-0',
+        'bg-[#111319] text-sky-400 border border-sky-400/30 hover:border-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.2)] hover:text-white hover:-translate-y-0.5 active:translate-y-0',
       ghost:
-        'bg-[#0D0D0D] text-gray-300 border border-white/10 hover:border-white/30 hover:text-white hover:bg-[#141414] hover:-translate-y-0.5 active:translate-y-0',
+        'bg-[#111319] text-slate-300 border border-white/10 hover:border-white/25 hover:text-white hover:bg-[#161922] hover:-translate-y-0.5 active:translate-y-0',
       terminal:
-        'bg-transparent text-gray-300 hover:text-lime hover:tracking-widest font-mono border-b border-white/20 hover:border-lime px-1 py-1',
+        'bg-transparent text-slate-300 hover:text-sky-300 hover:tracking-widest font-mono border-b border-white/20 hover:border-sky-400 px-1 py-1',
     };
 
     const content = (

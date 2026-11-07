@@ -26,7 +26,7 @@ export const SITE_CONFIG = {
   degree: 'B-Tech in Computer Science and Engineering (Data Science)',
   cgpa: '8.75 / 10',
   duration: '2024 — 2028',
-  status: 'Actively Seeking Summer & Fall Internships',
+  status: 'Open for Technical Collaboration & Projects',
   location: 'Odisha, India',
   email: 'ankitkumarsahu488526@gmail.com',
   phone: '+91 7847950588',

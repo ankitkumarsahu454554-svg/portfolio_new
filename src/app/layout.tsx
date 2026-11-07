@@ -6,7 +6,7 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#090A0F',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | Ankit Kumar Sahu',
   },
   description:
-    'Portfolio, curriculum vitae, and technical projects of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University. Seeking Software Engineering, AI/ML, and Data Science internships.',
+    'Portfolio, curriculum vitae, and technical projects of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University specializing in Data Science, Machine Learning architectures, and scalable software systems.',
   keywords: [
     'Ankit Kumar Sahu',
     'Computer Science',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'PyTorch',
     'FastAPI',
     'React',
-    'Internship',
+    'Machine Learning Engineering',
   ],
   authors: [{ name: 'Ankit Kumar Sahu' }],
   creator: 'Ankit Kumar Sahu',

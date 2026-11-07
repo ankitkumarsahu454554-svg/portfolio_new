@@ -62,8 +62,8 @@ export function CustomCursor() {
         animate={{
           width: isPointer ? 44 : 24,
           height: isPointer ? 44 : 24,
-          borderColor: isPointer ? 'rgba(199, 255, 85, 0.8)' : 'rgba(0, 240, 255, 0.35)',
-          backgroundColor: isPointer ? 'rgba(199, 255, 85, 0.08)' : 'rgba(0, 240, 255, 0.03)',
+          borderColor: isPointer ? 'rgba(56, 189, 248, 0.7)' : 'rgba(255, 255, 255, 0.25)',
+          backgroundColor: isPointer ? 'rgba(56, 189, 248, 0.08)' : 'rgba(255, 255, 255, 0.02)',
           opacity: isVisible ? 1 : 0,
         }}
         transition={{ type: 'spring', damping: 22, stiffness: 320 }}
@@ -71,7 +71,7 @@ export function CustomCursor() {
 
       {/* Pinpoint Core Dot */}
       <motion.div
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_8px_#C7FF55]"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_#38BDF8]"
         style={{
           x: mouseX,
           y: mouseY,
