@@ -6,31 +6,31 @@ import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import {
   SiPython,
-  SiC,
-  SiJavascript,
-  SiPostgresql,
+  SiCplusplus,
   SiTypescript,
+  SiJavascript,
+  SiGo,
   SiPytorch,
   SiTensorflow,
   SiScikitlearn,
-  SiNumpy,
   SiPandas,
-  SiOpencv,
+  SiNumpy,
   SiReact,
   SiNextdotjs,
   SiFastapi,
   SiNodedotjs,
   SiTailwindcss,
-  SiGit,
-  SiGithub,
-  SiJupyter,
-  SiGooglecolab,
-  SiVercel,
-  SiLinux,
+  SiFramer,
+  SiPostgresql,
   SiMysql,
   SiSqlite,
+  SiGit,
+  SiGithub,
+  SiLinux,
+  SiDocker,
+  SiPostman,
+  SiVercel,
 } from 'react-icons/si';
-import { FaJava } from 'react-icons/fa';
 import { VscCode } from 'react-icons/vsc';
 import {
   Brain,
@@ -42,15 +42,12 @@ import {
   Sparkles,
   Cpu,
   Activity,
-  ArrowRight,
-  Filter,
 } from 'lucide-react';
 
 interface SkillItem {
   name: string;
-  tag: string;
+  category: string;
   icon: React.ReactNode;
-  brandColor?: string;
 }
 
 interface SkillCategory {
@@ -59,6 +56,7 @@ interface SkillCategory {
   title: string;
   badge: string;
   accentColor: string;
+  textAccentClass: string;
   lightShadow: string;
   icon: React.ReactNode;
   colSpan: string;
@@ -72,17 +70,17 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'AI & Machine Learning',
     badge: 'CORE RESEARCH & INFERENCE',
     accentColor: '#8B5CF6',
-    lightShadow: 'rgba(139, 92, 246, 0.25)',
-    icon: <Brain className="h-5 w-5 text-[#8B5CF6]" />,
+    textAccentClass: 'text-violet-700 dark:text-violet-400',
+    lightShadow: 'rgba(139, 92, 246, 0.22)',
+    icon: <Brain className="h-5 w-5 text-violet-600 dark:text-violet-400" />,
     colSpan: 'lg:col-span-8 md:col-span-12',
     skills: [
-      { name: 'PyTorch', tag: 'Deep Learning & Tensors', icon: <SiPytorch className="h-4 w-4 text-[#EE4C2C]" /> },
-      { name: 'TensorFlow', tag: 'Neural Pipelines', icon: <SiTensorflow className="h-4 w-4 text-[#FF6F00]" /> },
-      { name: 'Scikit-learn', tag: 'Supervised & Clustering', icon: <SiScikitlearn className="h-4 w-4 text-[#F7931E]" /> },
-      { name: 'CNNs', tag: 'Computer Vision Architectures', icon: <Cpu className="h-4 w-4 text-[#8B5CF6]" /> },
-      { name: 'NLP', tag: 'Semantic & Ontological Embeddings', icon: <Layers className="h-4 w-4 text-[#8B5CF6]" /> },
-      { name: 'Feature Engineering', tag: 'Scaling, Imputation & Encoding', icon: <Activity className="h-4 w-4 text-[#8B5CF6]" /> },
-      { name: 'Model Evaluation', tag: 'Top-K, MRR & ROC-AUC Benchmarks', icon: <Sparkles className="h-4 w-4 text-[#8B5CF6]" /> },
+      { name: 'PyTorch', category: 'AI & Machine Learning', icon: <SiPytorch className="h-4 w-4 text-[#EE4C2C]" /> },
+      { name: 'TensorFlow', category: 'AI & Machine Learning', icon: <SiTensorflow className="h-4 w-4 text-[#FF6F00]" /> },
+      { name: 'Scikit-learn', category: 'AI & Machine Learning', icon: <SiScikitlearn className="h-4 w-4 text-[#F7931E]" /> },
+      { name: 'Neural Networks', category: 'AI & Machine Learning', icon: <Brain className="h-4 w-4 text-violet-600 dark:text-violet-400" /> },
+      { name: 'Supervised Learning', category: 'AI & Machine Learning', icon: <Activity className="h-4 w-4 text-violet-600 dark:text-violet-400" /> },
+      { name: 'Model Evaluation & Tuning', category: 'AI & Machine Learning', icon: <Sparkles className="h-4 w-4 text-violet-600 dark:text-violet-400" /> },
     ],
   },
   {
@@ -91,16 +89,17 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'Programming Languages',
     badge: 'SYNTAX & ALGORITHMS',
     accentColor: '#3D5AFE',
-    lightShadow: 'rgba(61, 90, 254, 0.25)',
-    icon: <Code2 className="h-5 w-5 text-[#3D5AFE]" />,
+    textAccentClass: 'text-blue-700 dark:text-blue-400',
+    lightShadow: 'rgba(61, 90, 254, 0.22)',
+    icon: <Code2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
     colSpan: 'lg:col-span-4 md:col-span-6',
     skills: [
-      { name: 'Python', tag: 'Primary Language & ML Core', icon: <SiPython className="h-4 w-4 text-[#3776AB]" /> },
-      { name: 'Java', tag: 'OOP & Software Design', icon: <FaJava className="h-4 w-4 text-[#ED8B00]" /> },
-      { name: 'C', tag: 'Systems & Low-Level Memory', icon: <SiC className="h-4 w-4 text-[#A8B9CC]" /> },
-      { name: 'JavaScript', tag: 'Modern ES6+ Async Syntax', icon: <SiJavascript className="h-4 w-4 text-[#F7DF1E]" /> },
-      { name: 'TypeScript', tag: 'Typed Frontend & APIs', icon: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },
-      { name: 'SQL', tag: 'Relational Schema & Queries', icon: <SiPostgresql className="h-4 w-4 text-[#4169E1]" /> },
+      { name: 'Python', category: 'Programming Languages', icon: <SiPython className="h-4 w-4 text-[#3776AB]" /> },
+      { name: 'C++', category: 'Programming Languages', icon: <SiCplusplus className="h-4 w-4 text-[#00599C]" /> },
+      { name: 'TypeScript', category: 'Programming Languages', icon: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },
+      { name: 'JavaScript', category: 'Programming Languages', icon: <SiJavascript className="h-4 w-4 text-[#F7DF1E]" /> },
+      { name: 'Go', category: 'Programming Languages', icon: <SiGo className="h-4 w-4 text-[#00ADD8]" /> },
+      { name: 'SQL', category: 'Programming Languages', icon: <Database className="h-4 w-4 text-slate-700 dark:text-slate-300" /> },
     ],
   },
   {
@@ -109,32 +108,36 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'Data Science & Analytics',
     badge: 'NUMERICAL & EXPLORATORY EDA',
     accentColor: '#FF3D81',
-    lightShadow: 'rgba(255, 61, 129, 0.25)',
-    icon: <BarChart3 className="h-5 w-5 text-[#FF3D81]" />,
+    textAccentClass: 'text-pink-700 dark:text-pink-400',
+    lightShadow: 'rgba(255, 61, 129, 0.22)',
+    icon: <BarChart3 className="h-5 w-5 text-pink-600 dark:text-pink-400" />,
     colSpan: 'lg:col-span-6 md:col-span-6',
     skills: [
-      { name: 'NumPy', tag: 'Vectorized N-D Array Operations', icon: <SiNumpy className="h-4 w-4 text-[#013243]" /> },
-      { name: 'Pandas', tag: 'High-Throughput Tabular DataFrames', icon: <SiPandas className="h-4 w-4 text-[#150458]" /> },
-      { name: 'OpenCV', tag: 'Computer Vision & Matrix Transforms', icon: <SiOpencv className="h-4 w-4 text-[#5C3EE8]" /> },
-      { name: 'Matplotlib', tag: 'Statistical Distribution Plots', icon: <BarChart3 className="h-4 w-4 text-[#FF3D81]" /> },
-      { name: 'Data Preprocessing', tag: 'Outlier Removal & Normalization', icon: <Activity className="h-4 w-4 text-[#FF3D81]" /> },
+      { name: 'Pandas', category: 'Data Science & Analytics', icon: <SiPandas className="h-4 w-4 text-[#150458] dark:text-[#E0DCFF]" /> },
+      { name: 'NumPy', category: 'Data Science & Analytics', icon: <SiNumpy className="h-4 w-4 text-[#013243] dark:text-[#4DABF7]" /> },
+      { name: 'Data Preprocessing', category: 'Data Science & Analytics', icon: <Layers className="h-4 w-4 text-pink-600 dark:text-pink-400" /> },
+      { name: 'Exploratory Data Analysis (EDA)', category: 'Data Science & Analytics', icon: <BarChart3 className="h-4 w-4 text-pink-600 dark:text-pink-400" /> },
+      { name: 'Statistical Modeling', category: 'Data Science & Analytics', icon: <Cpu className="h-4 w-4 text-pink-600 dark:text-pink-400" /> },
+      { name: 'Matplotlib / Seaborn', category: 'Data Science & Analytics', icon: <BarChart3 className="h-4 w-4 text-pink-600 dark:text-pink-400" /> },
     ],
   },
   {
     id: 'frameworks',
     tabKey: 'Frameworks',
     title: 'Frameworks & Libraries',
-    badge: 'FULL-STACK & BACKEND APIS',
+    badge: 'FULL-STACK & APIS',
     accentColor: '#FF8A00',
-    lightShadow: 'rgba(255, 138, 0, 0.25)',
-    icon: <Layers className="h-5 w-5 text-[#FF8A00]" />,
+    textAccentClass: 'text-amber-800 dark:text-amber-400',
+    lightShadow: 'rgba(255, 138, 0, 0.22)',
+    icon: <Layers className="h-5 w-5 text-amber-700 dark:text-amber-400" />,
     colSpan: 'lg:col-span-6 md:col-span-6',
     skills: [
-      { name: 'React', tag: 'Component UI & State Architecture', icon: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
-      { name: 'Next.js', tag: 'App Router, SSR & Edge Performance', icon: <SiNextdotjs className="h-4 w-4 text-[#000000] dark:text-[#FFFFFF]" /> },
-      { name: 'FastAPI', tag: 'Asynchronous Python Microservices', icon: <SiFastapi className="h-4 w-4 text-[#009688]" /> },
-      { name: 'Node.js', tag: 'Server-Side Execution & Scripting', icon: <SiNodedotjs className="h-4 w-4 text-[#339933]" /> },
-      { name: 'Tailwind CSS', tag: 'Design Tokens & Atomic Styling', icon: <SiTailwindcss className="h-4 w-4 text-[#06B6D4]" /> },
+      { name: 'React', category: 'Frameworks & Libraries', icon: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
+      { name: 'Next.js', category: 'Frameworks & Libraries', icon: <SiNextdotjs className="h-4 w-4 text-[#000000] dark:text-[#FFFFFF]" /> },
+      { name: 'FastAPI', category: 'Frameworks & Libraries', icon: <SiFastapi className="h-4 w-4 text-[#009688]" /> },
+      { name: 'Node.js', category: 'Frameworks & Libraries', icon: <SiNodedotjs className="h-4 w-4 text-[#339933]" /> },
+      { name: 'Tailwind CSS', category: 'Frameworks & Libraries', icon: <SiTailwindcss className="h-4 w-4 text-[#06B6D4]" /> },
+      { name: 'Framer Motion', category: 'Frameworks & Libraries', icon: <SiFramer className="h-4 w-4 text-[#0055FF]" /> },
     ],
   },
   {
@@ -143,13 +146,14 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'Databases & Storage',
     badge: 'PERSISTENCE & MODELING',
     accentColor: '#00C48C',
-    lightShadow: 'rgba(0, 196, 140, 0.25)',
-    icon: <Database className="h-5 w-5 text-[#00C48C]" />,
+    textAccentClass: 'text-emerald-800 dark:text-emerald-400',
+    lightShadow: 'rgba(0, 196, 140, 0.22)',
+    icon: <Database className="h-5 w-5 text-emerald-700 dark:text-emerald-400" />,
     colSpan: 'lg:col-span-5 md:col-span-6',
     skills: [
-      { name: 'PostgreSQL', tag: 'ACID Relational Storage Engine', icon: <SiPostgresql className="h-4 w-4 text-[#4169E1]" /> },
-      { name: 'MySQL', tag: 'Relational Database Management', icon: <SiMysql className="h-4 w-4 text-[#4479A1]" /> },
-      { name: 'SQLite', tag: 'Embedded Zero-Config Storage', icon: <SiSqlite className="h-4 w-4 text-[#003B57]" /> },
+      { name: 'PostgreSQL', category: 'Databases & Storage', icon: <SiPostgresql className="h-4 w-4 text-[#4169E1]" /> },
+      { name: 'MySQL', category: 'Databases & Storage', icon: <SiMysql className="h-4 w-4 text-[#4479A1]" /> },
+      { name: 'SQLite', category: 'Databases & Storage', icon: <SiSqlite className="h-4 w-4 text-[#003B57] dark:text-[#66D9E8]" /> },
     ],
   },
   {
@@ -158,48 +162,50 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'Developer Tools & Platforms',
     badge: 'WORKFLOW & DEPLOYMENT',
     accentColor: '#00B8D9',
-    lightShadow: 'rgba(0, 184, 217, 0.25)',
-    icon: <Wrench className="h-5 w-5 text-[#00B8D9]" />,
+    textAccentClass: 'text-cyan-800 dark:text-cyan-400',
+    lightShadow: 'rgba(0, 184, 217, 0.22)',
+    icon: <Wrench className="h-5 w-5 text-cyan-700 dark:text-cyan-400" />,
     colSpan: 'lg:col-span-7 md:col-span-6',
     skills: [
-      { name: 'Git', tag: 'Distributed Version Control', icon: <SiGit className="h-4 w-4 text-[#F05032]" /> },
-      { name: 'GitHub', tag: 'Repositories & CI/CD Actions', icon: <SiGithub className="h-4 w-4 text-[#181717] dark:text-[#FFFFFF]" /> },
-      { name: 'Jupyter', tag: 'Interactive Exploration & Analysis', icon: <SiJupyter className="h-4 w-4 text-[#F37626]" /> },
-      { name: 'Google Colab', tag: 'Cloud GPU Model Training', icon: <SiGooglecolab className="h-4 w-4 text-[#F9AB00]" /> },
-      { name: 'VS Code', tag: 'Extensible Development IDE', icon: <VscCode className="h-4 w-4 text-[#007ACC]" /> },
-      { name: 'Vercel', tag: 'Serverless Edge Deployment', icon: <SiVercel className="h-4 w-4 text-[#000000] dark:text-[#FFFFFF]" /> },
-      { name: 'Linux / Bash', tag: 'CLI Automation & POSIX Ops', icon: <SiLinux className="h-4 w-4 text-[#FCC624]" /> },
+      { name: 'Git', category: 'Developer Tools & Platforms', icon: <SiGit className="h-4 w-4 text-[#F05032]" /> },
+      { name: 'GitHub', category: 'Developer Tools & Platforms', icon: <SiGithub className="h-4 w-4 text-[#181717] dark:text-[#FFFFFF]" /> },
+      { name: 'Linux / Bash', category: 'Developer Tools & Platforms', icon: <SiLinux className="h-4 w-4 text-[#FCC624]" /> },
+      { name: 'Docker (Basics)', category: 'Developer Tools & Platforms', icon: <SiDocker className="h-4 w-4 text-[#2496ED]" /> },
+      { name: 'Postman', category: 'Developer Tools & Platforms', icon: <SiPostman className="h-4 w-4 text-[#FF6C37]" /> },
+      { name: 'VS Code', category: 'Developer Tools & Platforms', icon: <VscCode className="h-4 w-4 text-[#007ACC]" /> },
+      { name: 'Vercel', category: 'Developer Tools & Platforms', icon: <SiVercel className="h-4 w-4 text-[#000000] dark:text-[#FFFFFF]" /> },
     ],
   },
 ];
 
-// Dual-row marquee datasets
+// Dual-row marquee using ONLY this exact list
 const MARQUEE_ROW_1 = [
   { name: 'Python', icon: <SiPython className="h-3.5 w-3.5 text-[#3776AB]" /> },
   { name: 'PyTorch', icon: <SiPytorch className="h-3.5 w-3.5 text-[#EE4C2C]" /> },
   { name: 'TensorFlow', icon: <SiTensorflow className="h-3.5 w-3.5 text-[#FF6F00]" /> },
   { name: 'Scikit-learn', icon: <SiScikitlearn className="h-3.5 w-3.5 text-[#F7931E]" /> },
-  { name: 'NumPy', icon: <SiNumpy className="h-3.5 w-3.5 text-[#013243]" /> },
-  { name: 'Pandas', icon: <SiPandas className="h-3.5 w-3.5 text-[#150458]" /> },
-  { name: 'OpenCV', icon: <SiOpencv className="h-3.5 w-3.5 text-[#5C3EE8]" /> },
-  { name: 'FastAPI', icon: <SiFastapi className="h-3.5 w-3.5 text-[#009688]" /> },
+  { name: 'Pandas', icon: <SiPandas className="h-3.5 w-3.5 text-[#150458] dark:text-[#E0DCFF]" /> },
+  { name: 'NumPy', icon: <SiNumpy className="h-3.5 w-3.5 text-[#013243] dark:text-[#4DABF7]" /> },
+  { name: 'React', icon: <SiReact className="h-3.5 w-3.5 text-[#61DAFB]" /> },
+  { name: 'Next.js', icon: <SiNextdotjs className="h-3.5 w-3.5" /> },
   { name: 'PostgreSQL', icon: <SiPostgresql className="h-3.5 w-3.5 text-[#4169E1]" /> },
   { name: 'Git', icon: <SiGit className="h-3.5 w-3.5 text-[#F05032]" /> },
-  { name: 'Linux', icon: <SiLinux className="h-3.5 w-3.5 text-[#FCC624]" /> },
+  { name: 'Docker (Basics)', icon: <SiDocker className="h-3.5 w-3.5 text-[#2496ED]" /> },
 ];
 
 const MARQUEE_ROW_2 = [
-  { name: 'React', icon: <SiReact className="h-3.5 w-3.5 text-[#61DAFB]" /> },
-  { name: 'Next.js', icon: <SiNextdotjs className="h-3.5 w-3.5" /> },
+  { name: 'C++', icon: <SiCplusplus className="h-3.5 w-3.5 text-[#00599C]" /> },
   { name: 'TypeScript', icon: <SiTypescript className="h-3.5 w-3.5 text-[#3178C6]" /> },
-  { name: 'Java', icon: <FaJava className="h-3.5 w-3.5 text-[#ED8B00]" /> },
-  { name: 'C Language', icon: <SiC className="h-3.5 w-3.5 text-[#A8B9CC]" /> },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss className="h-3.5 w-3.5 text-[#06B6D4]" /> },
+  { name: 'JavaScript', icon: <SiJavascript className="h-3.5 w-3.5 text-[#F7DF1E]" /> },
+  { name: 'Go', icon: <SiGo className="h-3.5 w-3.5 text-[#00ADD8]" /> },
+  { name: 'SQL', icon: <Database className="h-3.5 w-3.5 text-slate-600 dark:text-slate-300" /> },
+  { name: 'FastAPI', icon: <SiFastapi className="h-3.5 w-3.5 text-[#009688]" /> },
   { name: 'Node.js', icon: <SiNodedotjs className="h-3.5 w-3.5 text-[#339933]" /> },
-  { name: 'Jupyter', icon: <SiJupyter className="h-3.5 w-3.5 text-[#F37626]" /> },
-  { name: 'Google Colab', icon: <SiGooglecolab className="h-3.5 w-3.5 text-[#F9AB00]" /> },
-  { name: 'Vercel', icon: <SiVercel className="h-3.5 w-3.5" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="h-3.5 w-3.5 text-[#06B6D4]" /> },
+  { name: 'Framer Motion', icon: <SiFramer className="h-3.5 w-3.5 text-[#0055FF]" /> },
   { name: 'MySQL', icon: <SiMysql className="h-3.5 w-3.5 text-[#4479A1]" /> },
+  { name: 'Postman', icon: <SiPostman className="h-3.5 w-3.5 text-[#FF6C37]" /> },
+  { name: 'Vercel', icon: <SiVercel className="h-3.5 w-3.5" /> },
 ];
 
 const FILTER_TABS = [
@@ -214,9 +220,8 @@ const FILTER_TABS = [
 
 export function BentoSkills() {
   const [activeTab, setActiveTab] = useState('All');
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<SkillItem | null>(null);
 
-  // Filter categories
   const displayedCategories =
     activeTab === 'All'
       ? SKILL_CATEGORIES
@@ -233,7 +238,7 @@ export function BentoSkills() {
           tag="SKILLS // TECHNICAL ARSENAL"
           title="Technical Proficiencies & Systems Toolkit"
           subtitle="Engineering Capabilities"
-          description="An interactive showcase of deep learning frameworks, data processing engines, languages, and production infrastructure tools with real brand ecosystems."
+          description="A visual showcase of machine learning frameworks, data processing libraries, languages, and developer tools verified in original coursework and projects."
         />
 
         {/* Dual-Row Infinite Marquee Ticker */}
@@ -247,10 +252,10 @@ export function BentoSkills() {
             {[...MARQUEE_ROW_1, ...MARQUEE_ROW_1, ...MARQUEE_ROW_1].map((item, idx) => (
               <span
                 key={`m1-${item.name}-${idx}`}
-                className="inline-flex items-center gap-2 rounded-full border border-mc-border/70 bg-mc-surface-elevated px-3.5 py-1.5 font-mono text-xs text-mc-text-secondary select-none transition-all hover:border-[#8B5CF6] hover:text-[#8B5CF6] shadow-xs cursor-default"
+                className="inline-flex items-center gap-2 rounded-full border border-mc-border/70 bg-mc-surface-elevated px-3.5 py-1.5 font-mono text-xs text-mc-text-secondary select-none transition-all hover:border-[#8B5CF6] hover:text-mc-text shadow-xs cursor-default font-medium"
               >
                 <span>{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
+                <span>{item.name}</span>
               </span>
             ))}
           </div>
@@ -260,10 +265,10 @@ export function BentoSkills() {
             {[...MARQUEE_ROW_2, ...MARQUEE_ROW_2, ...MARQUEE_ROW_2].map((item, idx) => (
               <span
                 key={`m2-${item.name}-${idx}`}
-                className="inline-flex items-center gap-2 rounded-full border border-mc-border/70 bg-mc-surface-elevated px-3.5 py-1.5 font-mono text-xs text-mc-text-secondary select-none transition-all hover:border-[#00C48C] hover:text-[#00C48C] shadow-xs cursor-default"
+                className="inline-flex items-center gap-2 rounded-full border border-mc-border/70 bg-mc-surface-elevated px-3.5 py-1.5 font-mono text-xs text-mc-text-secondary select-none transition-all hover:border-[#00C48C] hover:text-mc-text shadow-xs cursor-default font-medium"
               >
                 <span>{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
+                <span>{item.name}</span>
               </span>
             ))}
           </div>
@@ -278,7 +283,7 @@ export function BentoSkills() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative px-4 py-2 font-mono text-xs font-semibold rounded-full transition-colors whitespace-nowrap cursor-pointer ${
+                  className={`relative px-4 py-2 font-mono text-xs font-bold rounded-full transition-colors whitespace-nowrap cursor-pointer ${
                     isActive ? 'text-white' : 'text-mc-text-secondary hover:text-mc-text'
                   }`}
                   data-cursor="pointer"
@@ -311,7 +316,7 @@ export function BentoSkills() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 15 }}
                   transition={{ duration: 0.45, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className={`group relative flex flex-col justify-between rounded-3xl border border-mc-border bg-mc-surface p-6 sm:p-8 transition-all duration-300 hover:shadow-xl ${cat.colSpan}`}
+                  className={`group relative flex flex-col justify-between rounded-3xl border border-mc-border bg-white dark:bg-mc-surface p-6 sm:p-8 transition-all duration-300 hover:shadow-xl ${cat.colSpan}`}
                   style={{
                     boxShadow: `0 12px 30px -10px ${cat.lightShadow}`,
                   }}
@@ -324,7 +329,7 @@ export function BentoSkills() {
                   />
 
                   <div>
-                    {/* Header with Icon Tile & Badge */}
+                    {/* Header with Icon Tile & High-Contrast Badge */}
                     <div className="flex items-start justify-between border-b border-mc-border/60 pb-5 mb-6">
                       <div className="flex items-center gap-3.5">
                         <div
@@ -338,8 +343,7 @@ export function BentoSkills() {
                         </div>
                         <div>
                           <span
-                            className="font-mono text-[10px] font-bold tracking-wider uppercase block"
-                            style={{ color: cat.accentColor }}
+                            className={`font-mono text-[10px] font-bold tracking-wider uppercase block ${cat.textAccentClass}`}
                           >
                             {cat.badge}
                           </span>
@@ -356,57 +360,57 @@ export function BentoSkills() {
 
                     {/* HERO VISUAL CENTERPIECE FOR AI & ML CATEGORY */}
                     {isAIMLHero && (
-                      <div className="mb-6 rounded-2xl border border-[#8B5CF6]/30 bg-gradient-to-r from-[#8B5CF6]/8 via-mc-surface-elevated to-[#FF3D81]/8 p-4 sm:p-5 relative overflow-hidden">
+                      <div className="mb-6 rounded-2xl border border-violet-500/30 bg-gradient-to-r from-violet-500/8 via-mc-surface-elevated to-pink-500/8 p-4 sm:p-5 relative overflow-hidden">
                         <div className="flex items-center justify-between mb-3 border-b border-mc-border/60 pb-2">
                           <div className="flex items-center gap-2">
-                            <span className="h-2 w-2 rounded-full bg-[#8B5CF6] animate-pulse" />
-                            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#8B5CF6]">
-                              Neural Pipeline & Representation Architecture
+                            <span className="h-2 w-2 rounded-full bg-violet-600 animate-pulse" />
+                            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-violet-700 dark:text-violet-400">
+                              Illustrative example: Neural Ranking Pipeline (Rare Disease Prediction AI)
                             </span>
                           </div>
-                          <span className="font-mono text-[10px] text-mc-text-muted hidden sm:inline">
-                            PYTORCH CORE
+                          <span className="font-mono text-[10px] text-mc-text-muted hidden sm:inline font-semibold">
+                            PYTORCH MODEL
                           </span>
                         </div>
 
-                        {/* Interactive Flow Diagram */}
+                        {/* Flow Diagram */}
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center py-1">
-                          <div className="rounded-xl border border-mc-border/70 bg-mc-surface p-2.5">
+                          <div className="rounded-xl border border-mc-border/70 bg-white dark:bg-mc-surface p-2.5">
                             <span className="font-mono text-[9px] text-mc-text-muted uppercase block font-semibold">Stage 01</span>
-                            <span className="font-heading text-xs font-bold text-mc-text">Input Cohort</span>
-                            <span className="font-mono text-[10px] text-[#3D5AFE] block mt-0.5">Phenotypic Vectors</span>
+                            <span className="font-heading text-xs font-bold text-mc-text">Phenotypes</span>
+                            <span className="font-mono text-[10px] text-blue-700 dark:text-blue-400 block mt-0.5 font-medium">Input Vectors</span>
                           </div>
 
-                          <div className="rounded-xl border border-mc-border/70 bg-mc-surface p-2.5">
+                          <div className="rounded-xl border border-mc-border/70 bg-white dark:bg-mc-surface p-2.5">
                             <span className="font-mono text-[9px] text-mc-text-muted uppercase block font-semibold">Stage 02</span>
-                            <span className="font-heading text-xs font-bold text-mc-text">HPO Embedding</span>
-                            <span className="font-mono text-[10px] text-[#8B5CF6] block mt-0.5">Distance Metrics</span>
+                            <span className="font-heading text-xs font-bold text-mc-text">HPO Ontology</span>
+                            <span className="font-mono text-[10px] text-violet-700 dark:text-violet-400 block mt-0.5 font-medium">Distance Map</span>
                           </div>
 
-                          <div className="rounded-xl border border-mc-border/70 bg-mc-surface p-2.5">
+                          <div className="rounded-xl border border-mc-border/70 bg-white dark:bg-mc-surface p-2.5">
                             <span className="font-mono text-[9px] text-mc-text-muted uppercase block font-semibold">Stage 03</span>
                             <span className="font-heading text-xs font-bold text-mc-text">Neural Ranker</span>
-                            <span className="font-mono text-[10px] text-[#FF3D81] block mt-0.5">PyTorch Network</span>
+                            <span className="font-mono text-[10px] text-pink-700 dark:text-pink-400 block mt-0.5 font-medium">PyTorch NN</span>
                           </div>
 
-                          <div className="rounded-xl border border-mc-border/70 bg-mc-surface p-2.5">
+                          <div className="rounded-xl border border-mc-border/70 bg-white dark:bg-mc-surface p-2.5">
                             <span className="font-mono text-[9px] text-mc-text-muted uppercase block font-semibold">Stage 04</span>
                             <span className="font-heading text-xs font-bold text-mc-text">Evaluation</span>
-                            <span className="font-mono text-[10px] text-[#00C48C] block mt-0.5">Top-K & MRR</span>
+                            <span className="font-mono text-[10px] text-emerald-700 dark:text-emerald-400 block mt-0.5 font-medium">Top-K & MRR</span>
                           </div>
                         </div>
                       </div>
                     )}
 
-                    {/* Interactive Skills Chips with Lift, 3D Depth & Tooltip */}
+                    {/* Interactive Skills Chips with Skill Name & Category in Tooltip */}
                     <div className="flex flex-wrap gap-2.5 pt-1">
                       {cat.skills.map((skill) => {
-                        const isHovered = hoveredSkill === skill.name;
+                        const isHovered = hoveredSkill?.name === skill.name;
 
                         return (
                           <div
                             key={skill.name}
-                            onMouseEnter={() => setHoveredSkill(skill.name)}
+                            onMouseEnter={() => setHoveredSkill(skill)}
                             onMouseLeave={() => setHoveredSkill(null)}
                             className="relative group/chip"
                           >
@@ -424,7 +428,7 @@ export function BentoSkills() {
                               <span className="font-semibold">{skill.name}</span>
                             </motion.button>
 
-                            {/* Micro-Stat Tooltip on Hover */}
+                            {/* Tooltip Showing ONLY Skill Name and Category */}
                             <AnimatePresence>
                               {isHovered && (
                                 <motion.div
@@ -432,13 +436,16 @@ export function BentoSkills() {
                                   animate={{ opacity: 1, y: 0, scale: 1 }}
                                   exit={{ opacity: 0, y: 4, scale: 0.95 }}
                                   transition={{ duration: 0.15 }}
-                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30 w-max max-w-[220px] rounded-lg border border-mc-border bg-mc-surface px-3 py-1.5 shadow-xl backdrop-blur-md"
+                                  className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30 w-max rounded-lg border border-mc-border bg-white dark:bg-mc-surface px-3 py-1.5 shadow-xl backdrop-blur-md"
                                 >
-                                  <p className="font-mono text-[10px] font-semibold text-mc-text leading-tight">
-                                    {skill.tag}
+                                  <p className="font-heading text-xs font-bold text-mc-text">
+                                    {skill.name}
+                                  </p>
+                                  <p className="font-mono text-[10px] text-mc-text-muted font-medium">
+                                    {skill.category}
                                   </p>
                                   <div
-                                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-2 w-2 rotate-45 border-r border-b border-mc-border bg-mc-surface"
+                                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-2 w-2 rotate-45 border-r border-b border-mc-border bg-white dark:bg-mc-surface"
                                   />
                                 </motion.div>
                               )}
@@ -458,8 +465,8 @@ export function BentoSkills() {
                       />
                       <span>Verified Academic & Project Stack</span>
                     </span>
-                    <span className="font-bold text-xs" style={{ color: cat.accentColor }}>
-                      ● Active
+                    <span className={`font-bold text-xs ${cat.textAccentClass}`}>
+                      ● Verified
                     </span>
                   </div>
                 </motion.div>

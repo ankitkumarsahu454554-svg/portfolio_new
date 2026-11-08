@@ -179,27 +179,41 @@ export interface SkillCategory {
 export const TECHNICAL_SKILLS: SkillCategory[] = [
   {
     title: 'Programming Languages',
-    skills: ['Python', 'Java', 'C', 'JavaScript', 'SQL', 'TypeScript'],
+    skills: ['Python', 'C++', 'TypeScript', 'JavaScript', 'Go', 'SQL'],
   },
   {
     title: 'AI & Machine Learning',
-    skills: ['Supervised Learning', 'Classification', 'Regression', 'CNNs', 'NLP', 'Feature Engineering', 'Model Evaluation'],
+    skills: [
+      'PyTorch',
+      'TensorFlow',
+      'Scikit-learn',
+      'Neural Networks',
+      'Supervised Learning',
+      'Model Evaluation & Tuning',
+    ],
   },
   {
-    title: 'Libraries & Frameworks',
-    skills: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'NumPy', 'Pandas', 'OpenCV'],
+    title: 'Data Science & Analytics',
+    skills: [
+      'Pandas',
+      'NumPy',
+      'Data Preprocessing',
+      'Exploratory Data Analysis (EDA)',
+      'Statistical Modeling',
+      'Matplotlib / Seaborn',
+    ],
   },
   {
-    title: 'Generative AI',
-    skills: ['LLM APIs', 'Prompt Engineering', 'Gemini API', 'Prompt Chaining'],
+    title: 'Frameworks & Libraries',
+    skills: ['React', 'Next.js', 'FastAPI', 'Node.js', 'Tailwind CSS', 'Framer Motion'],
   },
   {
-    title: 'Web & Systems',
-    skills: ['React', 'Next.js', 'FastAPI', 'Node.js', 'PostgreSQL', 'REST APIs', 'Tailwind CSS'],
+    title: 'Databases & Storage',
+    skills: ['PostgreSQL', 'MySQL', 'SQLite'],
   },
   {
-    title: 'Developer Tools',
-    skills: ['Git', 'GitHub', 'Jupyter Notebook', 'Google Colab', 'VS Code', 'Vercel', 'Linux / Bash'],
+    title: 'Developer Tools & Platforms',
+    skills: ['Git', 'GitHub', 'Linux / Bash', 'Docker (Basics)', 'Postman', 'VS Code', 'Vercel'],
   },
 ];
 
