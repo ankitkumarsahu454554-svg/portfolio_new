@@ -11,19 +11,19 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: 'light',
   toggleTheme: () => {},
   setTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
+  const [theme, setThemeState] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check saved theme or default to dark
-    const saved = localStorage.getItem('mc_theme') as Theme | null;
-    const initialTheme: Theme = saved === 'light' ? 'light' : 'dark';
+    // Check saved theme or default to vibrant light
+    const saved = localStorage.getItem('vibrant_theme') as Theme | null;
+    const initialTheme: Theme = saved === 'dark' ? 'dark' : 'light';
     setThemeState(initialTheme);
     if (initialTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -35,7 +35,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('mc_theme', newTheme);
+    localStorage.setItem('vibrant_theme', newTheme);
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {

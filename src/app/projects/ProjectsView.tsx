@@ -18,39 +18,39 @@ export function ProjectsView() {
       : PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-mc-canvas text-mc-text-primary min-h-screen">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-mc-bg text-mc-text min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-mc-cyan/30 bg-mc-cyan/5 text-mc-cyan font-mono text-xs uppercase tracking-wider mb-4">
-            <span className="w-2 h-2 rounded-full bg-mc-cyan animate-pulse" />
-            <span>Systems & ML Architecture Archive</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#00B8D9]/30 bg-[#00B8D9]/10 text-[#00B8D9] font-mono text-xs uppercase tracking-wider mb-4 font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#00B8D9] animate-pulse" />
+            <span>Systems & ML Architecture Archive // Cyan-Blue Sector</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-display font-extrabold tracking-tight text-mc-text-primary">
-            Engineering <span className="font-serif italic font-normal text-mc-cyan">Artifacts</span>
+          <h1 className="text-3xl sm:text-5xl font-heading font-extrabold tracking-tight text-mc-text">
+            Engineering <span className="font-serif italic font-normal text-[#00B8D9]">Artifacts</span>
           </h1>
 
-          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl">
+          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
             A documented index of machine learning models, clinical healthcare intake architectures, and cryptographic data sanitization utilities built by Ankit Kumar Sahu.
           </p>
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-mc-border/80 pb-6 mb-12">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-mc-border pb-6 mb-12">
           <div className="flex flex-wrap items-center gap-2">
             <span className="mr-2 flex items-center gap-1.5 font-mono text-xs text-mc-text-muted font-bold">
-              <Filter className="h-3.5 w-3.5 text-mc-cyan" />
+              <Filter className="h-3.5 w-3.5 text-[#00B8D9]" />
               <span>FILTER:</span>
             </span>
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`rounded-xl px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+                className={`rounded-full px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-mc-cyan text-black font-bold shadow-md shadow-mc-cyan/20'
-                    : 'border border-mc-border bg-mc-surface text-mc-text-secondary hover:text-mc-text-primary hover:border-mc-cyan/50'
+                    ? 'bg-gradient-to-r from-[#00B8D9] to-[#3D5AFE] text-white font-bold shadow-md shadow-[#00B8D9]/25'
+                    : 'border border-mc-border bg-white dark:bg-mc-surface text-mc-text-secondary hover:text-mc-text hover:border-[#00B8D9]'
                 }`}
               >
                 {cat}
@@ -58,7 +58,7 @@ export function ProjectsView() {
             ))}
           </div>
 
-          <span className="font-mono text-xs text-mc-text-muted">
+          <span className="font-mono text-xs text-mc-text-muted font-semibold">
             SHOWING {filteredProjects.length} OF {PROJECTS.length} SYSTEMS
           </span>
         </div>
@@ -74,25 +74,25 @@ export function ProjectsView() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
-                className="group relative rounded-2xl border border-mc-border/90 bg-mc-surface p-6 sm:p-8 hover:border-mc-cyan/60 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-mc-cyan/5"
+                className="group relative rounded-3xl border border-mc-border bg-white dark:bg-mc-surface p-6 sm:p-8 hover:border-[#00B8D9] transition-all duration-300 shadow-md hover:shadow-[0_16px_36px_-8px_rgba(0,184,217,0.22)]"
               >
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 border-b border-mc-border/60 pb-6 mb-6">
                   <div>
                     <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold border border-mc-cyan/40 bg-mc-cyan/10 text-mc-cyan">
+                      <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold border border-[#00B8D9]/40 bg-[#00B8D9]/10 text-[#00B8D9]">
                         {project.category}
                       </span>
                       {project.metrics && (
-                        <span className="font-mono text-xs text-mc-amber font-semibold">
+                        <span className="font-mono text-xs text-[#FF8A00] font-bold">
                           ★ {project.metrics}
                         </span>
                       )}
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-mc-text-primary group-hover:text-mc-cyan transition-colors">
+                    <h2 className="text-2xl sm:text-3xl font-heading font-bold text-mc-text group-hover:text-[#00B8D9] transition-colors">
                       {project.title}
                     </h2>
-                    <p className="font-mono text-xs text-mc-cyan font-medium mt-1">
+                    <p className="font-mono text-xs text-[#00B8D9] font-medium mt-1">
                       {project.summary}
                     </p>
                   </div>
@@ -101,7 +101,7 @@ export function ProjectsView() {
                   <div className="flex flex-wrap items-center gap-3">
                     <button
                       onClick={() => setActiveModalProject(project)}
-                      className="px-4 py-2 rounded-xl bg-mc-cyan text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-mc-cyan/90 transition-all shadow-md shadow-mc-cyan/10"
+                      className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#00B8D9] to-[#3D5AFE] text-white font-mono text-xs font-bold uppercase tracking-wider hover:opacity-95 transition-all shadow-md shadow-[#00B8D9]/20 cursor-pointer"
                     >
                       Case Study
                     </button>
@@ -111,7 +111,7 @@ export function ProjectsView() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-xl border border-mc-border bg-mc-surface-raised hover:border-mc-cyan hover:text-mc-cyan text-mc-text-secondary transition-colors"
+                        className="p-2.5 rounded-full border border-mc-border bg-mc-surface-elevated hover:border-[#00B8D9] hover:text-[#00B8D9] text-mc-text transition-colors"
                         title="View GitHub Repository"
                       >
                         <Github className="w-4 h-4" />
@@ -122,10 +122,10 @@ export function ProjectsView() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2.5 rounded-xl border border-mc-border bg-mc-surface-raised hover:border-mc-cyan hover:text-mc-cyan text-mc-text-secondary transition-colors"
+                        className="p-2.5 rounded-full border border-mc-border bg-mc-surface-elevated hover:border-[#00B8D9] hover:text-[#00B8D9] text-mc-text transition-colors"
                         title="Open Live Demonstration"
                       >
-                        <ArrowUpRight className="w-4 h-4" />
+                        <ArrowUpRight className="w-4 h-4 text-[#FF3D81]" />
                       </a>
                     )}
                   </div>
@@ -144,7 +144,7 @@ export function ProjectsView() {
                     </div>
 
                     <div>
-                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-mc-cyan block mb-1">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#00B8D9] block mb-1">
                         ENGINEERED SOLUTION:
                       </span>
                       <p className="text-xs sm:text-sm text-mc-text-secondary leading-relaxed">
@@ -153,8 +153,8 @@ export function ProjectsView() {
                     </div>
                   </div>
 
-                  <div className="lg:col-span-5 bg-mc-surface-raised/70 border border-mc-border/60 rounded-xl p-5 space-y-3">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-mc-amber block">
+                  <div className="lg:col-span-5 bg-mc-surface-elevated border border-mc-border/80 rounded-2xl p-5 space-y-3">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#FF8A00] block">
                       KEY CONTRIBUTIONS:
                     </span>
                     <p className="text-xs text-mc-text-secondary leading-relaxed">
@@ -162,14 +162,14 @@ export function ProjectsView() {
                     </p>
 
                     <div className="pt-2 border-t border-mc-border/40">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-mc-text-muted block mb-2">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-mc-text-muted block mb-2 font-bold">
                         TECHNOLOGIES:
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded-md bg-mc-surface border border-mc-border/80 font-mono text-[11px] text-mc-text-secondary"
+                            className="px-2.5 py-0.5 rounded-lg bg-white dark:bg-mc-surface border border-mc-border font-mono text-[11px] text-mc-text font-medium"
                           >
                             {tech}
                           </span>
