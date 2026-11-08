@@ -49,8 +49,8 @@ export function ResumeView() {
             {/* Metadata Summary */}
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-[#00C48C]/40 bg-[#00C48C]/10 font-mono text-xs text-[#00C48C] font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 font-mono text-xs text-emerald-900 dark:text-emerald-300 font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
                   VERIFIED DOCUMENT
                 </span>
                 <span className="font-mono text-xs text-mc-text font-bold">
@@ -59,7 +59,7 @@ export function ResumeView() {
                 <span className="hidden sm:inline font-mono text-xs text-mc-text-muted">•</span>
                 <span className="font-mono text-xs text-mc-text-muted font-medium">184 KB</span>
                 <span className="hidden sm:inline font-mono text-xs text-mc-text-muted">•</span>
-                <span className="font-mono text-xs text-[#00B8D9] font-bold">
+                <span className="font-mono text-xs text-cyan-900 dark:text-cyan-300 font-bold">
                   VECTOR PDF (100% SCALE)
                 </span>
               </div>
@@ -75,7 +75,7 @@ export function ResumeView() {
                   INSTITUTION: <strong className="text-mc-text font-bold">NIST University</strong>
                 </span>
                 <span>
-                  CGPA: <strong className="text-[#00C48C] font-bold">{SITE_CONFIG.cgpa}</strong>
+                  CGPA: <strong className="text-emerald-800 dark:text-emerald-400 font-bold">{SITE_CONFIG.cgpa}</strong>
                 </span>
               </div>
             </div>

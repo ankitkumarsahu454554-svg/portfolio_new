@@ -82,13 +82,13 @@ export function PhotoReelStrip() {
 
   return (
     <div className="relative py-12 overflow-hidden">
-      {/* Header telemetry tag with yellow/green accents */}
+      {/* Header telemetry tag with high contrast amber/green accents */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FFC700]/15 text-[#FFC700]">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-400">
             <Camera className="w-3.5 h-3.5" />
           </div>
-          <span className="font-mono text-xs uppercase tracking-wider text-[#FFC700] dark:text-[#00C48C] font-bold">
+          <span className="font-mono text-xs uppercase tracking-wider text-amber-800 dark:text-amber-300 font-bold">
             Visual Telemetry Reel & Project Artifacts
           </span>
         </div>

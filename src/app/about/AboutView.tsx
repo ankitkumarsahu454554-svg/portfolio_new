@@ -39,7 +39,7 @@ export function AboutView() {
                 {/* Verified Student Badge */}
                 <div className="mt-3.5 pt-3 border-t border-mc-border flex items-center justify-between font-mono text-xs">
                   <span className="text-mc-text-muted font-medium">NIST UNIVERSITY</span>
-                  <span className="text-[#00C48C] font-bold">CGPA: 8.75 / 10.0</span>
+                  <span className="text-emerald-800 dark:text-emerald-400 font-bold">CGPA: 8.75 / 10.0</span>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@ export function AboutView() {
             transition={{ duration: 0.6 }}
             className="space-y-6 lg:col-span-7"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#FF3D81]/30 bg-[#FF3D81]/10 px-3.5 py-1 font-mono text-xs text-[#FF3D81] font-bold">
+            <div className="inline-flex items-center gap-2 rounded-full border border-pink-300 dark:border-pink-800 bg-pink-50 dark:bg-pink-950/40 px-3.5 py-1 font-mono text-xs text-pink-900 dark:text-pink-300 font-bold">
               <GraduationCap className="h-3.5 w-3.5" />
               <span>NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)</span>
             </div>

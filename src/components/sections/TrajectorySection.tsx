@@ -112,12 +112,12 @@ export function TrajectorySection() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#00C48C]/30 bg-[#00C48C]/10 text-[#00C48C] font-mono text-xs uppercase tracking-wider mb-4 font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#00C48C] animate-ping" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-400/40 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-300 font-mono text-xs uppercase tracking-wider mb-4 font-bold">
+            <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-ping" />
             <span>Operational Timeline // Green-Cyan Track</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-mc-text">
-            Academic & Industry <span className="font-serif italic font-normal text-[#00B8D9]">Trajectory</span>
+            Academic & Industry <span className="font-serif italic font-normal text-gradient-rainbow">Trajectory</span>
           </h2>
           <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
             A chronological timeline connecting academic rigor at NIST University with practical engineering in data science and aerospace telemetry.
@@ -128,9 +128,9 @@ export function TrajectorySection() {
         <div className="self-start md:self-auto">
           <Link
             href="/resume"
-            className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white dark:bg-mc-surface border border-[#00C48C]/40 hover:border-[#00C48C] text-mc-text hover:text-[#00C48C] font-mono text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_8px_20px_-4px_rgba(0,196,140,0.25)] font-semibold"
+            className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white dark:bg-mc-surface border border-mc-border hover:border-emerald-500 text-mc-text hover:text-emerald-800 dark:hover:text-emerald-400 font-mono text-xs tracking-wider uppercase transition-all duration-300 shadow-md font-bold"
           >
-            <FileText className="w-4 h-4 text-[#00C48C]" />
+            <FileText className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
             <span>Open Vector Resume</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
@@ -187,12 +187,11 @@ export function TrajectorySection() {
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         <span
-                          className="inline-block px-3 py-0.5 rounded-full font-mono text-[11px] font-bold border"
-                          style={{
-                            borderColor: `${node.dotColor}50`,
-                            backgroundColor: `${node.dotColor}15`,
-                            color: node.dotColor,
-                          }}
+                          className={`inline-block px-3 py-0.5 rounded-full font-mono text-[11px] font-bold border ${
+                            node.dotColor === '#00C48C'
+                              ? 'border-emerald-400/40 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-300'
+                              : 'border-cyan-400/40 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300'
+                          }`}
                         >
                           {node.badge}
                         </span>
@@ -200,7 +199,7 @@ export function TrajectorySection() {
                       <h3 className="text-xl sm:text-2xl font-heading font-bold text-mc-text">
                         {node.roleOrDegree}
                       </h3>
-                      <p className="text-sm font-mono text-[#00C48C] font-semibold mt-1">
+                      <p className="text-sm font-mono text-emerald-800 dark:text-emerald-400 font-bold mt-1">
                         {node.institution}
                       </p>
                     </div>

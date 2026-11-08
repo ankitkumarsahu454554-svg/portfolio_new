@@ -41,14 +41,14 @@ export function ProjectsShowcase() {
               <div className="space-y-5">
                 {/* Top Badge Row */}
                 <div className="flex items-center justify-between font-mono text-xs">
-                  <span className="text-[#00B8D9] font-bold tracking-wider">PROJECT #{project.id}</span>
-                  <span className="rounded-full border border-[#00B8D9]/30 bg-[#00B8D9]/10 px-3 py-1 text-[10px] text-[#00B8D9] font-bold uppercase">
+                  <span className="text-cyan-800 dark:text-cyan-400 font-bold tracking-wider">PROJECT #{project.id}</span>
+                  <span className="rounded-full border border-cyan-400/40 bg-cyan-50 dark:bg-cyan-950/40 px-3 py-1 text-[10px] text-cyan-900 dark:text-cyan-300 font-bold uppercase">
                     {project.category}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-heading text-xl sm:text-2xl font-bold text-mc-text group-hover:text-[#00B8D9] transition-colors">
+                <h3 className="font-heading text-xl sm:text-2xl font-bold text-mc-text group-hover:text-cyan-700 dark:group-hover:text-cyan-400 transition-colors">
                   {project.title}
                 </h3>
 
@@ -59,7 +59,7 @@ export function ProjectsShowcase() {
 
                 {/* Verification Metrics pill */}
                 {project.metrics && (
-                  <div className="rounded-xl border border-[#3D5AFE]/25 bg-gradient-to-r from-[#00B8D9]/10 to-[#3D5AFE]/10 p-3 font-mono text-[11px] text-[#3D5AFE] dark:text-[#00B8D9] line-clamp-2">
+                  <div className="rounded-xl border border-blue-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 p-3 font-mono text-[11px] text-blue-900 dark:text-blue-300 line-clamp-2">
                     <span className="block text-[9px] uppercase tracking-wider text-mc-text-muted font-bold">
                       VERIFICATION BENCHMARK:
                     </span>
@@ -74,20 +74,20 @@ export function ProjectsShowcase() {
                   {project.technologies.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-lg border border-[#00B8D9]/25 bg-[#00B8D9]/8 px-2.5 py-1 font-mono text-[11px] text-mc-text font-medium"
+                      className="rounded-lg border border-cyan-500/25 bg-cyan-500/10 px-2.5 py-1 font-mono text-[11px] text-mc-text font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="rounded-lg border border-mc-border/60 px-2 py-1 font-mono text-[10px] text-mc-text-muted">
+                    <span className="rounded-lg border border-mc-border/60 px-2 py-1 font-mono text-[10px] text-mc-text-muted font-medium">
                       +{project.technologies.length - 4} more
                     </span>
                   )}
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-[#00B8D9] group-hover:text-[#FF3D81] transition-colors">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-cyan-900 dark:text-cyan-300 group-hover:text-[#FF3D81] transition-colors">
                     <span>EXPLORE CASE STUDY</span>
                     <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-[#FF3D81]" />
                   </span>

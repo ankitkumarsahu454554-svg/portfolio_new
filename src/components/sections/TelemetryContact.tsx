@@ -109,8 +109,8 @@ export function TelemetryContact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Massive Call to Action with Rainbow Headline */}
         <div className="mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#FF3D81]/30 bg-[#FF3D81]/10 text-[#FF3D81] font-mono text-xs uppercase tracking-wider mb-6 font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#FF3D81] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-pink-300 dark:border-pink-800 bg-pink-50 dark:bg-pink-950/40 text-pink-900 dark:text-pink-300 font-mono text-xs uppercase tracking-wider mb-6 font-bold">
+            <span className="w-2 h-2 rounded-full bg-pink-600 dark:bg-pink-400 animate-pulse" />
             <span>Open Telemetry Link • Full Rainbow Sector</span>
           </div>
 
@@ -135,7 +135,7 @@ export function TelemetryContact() {
             {/* Primary Email Card with Quick Copy */}
             <div className="p-6 sm:p-7 rounded-3xl border border-[#FF3D81]/30 bg-white dark:bg-mc-surface shadow-[0_12px_32px_-8px_rgba(255,61,129,0.18)] hover:border-[#FF3D81] transition-all">
               <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs text-[#FF3D81] font-bold uppercase tracking-wider flex items-center gap-2">
+                <span className="font-mono text-xs text-pink-800 dark:text-pink-300 font-bold uppercase tracking-wider flex items-center gap-2">
                   <Mail className="w-4 h-4 text-[#FF3D81]" />
                   Direct Email Dispatch
                 </span>
@@ -182,8 +182,8 @@ export function TelemetryContact() {
             {/* Quick Metadata Card */}
             <div className="p-6 rounded-3xl border border-mc-border bg-white dark:bg-mc-surface shadow-md space-y-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#00C48C]/15 text-[#00C48C] border border-[#00C48C]/30">
-                  <MapPin className="w-4 h-4" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-800 dark:text-emerald-400 border border-emerald-500/30">
+                  <MapPin className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
                 </div>
                 <div>
                   <span className="font-mono text-[10px] text-mc-text-muted uppercase block font-bold">Location</span>
@@ -192,8 +192,8 @@ export function TelemetryContact() {
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#00B8D9]/15 text-[#00B8D9] border border-[#00B8D9]/30">
-                  <Phone className="w-4 h-4" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-500/15 text-cyan-800 dark:text-cyan-400 border border-cyan-500/30">
+                  <Phone className="w-4 h-4 text-cyan-700 dark:text-cyan-400" />
                 </div>
                 <div>
                   <span className="font-mono text-[10px] text-mc-text-muted uppercase block font-bold">Contact Line</span>

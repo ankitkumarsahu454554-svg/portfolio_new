@@ -91,13 +91,13 @@ export function Hero() {
         >
           <div className="flex items-center gap-2">
             <span className="flex h-2.5 w-2.5 rounded-full bg-[#FF3D81] animate-ping" />
-            <span className="text-[#FF3D81] font-bold tracking-wider uppercase">PORTFOLIO // LIVE DISPATCH</span>
+            <span className="text-pink-800 dark:text-pink-400 font-bold tracking-wider uppercase">PORTFOLIO // LIVE DISPATCH</span>
           </div>
 
           <div className="flex items-center gap-4 text-[10px] tracking-wider uppercase">
-            <span className="hidden sm:inline">NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)</span>
-            <span className="text-[#00C48C] font-semibold flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00C48C]" />
+            <span className="hidden sm:inline font-medium">NIST UNIVERSITY • B-TECH CSE (DATA SCIENCE)</span>
+            <span className="text-emerald-800 dark:text-emerald-400 font-bold flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" />
               AVAILABLE FOR COLLABORATION
             </span>
           </div>
@@ -143,13 +143,13 @@ export function Hero() {
                     <p className="font-heading text-xs font-bold text-gray-900 dark:text-white leading-tight">
                       {SITE_CONFIG.name}
                     </p>
-                    <p className="text-[10px] text-[#FF3D81] font-semibold tracking-wider">
+                    <p className="text-[10px] text-pink-800 dark:text-pink-300 font-bold tracking-wider">
                       B-Tech CSE (Data Science)
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] text-[#FF8A00] font-bold block">8.75 CGPA</span>
-                    <span className="text-[8px] text-gray-500 dark:text-gray-400">NIST UNIVERSITY</span>
+                    <span className="text-[10px] text-emerald-800 dark:text-emerald-400 font-bold block">8.75 CGPA</span>
+                    <span className="text-[8px] text-gray-700 dark:text-gray-400 font-semibold">NIST UNIVERSITY</span>
                   </div>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-pink-200 dark:border-pink-900/50 bg-pink-50/80 dark:bg-pink-950/30 px-3.5 py-1.5 font-mono text-xs text-mc-text shadow-xs"
             >
               <Sparkles className="h-3.5 w-3.5 text-[#FF3D81] animate-spin-slow" />
-              <span className="text-[#FF3D81] font-bold uppercase tracking-wide">AI & SYSTEMS ENGINEER:</span>
+              <span className="text-pink-800 dark:text-pink-400 font-bold uppercase tracking-wide">AI & SYSTEMS ENGINEER:</span>
               <span className="text-mc-text-secondary font-medium">Empirical Machine Learning</span>
             </motion.div>
 
@@ -220,7 +220,7 @@ export function Hero() {
             >
               <div className="vibrant-card p-4 border-l-4 border-l-[#FF3D81]">
                 <span className="text-mc-text-muted block text-[10px] tracking-wider uppercase font-semibold">ACADEMIC CGPA</span>
-                <div className="text-[#FF3D81] font-heading text-2xl font-bold mt-0.5">
+                <div className="text-pink-800 dark:text-pink-400 font-heading text-2xl font-bold mt-0.5">
                   <Counter value={8.75} decimals={2} duration={1.8} />
                   <span className="text-xs text-mc-text-muted font-normal ml-1">/ 10</span>
                 </div>
@@ -229,7 +229,7 @@ export function Hero() {
 
               <div className="vibrant-card p-4 border-l-4 border-l-[#FF8A00]">
                 <span className="text-mc-text-muted block text-[10px] tracking-wider uppercase font-semibold">CURRICULUM</span>
-                <div className="text-[#FF8A00] font-heading text-2xl font-bold mt-0.5">
+                <div className="text-amber-800 dark:text-amber-400 font-heading text-2xl font-bold mt-0.5">
                   <Counter value={2028} duration={1.6} />
                 </div>
                 <span className="text-mc-text-muted block text-[10px] mt-0.5">CSE (Data Science)</span>
@@ -237,8 +237,8 @@ export function Hero() {
 
               <div className="col-span-2 sm:col-span-1 vibrant-card p-4 border-l-4 border-l-[#00C48C]">
                 <span className="text-mc-text-muted block text-[10px] tracking-wider uppercase font-semibold">CREDENTIALS</span>
-                <div className="text-[#00C48C] font-heading text-2xl font-bold mt-0.5 flex items-center gap-1.5">
-                  <ShieldCheck className="h-5 w-5 text-[#00C48C]" />
+                <div className="text-emerald-800 dark:text-emerald-400 font-heading text-2xl font-bold mt-0.5 flex items-center gap-1.5">
+                  <ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-400" />
                   <span>6+</span>
                 </div>
                 <span className="text-mc-text-muted block text-[10px] mt-0.5">Verified Honors</span>

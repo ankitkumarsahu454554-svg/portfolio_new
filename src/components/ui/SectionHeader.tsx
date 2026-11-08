@@ -23,7 +23,7 @@ export function SectionHeader({
     <div className={cn('relative mb-12 md:mb-20', className)}>
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-mc-border pb-4">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-xs tracking-widest text-[#FF3D81] font-bold">/{index}</span>
+          <span className="font-mono text-xs tracking-widest text-pink-800 dark:text-pink-400 font-bold">/{index}</span>
           <span className="h-3 w-[1px] bg-mc-border" aria-hidden="true" />
           <Badge variant="outline" className="text-[10px] border-mc-border text-mc-text font-bold uppercase tracking-wider">
             {tag}
