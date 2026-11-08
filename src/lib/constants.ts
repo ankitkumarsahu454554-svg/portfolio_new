@@ -75,7 +75,7 @@ export const PROJECTS: EngineeringProject[] = [
     contribution:
       'Designed neural ranking models in PyTorch, structured HPO hierarchical embeddings, and benchmarked predictive accuracy using Top-K accuracy and Mean Reciprocal Rank (MRR).',
     technologies: ['Python', 'PyTorch', 'HPO Phenotype Ontology', 'Scikit-learn', 'NumPy', 'Pandas'],
-    metrics: 'Evaluated with Top-K accuracy & MRR benchmarks [TODO: Candidate to provide published benchmark %]',
+    metrics: 'Evaluated with Top-K accuracy & Mean Reciprocal Rank (MRR) benchmarks', // TODO: Candidate to provide published benchmark %
     githubUrl: 'https://github.com/ankitkumarsahu454554-svg',
     featured: true,
     folderPath: '/projects/rare-disease-prediction-ai/',
