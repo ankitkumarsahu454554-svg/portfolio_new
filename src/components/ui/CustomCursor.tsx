@@ -67,38 +67,39 @@ export function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden" aria-hidden="true">
-      {/* Outer Spring Follower Ring with Morphing Context */}
+      {/* Outer Spring Follower Ring with Rainbow Accent */}
       <motion.div
-        className="fixed top-0 left-0 flex items-center justify-center rounded-full border backdrop-blur-xs select-none"
+        className="fixed top-0 left-0 flex items-center justify-center rounded-full border-2 select-none"
         style={{
           x: smoothX,
           y: smoothY,
           translateX: '-50%',
           translateY: '-50%',
+          boxShadow: isExpanded ? '0 0 16px rgba(255, 61, 129, 0.35)' : 'none',
         }}
         animate={{
-          width: labelText ? 56 : isExpanded ? 40 : 22,
-          height: labelText ? 56 : isExpanded ? 40 : 22,
-          borderColor: isExpanded ? 'var(--accent-cyan)' : 'var(--border-medium)',
+          width: labelText ? 58 : isExpanded ? 42 : 24,
+          height: labelText ? 58 : isExpanded ? 42 : 24,
+          borderColor: isExpanded ? '#FF3D81' : 'rgba(139, 92, 246, 0.4)',
           backgroundColor: labelText
-            ? 'var(--accent-cyan)'
+            ? '#FF3D81'
             : isExpanded
-            ? 'var(--accent-cyan-glow)'
+            ? 'rgba(255, 61, 129, 0.08)'
             : 'transparent',
           opacity: isVisible ? 1 : 0,
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        transition={{ type: 'spring', damping: 22, stiffness: 320 }}
       >
         {labelText && (
-          <span className="font-mono text-[9px] font-bold tracking-widest text-[#040711] uppercase">
+          <span className="font-mono text-[9px] font-bold tracking-widest text-white uppercase">
             {labelText}
           </span>
         )}
       </motion.div>
 
-      {/* Pinpoint Core Dot */}
+      {/* Pinpoint Core Dot with Vibrant Coral Glow */}
       <motion.div
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-mc-cyan shadow-sm"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-[#FF3D81] shadow-[0_0_8px_#FF3D81]"
         style={{
           x: mouseX,
           y: mouseY,

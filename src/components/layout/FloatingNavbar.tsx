@@ -78,10 +78,13 @@ export function FloatingNavbar() {
 
   return (
     <>
-      {/* Scroll Progress Bar at very top of screen */}
+      {/* Scroll Progress Bar with Signature Rainbow Gradient */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-mc-cyan via-sky-400 to-mc-amber z-[100] origin-left"
-        style={{ scaleX: scrollYProgress }}
+        className="fixed top-0 left-0 right-0 h-[3px] z-[100] origin-left shadow-sm"
+        style={{
+          scaleX: scrollYProgress,
+          background: 'var(--gradient-rainbow)',
+        }}
       />
 
       {/* Floating Pill Container */}
@@ -94,18 +97,18 @@ export function FloatingNavbar() {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-4 sm:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
       >
-        <div className="pointer-events-auto flex items-center gap-2 sm:gap-4 rounded-full border border-mc-border bg-mc-glass px-3.5 sm:px-5 py-2 shadow-xl backdrop-blur-md transition-all duration-300">
+        <div className="pointer-events-auto flex items-center gap-2 sm:gap-4 rounded-full border border-mc-border bg-mc-glass px-3.5 sm:px-5 py-2 shadow-xl backdrop-blur-md transition-all duration-300 hover:shadow-2xl">
           {/* Logo / Telemetry Callout */}
           <Link
             href="/"
             className="flex items-center gap-2 font-mono text-xs tracking-wider text-mc-text group py-1 pr-1 sm:pr-3 border-r border-mc-border"
             data-cursor="pointer"
           >
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-mc-cyan/15 text-mc-cyan">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-[#FF3D81] to-[#00B8D9] text-white shadow-xs">
               <Terminal className="h-3 w-3" />
             </div>
-            <span className="font-heading font-semibold text-sm hidden sm:inline text-mc-text group-hover:text-mc-cyan transition-colors">
-              ANKIT<span className="text-mc-cyan">.</span>
+            <span className="font-heading font-bold text-sm hidden sm:inline text-mc-text group-hover:text-rainbow-pink transition-colors">
+              ANKIT<span className="text-[#FF3D81]">.</span>
             </span>
             <span className="font-mono text-[10px] text-mc-text-muted hidden md:inline">
               [CSE:DS]
@@ -123,17 +126,25 @@ export function FloatingNavbar() {
                   href={link.href}
                   onClick={() => setActiveSection(link.title)}
                   className={`relative px-3 py-1.5 font-mono text-xs tracking-wide transition-colors ${
-                    isActive ? 'text-mc-cyan font-semibold' : 'text-mc-text-secondary hover:text-mc-text'
+                    isActive ? 'text-mc-text font-bold' : 'text-mc-text-secondary hover:text-mc-text'
                   }`}
                   data-cursor="pointer"
                 >
                   <span className="relative z-10">{link.title}</span>
                   {isActive && (
-                    <motion.div
-                      layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-mc-cyan/12 border border-mc-cyan/30"
-                      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                    />
+                    <>
+                      <motion.div
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FF3D81]/15 via-[#00B8D9]/15 to-[#8B5CF6]/15 border border-[#FF3D81]/30"
+                        transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                      />
+                      <motion.span
+                        layoutId="nav-active-underline"
+                        className="absolute bottom-0 left-2.5 right-2.5 h-[2px] rounded-full z-20"
+                        style={{ background: 'var(--gradient-rainbow)' }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                      />
+                    </>
                   )}
                 </Link>
               );
@@ -147,7 +158,7 @@ export function FloatingNavbar() {
             <Link
               href={SITE_CONFIG.resumePath}
               download="Ankit_Kumar_Sahu_Resume.pdf"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-mc-cyan/40 bg-mc-cyan/10 px-3.5 py-1.5 font-mono text-xs text-mc-cyan hover:bg-mc-cyan hover:text-[#040711] transition-all font-semibold"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#FF3D81]/40 bg-gradient-to-r from-[#FF3D81]/10 via-[#FF8A00]/10 to-[#8B5CF6]/10 px-3.5 py-1.5 font-mono text-xs text-[#FF3D81] dark:text-[#FF8A00] hover:bg-[#FF3D81] hover:text-white transition-all font-semibold shadow-xs"
               data-cursor="open"
             >
               <FileText className="h-3.5 w-3.5" />

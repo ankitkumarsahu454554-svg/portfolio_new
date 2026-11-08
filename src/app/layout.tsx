@@ -9,7 +9,7 @@ import { ToastProvider } from '@/components/ui/Toast';
 import { Preloader } from '@/components/ui/Preloader';
 
 export const viewport: Viewport = {
-  themeColor: '#040711',
+  themeColor: '#FFFDF8',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -17,11 +17,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Ankit Kumar Sahu | Mission Control — CSE (Data Science)',
+    default: 'Ankit Kumar Sahu | Computer Science & Engineering (Data Science)',
     template: '%s | Ankit Kumar Sahu',
   },
   description:
-    'Mission Control portfolio and technical logs of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University specializing in Applied Machine Learning, Healthcare AI, and Systems Architecture.',
+    'Personal portfolio and technical logs of Ankit Kumar Sahu, B-Tech CSE (Data Science) undergraduate at NIST University specializing in Applied Machine Learning, Healthcare AI, and Systems Architecture.',
   keywords: [
     'Ankit Kumar Sahu',
     'Computer Science',
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   openGraph: {
-    title: 'Ankit Kumar Sahu | Mission Control — CSE (Data Science)',
+    title: 'Ankit Kumar Sahu | Computer Science & Engineering (Data Science)',
     description:
       'Computer Science & Engineering student at NIST University (8.75 CGPA) specializing in Data Science, AI/ML, and Software Development.',
-    url: 'https://liquidform.studio',
+    url: 'https://portfolio-new.vercel.app',
     siteName: 'Ankit Kumar Sahu Portfolio',
     locale: 'en_US',
     type: 'website',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ankit Kumar Sahu | Mission Control — CSE (Data Science)',
+    title: 'Ankit Kumar Sahu | Computer Science & Engineering (Data Science)',
     description:
       'Computer Science & Engineering student at NIST University (8.75 CGPA) specializing in Data Science, AI/ML, and Software Development.',
     images: ['/images/profile.png'],
@@ -74,23 +74,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-mc-bg text-mc-text antialiased selection:bg-mc-cyan selection:text-[#040711] relative">
+      <body className="bg-mc-bg text-mc-text antialiased selection:bg-[#FF3D81] selection:text-white relative">
         <ThemeProvider>
           <ToastProvider>
             <SmoothScrollProvider>
-              {/* Film Grain Texture */}
-              <div className="film-grain" aria-hidden="true" />
-              {/* Telemetry Coordinate Grid */}
-              <div className="fixed inset-0 bg-mission-grid pointer-events-none -z-10" aria-hidden="true" />
+              {/* Soft Animated Pastel Aurora Mesh */}
+              <div className="aurora-bg" aria-hidden="true">
+                <div className="aurora-blob aurora-blob-1" />
+                <div className="aurora-blob aurora-blob-2" />
+                <div className="aurora-blob aurora-blob-3" />
+                <div className="aurora-blob aurora-blob-4" />
+              </div>
 
               {/* Cinematic Preloader (Session-cached, <1.2s) */}
               <Preloader />

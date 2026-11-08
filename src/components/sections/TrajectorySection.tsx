@@ -25,7 +25,7 @@ interface TrajectoryNode {
   location: string;
   period: string;
   badge: string;
-  badgeType: 'cyan' | 'amber' | 'emerald';
+  dotColor: string;
   summary: string;
   bullets: string[];
   courseworkOrSkills?: string[];
@@ -41,7 +41,7 @@ const TRAJECTORY_DATA: TrajectoryNode[] = [
     location: 'Remote, India',
     period: 'Oct 2026 — Dec 2026',
     badge: 'INDUSTRY INTERNSHIP',
-    badgeType: 'cyan',
+    dotColor: '#00C48C',
     summary:
       'Engineered machine learning pipelines, conducted statistical feature selection, and deployed analytical models on enterprise data workflows.',
     bullets: [
@@ -60,7 +60,7 @@ const TRAJECTORY_DATA: TrajectoryNode[] = [
     location: 'India',
     period: 'Jun 2026 — Jul 2026',
     badge: 'SPACE TECHNOLOGY TRACK',
-    badgeType: 'amber',
+    dotColor: '#00B8D9',
     summary:
       'Hands-on aerospace engineering training focusing on CanSat micro-payload architecture, atmospheric sensor data acquisition, and live telemetry feeds.',
     bullets: [
@@ -79,7 +79,7 @@ const TRAJECTORY_DATA: TrajectoryNode[] = [
     location: 'Berhampur, Odisha, India',
     period: '2024 — 2028',
     badge: 'CGPA: 8.75 / 10.0',
-    badgeType: 'emerald',
+    dotColor: '#00C48C',
     summary:
       'Rigorous academic grounding in computer science foundations, algorithm design, mathematical statistics, and machine intelligence architectures.',
     bullets: [
@@ -102,21 +102,25 @@ export function TrajectorySection() {
   const [activeNode, setActiveNode] = useState<string>('traj-1');
 
   return (
-    <section id="trajectory" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Anchor for legacy or experience links */}
+    <section id="trajectory" className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+      {/* Anchor for legacy experience links */}
       <div id="experience" className="absolute -top-24 left-0 pointer-events-none" />
+
+      {/* Green/Cyan Ambient Glow */}
+      <div className="pointer-events-none absolute bottom-10 left-10 w-[450px] h-[450px] bg-gradient-to-tr from-[#00C48C]/15 to-[#00B8D9]/15 rounded-full blur-3xl -z-10" />
+
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-mc-cyan/30 bg-mc-cyan/5 text-mc-cyan font-mono text-xs uppercase tracking-wider mb-4">
-            <span className="w-2 h-2 rounded-full bg-mc-cyan animate-ping" />
-            <span>Operational Timeline</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#00C48C]/30 bg-[#00C48C]/10 text-[#00C48C] font-mono text-xs uppercase tracking-wider mb-4 font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#00C48C] animate-ping" />
+            <span>Operational Timeline // Green-Cyan Track</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-mc-text-primary">
-            Academic & Industry <span className="font-serif italic font-normal text-mc-cyan">Trajectory</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-tight text-mc-text">
+            Academic & Industry <span className="font-serif italic font-normal text-[#00B8D9]">Trajectory</span>
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl">
-            A chronological timeline connecting academic rigor at NIST University with practical engineering in data science and aerospace systems.
+          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
+            A chronological timeline connecting academic rigor at NIST University with practical engineering in data science and aerospace telemetry.
           </p>
         </div>
 
@@ -124,9 +128,9 @@ export function TrajectorySection() {
         <div className="self-start md:self-auto">
           <Link
             href="/resume"
-            className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-mc-surface border border-mc-cyan/40 hover:border-mc-cyan text-mc-text-primary hover:text-mc-cyan font-mono text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-mc-cyan/10"
+            className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white dark:bg-mc-surface border border-[#00C48C]/40 hover:border-[#00C48C] text-mc-text hover:text-[#00C48C] font-mono text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_8px_20px_-4px_rgba(0,196,140,0.25)] font-semibold"
           >
-            <FileText className="w-4 h-4 text-mc-cyan" />
+            <FileText className="w-4 h-4 text-[#00C48C]" />
             <span>Open Vector Resume</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
@@ -136,7 +140,7 @@ export function TrajectorySection() {
       {/* Main Timeline Grid */}
       <div className="relative">
         {/* Vertical line running through (desktop) */}
-        <div className="hidden lg:block absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-mc-cyan via-mc-amber/60 to-emerald-400/40" />
+        <div className="hidden lg:block absolute left-8 top-6 bottom-6 w-0.5 bg-gradient-to-b from-[#00C48C] via-[#00B8D9] to-[#3D5AFE]" />
 
         <div className="space-y-12">
           {TRAJECTORY_DATA.map((node, index) => {
@@ -151,36 +155,31 @@ export function TrajectorySection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative flex flex-col lg:flex-row items-start gap-6 lg:gap-12"
               >
-                {/* Timeline node icon */}
-                <div className="hidden lg:flex shrink-0 w-16 h-16 rounded-2xl border border-mc-border/80 bg-mc-surface-raised items-center justify-center relative z-10 shadow-lg group">
+                {/* Timeline node icon with Green/Cyan glowing dots */}
+                <div className="hidden lg:flex shrink-0 w-16 h-16 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface items-center justify-center relative z-10 shadow-lg group">
                   {node.type === 'experience' && (
-                    <Briefcase className="w-6 h-6 text-mc-cyan group-hover:scale-110 transition-transform" />
+                    <Briefcase className="w-6 h-6 text-[#00C48C] group-hover:scale-110 transition-transform" />
                   )}
                   {node.type === 'space' && (
-                    <Rocket className="w-6 h-6 text-mc-amber group-hover:scale-110 transition-transform" />
+                    <Rocket className="w-6 h-6 text-[#00B8D9] group-hover:scale-110 transition-transform" />
                   )}
                   {node.type === 'education' && (
-                    <GraduationCap className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform" />
+                    <GraduationCap className="w-6 h-6 text-[#00C48C] group-hover:scale-110 transition-transform" />
                   )}
-                  {/* Subtle pulsing indicator */}
+                  {/* Glowing Green/Cyan timeline dot */}
                   <span
-                    className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-mc-surface ${
-                      node.badgeType === 'cyan'
-                        ? 'bg-mc-cyan'
-                        : node.badgeType === 'amber'
-                        ? 'bg-mc-amber'
-                        : 'bg-emerald-400'
-                    }`}
+                    className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-mc-surface shadow-xs"
+                    style={{ backgroundColor: node.dotColor }}
                   />
                 </div>
 
                 {/* Content Panel */}
                 <div
                   onClick={() => setActiveNode(node.id)}
-                  className={`w-full p-6 sm:p-8 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                  className={`w-full p-6 sm:p-8 rounded-3xl border transition-all duration-300 cursor-pointer ${
                     isSelected
-                      ? 'border-mc-cyan/50 bg-mc-surface shadow-xl shadow-mc-cyan/5'
-                      : 'border-mc-border/80 bg-mc-surface/70 hover:bg-mc-surface-raised hover:border-mc-border'
+                      ? 'border-[#00C48C] bg-white dark:bg-mc-surface shadow-[0_16px_36px_-8px_rgba(0,196,140,0.22)]'
+                      : 'border-mc-border bg-white/80 dark:bg-mc-surface/80 hover:bg-white dark:hover:bg-mc-surface hover:border-[#00C48C]/50'
                   }`}
                 >
                   {/* Header Row */}
@@ -188,31 +187,30 @@ export function TrajectorySection() {
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         <span
-                          className={`inline-block px-2.5 py-0.5 rounded-full font-mono text-[11px] font-semibold border ${
-                            node.badgeType === 'cyan'
-                              ? 'border-mc-cyan/40 bg-mc-cyan/10 text-mc-cyan'
-                              : node.badgeType === 'amber'
-                              ? 'border-mc-amber/40 bg-mc-amber/10 text-mc-amber'
-                              : 'border-emerald-400/40 bg-emerald-400/10 text-emerald-400'
-                          }`}
+                          className="inline-block px-3 py-0.5 rounded-full font-mono text-[11px] font-bold border"
+                          style={{
+                            borderColor: `${node.dotColor}50`,
+                            backgroundColor: `${node.dotColor}15`,
+                            color: node.dotColor,
+                          }}
                         >
                           {node.badge}
                         </span>
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-display font-bold text-mc-text-primary">
+                      <h3 className="text-xl sm:text-2xl font-heading font-bold text-mc-text">
                         {node.roleOrDegree}
                       </h3>
-                      <p className="text-sm font-mono text-mc-cyan font-medium mt-1">
+                      <p className="text-sm font-mono text-[#00C48C] font-semibold mt-1">
                         {node.institution}
                       </p>
                     </div>
 
                     <div className="text-left sm:text-right font-mono text-xs text-mc-text-secondary space-y-1">
-                      <div className="flex items-center sm:justify-end gap-1.5">
+                      <div className="flex items-center sm:justify-end gap-1.5 font-medium">
                         <Calendar className="w-3.5 h-3.5 text-mc-text-muted" />
                         <span>{node.period}</span>
                       </div>
-                      <div className="flex items-center sm:justify-end gap-1.5 text-mc-text-muted">
+                      <div className="flex items-center sm:justify-end gap-1.5 text-mc-text-muted font-medium">
                         <MapPin className="w-3.5 h-3.5" />
                         <span>{node.location}</span>
                       </div>
@@ -235,7 +233,7 @@ export function TrajectorySection() {
                           key={i}
                           className="flex items-start gap-3 text-xs sm:text-sm text-mc-text-secondary leading-relaxed"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-mc-cyan mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#00C48C] mt-2 shrink-0" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -252,7 +250,7 @@ export function TrajectorySection() {
                         {node.courseworkOrSkills.map((item) => (
                           <span
                             key={item}
-                            className="px-3 py-1 rounded-lg bg-mc-surface-raised border border-mc-border/80 font-mono text-xs text-mc-text-secondary"
+                            className="px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border font-mono text-xs text-mc-text font-medium"
                           >
                             {item}
                           </span>

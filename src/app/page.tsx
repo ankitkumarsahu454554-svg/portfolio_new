@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen bg-mc-canvas text-mc-text-primary overflow-x-hidden selection:bg-mc-cyan selection:text-black">
+    <main className="relative min-h-screen bg-mc-bg text-mc-text overflow-x-hidden selection:bg-[#FF3D81] selection:text-white">
       {/* 1. Hero & Constellation Field */}
       <Hero />
 

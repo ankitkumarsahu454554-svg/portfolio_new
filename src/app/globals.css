@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =========================================================================
-   MISSION CONTROL DESIGN SYSTEM TOKENS (Dark-first with Light toggle)
+   VIBRANT RAINBOW DESIGN SYSTEM TOKENS
+   Default: Joyful, bright warm white (#FFFDF8) with soft pastel aurora
+   Dark Mode: Deep rich indigo / purple (#14102E to #1E1B4B)
    ========================================================================= */
 
 :root {
@@ -14,66 +16,73 @@
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
-  /* DEFAULT / LIGHT THEME TOKENS */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #f8fafc;
-  --bg-glass: rgba(255, 255, 255, 0.85);
+  /* RAINBOW PALETTE TOKENS */
+  --rainbow-pink: #FF3D81;
+  --rainbow-orange: #FF8A00;
+  --rainbow-yellow: #FFC700;
+  --rainbow-green: #00C48C;
+  --rainbow-cyan: #00B8D9;
+  --rainbow-blue: #3D5AFE;
+  --rainbow-violet: #8B5CF6;
 
-  --text-primary: #040711;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --text-subtle: #94a3b8;
+  /* SIGNATURE GRADIENTS */
+  --gradient-rainbow: linear-gradient(90deg, #FF3D81, #FF8A00, #FFC700, #00C48C, #00B8D9, #3D5AFE, #8B5CF6);
+  --gradient-rainbow-conic: conic-gradient(from 0deg, #FF3D81, #FF8A00, #FFC700, #00C48C, #00B8D9, #3D5AFE, #8B5CF6, #FF3D81);
 
-  --accent-cyan: #0284c7;
-  --accent-cyan-glow: rgba(2, 132, 199, 0.25);
-  --accent-amber: #d97706;
-  --accent-amber-glow: rgba(217, 119, 6, 0.25);
+  /* DEFAULT LIGHT THEME (WARM WHITE CANVAS) */
+  --bg-primary: #FFFDF8;
+  --bg-secondary: #F9F5EC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FFF9F2;
+  --bg-glass: rgba(255, 255, 255, 0.92);
 
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-medium: rgba(15, 23, 42, 0.15);
-  --border-highlight: rgba(2, 132, 199, 0.35);
+  --text-primary: #1B1A2E;
+  --text-secondary: #4A4768;
+  --text-muted: #6E6A8A;
+  --text-subtle: #9F9BBF;
 
-  --telemetry-grid: rgba(15, 23, 42, 0.04);
-  --film-grain-opacity: 0.025;
+  --accent-cyan: #00B8D9;
+  --accent-amber: #FF8A00;
+
+  --border-subtle: rgba(27, 26, 46, 0.08);
+  --border-medium: rgba(27, 26, 46, 0.16);
+  --border-highlight: rgba(255, 61, 129, 0.4);
+
+  --card-shadow: 0 14px 34px -10px rgba(74, 71, 104, 0.08), 0 4px 12px -2px rgba(74, 71, 104, 0.04);
 }
 
-/* DARK THEME (MISSION CONTROL - DEFAULT ON LOAD) */
+/* VIBRANT DEEP INDIGO / PURPLE DARK THEME */
 .dark {
-  --bg-primary: #040711;
-  --bg-secondary: #070d1d;
-  --bg-surface: #0a1124;
-  --bg-surface-elevated: #0f1a36;
-  --bg-glass: rgba(10, 17, 36, 0.8);
+  --bg-primary: #14102E;
+  --bg-secondary: #1E1B4B;
+  --bg-surface: #221D54;
+  --bg-surface-elevated: #2C266B;
+  --bg-glass: rgba(30, 27, 75, 0.9);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #8493a8;
-  --text-subtle: #4d5b70;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0DCFF;
+  --text-muted: #A39DD8;
+  --text-subtle: #6D67A4;
 
-  --accent-cyan: #00f0ff;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.35);
-  --accent-amber: #f59e0b;
-  --accent-amber-glow: rgba(245, 158, 11, 0.35);
+  --accent-cyan: #00F0FF;
+  --accent-amber: #FFC700;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.16);
-  --border-highlight: rgba(0, 240, 255, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-medium: rgba(255, 255, 255, 0.22);
+  --border-highlight: rgba(255, 61, 129, 0.6);
 
-  --telemetry-grid: rgba(255, 255, 255, 0.035);
-  --film-grain-opacity: 0.045;
+  --card-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4), 0 0 25px -4px rgba(139, 92, 246, 0.2);
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Keyboard Focus States */
+/* Rainbow Keyboard Focus Outline */
 *:focus-visible {
-  outline: 2px solid var(--accent-cyan) !important;
+  outline: 3px solid #FF3D81 !important;
   outline-offset: 3px !important;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 html {
@@ -90,71 +99,157 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* Custom Selection */
+/* Rainbow Selection Highlight */
 ::selection {
-  background-color: var(--accent-cyan);
-  color: #040711;
+  background-color: #FF3D81;
+  color: #FFFFFF;
 }
 
-/* Smooth Minimal Scrollbar */
+/* Smooth Colorful Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-medium);
+  background: linear-gradient(180deg, #FF3D81, #FF8A00, #00C48C, #00B8D9, #8B5CF6);
   border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-cyan);
-}
 
-/* Telemetry Grid Background Pattern */
-.bg-mission-grid {
-  background-image: 
-    linear-gradient(to right, var(--telemetry-grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--telemetry-grid) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+/* =========================================================================
+   SOFT PASTEL AURORA / MESH BACKGROUND
+   Drifting pastel meshes (pink, peach, mint, sky, lavender)
+   Transform / opacity animation only
+   ========================================================================= */
 
-/* Subtle Film Grain Overlay */
-.film-grain {
+.aurora-bg {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 9998;
-  opacity: var(--film-grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: -10;
+  overflow: hidden;
 }
 
-/* Mission Control Glass Panels */
-.mc-panel {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.45;
+  will-change: transform;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
 }
 
-.mc-panel:hover {
+.dark .aurora-blob {
+  opacity: 0.25;
+}
+
+.aurora-blob-1 {
+  top: -10%;
+  left: 10%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(255, 61, 129, 0.4) 0%, rgba(255, 138, 0, 0.2) 70%, transparent 100%);
+  animation-duration: 22s;
+}
+
+.aurora-blob-2 {
+  top: 30%;
+  right: -5%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 550px;
+  max-height: 550px;
+  background: radial-gradient(circle, rgba(0, 184, 217, 0.35) 0%, rgba(0, 196, 140, 0.2) 70%, transparent 100%);
+  animation-duration: 26s;
+  animation-delay: -5s;
+}
+
+.aurora-blob-3 {
+  bottom: 5%;
+  left: 15%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(255, 61, 129, 0.2) 70%, transparent 100%);
+  animation-duration: 30s;
+  animation-delay: -10s;
+}
+
+.aurora-blob-4 {
+  top: 60%;
+  right: 25%;
+  width: 40vw;
+  height: 40vw;
+  max-width: 480px;
+  max-height: 480px;
+  background: radial-gradient(circle, rgba(255, 199, 0, 0.3) 0%, rgba(255, 61, 129, 0.2) 70%, transparent 100%);
+  animation-duration: 24s;
+  animation-delay: -7s;
+}
+
+@keyframes auroraDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5vw, 6vh) scale(1.08);
+  }
+  100% {
+    transform: translate(-4vw, -4vh) scale(0.95);
+  }
+}
+
+/* =========================================================================
+   VIBRANT UI HELPERS & CARDS
+   ========================================================================= */
+
+/* Signature Rainbow Gradient Text (for large display headings only) */
+.text-gradient-rainbow {
+  background: var(--gradient-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Clean White Vibrant Card */
+.vibrant-card {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.vibrant-card:hover {
+  transform: translateY(-3px);
   border-color: var(--border-highlight);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.25), 0 0 20px -2px var(--accent-cyan-glow);
 }
 
-/* Telemetry micro-tag */
-.telemetry-tag {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-cyan);
+/* Rotating Conic Rainbow Border */
+.conic-rainbow-border {
+  position: relative;
+  border-radius: 1.75rem;
+  padding: 3px;
+  background: var(--gradient-rainbow-conic);
+  animation: rotateConic 14s linear infinite;
+}
+
+@keyframes rotateConic {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 /* Editorial Serif Emphasis */
@@ -164,17 +259,16 @@ body {
   font-weight: 400;
 }
 
-/* Glow effects */
-.cyan-glow {
-  box-shadow: 0 0 25px -4px var(--accent-cyan-glow);
-}
-
-.amber-glow {
-  box-shadow: 0 0 25px -4px var(--accent-amber-glow);
+/* Section divider with rainbow gradient */
+.rainbow-divider {
+  height: 2px;
+  width: 100%;
+  background: var(--gradient-rainbow);
+  opacity: 0.35;
 }
 
 /* =========================================================================
-   ACCESSIBILITY: PREFERS-REDUCED-MOTION OVERRIDES
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
    ========================================================================= */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -186,7 +280,11 @@ body {
     scroll-behavior: auto !important;
   }
 
-  .film-grain {
-    display: none !important;
+  .aurora-blob {
+    animation: none !important;
+  }
+
+  .conic-rainbow-border {
+    animation: none !important;
   }
 }

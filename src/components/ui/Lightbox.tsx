@@ -189,3 +189,4 @@ export function Lightbox({ items, initialIndex = 0, isOpen, onClose }: LightboxP
     </AnimatePresence>
   );
 }
+

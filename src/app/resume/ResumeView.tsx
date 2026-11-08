@@ -20,20 +20,20 @@ export function ResumeView() {
   const rawPdfUrl = SITE_CONFIG.resumePath;
 
   return (
-    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-mc-canvas text-mc-text-primary min-h-screen">
+    <div className="pt-28 pb-24 md:pt-36 md:pb-32 bg-mc-bg text-mc-text min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-mc-cyan/30 bg-mc-cyan/5 text-mc-cyan font-mono text-xs uppercase tracking-wider mb-4">
-            <span className="w-2 h-2 rounded-full bg-mc-cyan animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#FF3D81]/30 bg-[#FF3D81]/10 text-[#FF3D81] font-mono text-xs uppercase tracking-wider mb-4 font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#FF3D81] animate-pulse" />
             <span>Official Curriculum Vitae</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-display font-extrabold tracking-tight text-mc-text-primary">
-            Curriculum <span className="font-serif italic font-normal text-mc-cyan">Vitae</span>
+          <h1 className="text-3xl sm:text-5xl font-heading font-extrabold tracking-tight text-mc-text">
+            Curriculum <span className="font-serif italic font-normal text-gradient-rainbow">Vitae</span>
           </h1>
 
-          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl">
+          <p className="mt-3 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
             A comprehensive record of academic credentials at NIST University (CGPA 8.75/10), data science engineering, machine learning pipelines, and verified honors.
           </p>
         </div>
@@ -43,39 +43,39 @@ export function ResumeView() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 rounded-2xl border border-mc-border/80 bg-mc-surface p-6 shadow-xl"
+          className="mb-8 rounded-3xl border border-mc-border bg-white dark:bg-mc-surface p-6 sm:p-7 shadow-xl"
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             {/* Metadata Summary */}
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-mc-cyan/40 bg-mc-cyan/10 font-mono text-xs text-mc-cyan font-semibold">
+                <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border border-[#00C48C]/40 bg-[#00C48C]/10 font-mono text-xs text-[#00C48C] font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   VERIFIED DOCUMENT
                 </span>
-                <span className="font-mono text-xs text-mc-text-primary font-semibold">
+                <span className="font-mono text-xs text-mc-text font-bold">
                   Ankit_Kumar_Sahu_Resume.pdf
                 </span>
                 <span className="hidden sm:inline font-mono text-xs text-mc-text-muted">•</span>
-                <span className="font-mono text-xs text-mc-text-muted">184 KB</span>
+                <span className="font-mono text-xs text-mc-text-muted font-medium">184 KB</span>
                 <span className="hidden sm:inline font-mono text-xs text-mc-text-muted">•</span>
-                <span className="font-mono text-xs text-mc-cyan font-medium">
+                <span className="font-mono text-xs text-[#00B8D9] font-bold">
                   VECTOR PDF (100% SCALE)
                 </span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-1 font-mono text-xs text-mc-text-secondary">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-1.5 font-mono text-xs text-mc-text-secondary font-medium">
                 <span>
-                  CANDIDATE: <strong className="text-mc-text-primary">{SITE_CONFIG.name}</strong>
+                  CANDIDATE: <strong className="text-mc-text font-bold">{SITE_CONFIG.name}</strong>
                 </span>
                 <span>
-                  DEGREE: <strong className="text-mc-text-primary">B-Tech CSE (Data Science)</strong>
+                  DEGREE: <strong className="text-mc-text font-bold">B-Tech CSE (Data Science)</strong>
                 </span>
                 <span>
-                  INSTITUTION: <strong className="text-mc-text-primary">NIST University</strong>
+                  INSTITUTION: <strong className="text-mc-text font-bold">NIST University</strong>
                 </span>
                 <span>
-                  CGPA: <strong className="text-mc-cyan font-bold">{SITE_CONFIG.cgpa}</strong>
+                  CGPA: <strong className="text-[#00C48C] font-bold">{SITE_CONFIG.cgpa}</strong>
                 </span>
               </div>
             </div>
@@ -85,9 +85,10 @@ export function ResumeView() {
               <a
                 href={rawPdfUrl}
                 download="Ankit_Kumar_Sahu_Resume.pdf"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-mc-cyan text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-mc-cyan/90 transition-all shadow-md shadow-mc-cyan/20 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-lg shadow-[#FF3D81]/25 hover:opacity-95 active:scale-[0.98] cursor-pointer"
+                style={{ background: 'var(--gradient-rainbow)' }}
               >
-                <Download className="w-4 h-4 text-black" />
+                <Download className="w-4 h-4 text-white" />
                 <span>Download Resume PDF</span>
               </a>
 
@@ -95,7 +96,7 @@ export function ResumeView() {
                 href={rawPdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-mc-surface-raised border border-mc-border hover:border-mc-cyan/60 font-mono text-xs text-mc-text-primary hover:text-mc-cyan font-medium uppercase tracking-wider transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-mc-surface-elevated border border-mc-border hover:border-[#FF3D81] font-mono text-xs text-mc-text hover:text-[#FF3D81] font-bold uppercase tracking-wider transition-all shadow-xs cursor-pointer"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>Open Fullscreen</span>
@@ -109,13 +110,13 @@ export function ResumeView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mx-auto max-w-[900px] relative rounded-2xl border border-mc-border/90 bg-mc-surface shadow-2xl overflow-hidden"
+          className="mx-auto max-w-[900px] relative rounded-3xl border border-mc-border bg-white dark:bg-mc-surface shadow-2xl overflow-hidden"
         >
           {/* Frame Top Bar */}
-          <div className="flex items-center justify-between border-b border-mc-border/80 bg-mc-surface-raised px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between border-b border-mc-border bg-mc-surface-elevated px-4 py-3 sm:px-6">
             <div className="flex items-center gap-2.5">
-              <FileText className="h-4 w-4 text-mc-cyan" />
-              <span className="font-mono text-xs text-mc-text-primary font-semibold">
+              <FileText className="h-4 w-4 text-[#FF3D81]" />
+              <span className="font-mono text-xs text-mc-text font-bold">
                 DOCUMENT VIEWER // ANKIT KUMAR SAHU (100% SCALE)
               </span>
             </div>
@@ -125,7 +126,7 @@ export function ResumeView() {
                 href={rawPdfUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-mc-cyan hover:underline font-medium"
+                className="flex items-center gap-1 text-[#FF3D81] hover:underline font-bold"
               >
                 <span>OPEN FULLSCREEN</span>
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -135,16 +136,16 @@ export function ResumeView() {
 
           {/* Loader Fallback */}
           {!isIframeLoaded && (
-            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-mc-surface/95 backdrop-blur-sm">
-              <div className="h-10 w-10 animate-spin rounded-full border-2 border-mc-border border-t-mc-cyan" />
-              <p className="mt-4 font-mono text-xs text-mc-text-secondary uppercase tracking-widest font-medium">
+            <div className="absolute inset-0 top-12 z-10 flex flex-col items-center justify-center bg-white/95 dark:bg-mc-surface/95 backdrop-blur-sm">
+              <div className="h-10 w-10 animate-spin rounded-full border-2 border-mc-border border-t-[#FF3D81]" />
+              <p className="mt-4 font-mono text-xs text-mc-text-secondary uppercase tracking-widest font-bold">
                 RENDERING RESUME VECTOR CANVAS...
               </p>
             </div>
           )}
 
           {/* PDF Viewer Frame configured to exactly 100% scale */}
-          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1050px] lg:h-[1150px] bg-mc-surface">
+          <div className="relative w-full h-[650px] sm:h-[850px] md:h-[1050px] lg:h-[1150px] bg-white dark:bg-mc-surface">
             <iframe
               src={pdfUrl}
               title="Ankit Kumar Sahu — Professional Resume PDF"
@@ -154,16 +155,16 @@ export function ResumeView() {
           </div>
 
           {/* Frame Footer */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-mc-border/80 bg-mc-surface-raised px-4 py-3 sm:px-6 font-mono text-xs text-mc-text-secondary">
-            <p className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-mc-cyan" />
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-mc-border bg-mc-surface-elevated px-4 py-3 sm:px-6 font-mono text-xs text-mc-text-secondary">
+            <p className="flex items-center gap-2 font-medium">
+              <ShieldCheck className="h-4 w-4 text-[#00C48C]" />
               <span>ORIGINAL AUTHENTIC RESUME • VERIFIED NIST UNIVERSITY</span>
             </p>
 
             <a
               href={rawPdfUrl}
               download="Ankit_Kumar_Sahu_Resume.pdf"
-              className="text-mc-cyan hover:underline flex items-center gap-1 font-semibold"
+              className="text-[#FF3D81] hover:underline flex items-center gap-1 font-bold"
             >
               <Download className="h-3.5 w-3.5" />
               <span>SAVE A LOCAL COPY</span>

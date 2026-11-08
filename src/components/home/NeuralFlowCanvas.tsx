@@ -3,6 +3,16 @@
 import React, { useEffect, useRef } from 'react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
+const RAINBOW_COLORS = [
+  '#FF3D81', // Pink
+  '#FF8A00', // Orange
+  '#FFC700', // Yellow
+  '#00C48C', // Green
+  '#00B8D9', // Cyan
+  '#3D5AFE', // Blue
+  '#8B5CF6', // Violet
+];
+
 interface Particle {
   x: number;
   y: number;
@@ -10,7 +20,7 @@ interface Particle {
   vy: number;
   baseRadius: number;
   radius: number;
-  connections: number[];
+  color: string;
 }
 
 export function NeuralFlowCanvas({ className }: { className?: string }) {
@@ -52,20 +62,20 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    // Number of particles proportional to screen size
-    const particleCount = Math.min(Math.floor((width * height) / 12000), 55);
+    // Number of particles proportional to screen size (lightweight & 60fps)
+    const particleCount = Math.min(Math.floor((width * height) / 14000), 50);
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
-      const r = Math.random() * 2 + 1.2;
+      const r = Math.random() * 2.2 + 1.4;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         baseRadius: r,
         radius: r,
-        connections: [],
+        color: RAINBOW_COLORS[i % RAINBOW_COLORS.length],
       });
     }
 
@@ -76,9 +86,6 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
       frameCount++;
 
       const isDarkMode = document.documentElement.classList.contains('dark');
-      const nodeColor = isDarkMode ? '#00f0ff' : '#0284c7';
-      const lineColor = isDarkMode ? 'rgba(0, 240, 255,' : 'rgba(2, 132, 199,';
-      const pulseColor = isDarkMode ? '#f59e0b' : '#d97706';
 
       // Update and draw particles
       for (let i = 0; i < particles.length; i++) {
@@ -92,14 +99,14 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
           if (p.x < 0 || p.x > width) p.vx *= -1;
           if (p.y < 0 || p.y > height) p.vy *= -1;
 
-          // Cursor interaction: subtle repulsion/expansion
+          // Cursor interaction: subtle repulsion
           const dx = mouseX - p.x;
           const dy = mouseY - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 130;
+          const maxDist = 140;
 
           if (dist < maxDist) {
-            const force = (1 - dist / maxDist) * 1.5;
+            const force = (1 - dist / maxDist) * 1.6;
             p.x -= (dx / dist) * force;
             p.y -= (dy / dist) * force;
             p.radius = p.baseRadius * (1 + (1 - dist / maxDist) * 1.5);
@@ -114,35 +121,47 @@ export function NeuralFlowCanvas({ className }: { className?: string }) {
           const cdx = p.x - p2.x;
           const cdy = p.y - p2.y;
           const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
-          const connectDist = 140;
+          const connectDist = 130;
 
           if (cdist < connectDist) {
-            const alpha = (1 - cdist / connectDist) * (isDarkMode ? 0.25 : 0.18);
-            ctx.strokeStyle = `${lineColor}${alpha})`;
-            ctx.lineWidth = 1;
+            const alpha = (1 - cdist / connectDist) * (isDarkMode ? 0.35 : 0.22);
+            
+            // Gradient wire between two particle colors
+            const grad = ctx.createLinearGradient(p.x, p.y, p2.x, p2.y);
+            grad.addColorStop(0, p.color);
+            grad.addColorStop(1, p2.color);
+
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.2;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
+            ctx.restore();
 
-            // Periodic telemetry pulse traveling across some wires
-            if ((i + j) % 7 === 0) {
-              const progress = ((frameCount * 0.015 + (i * 0.2)) % 1);
+            // Periodic energetic rainbow pulse traveling across wires
+            if ((i + j) % 6 === 0) {
+              const progress = ((frameCount * 0.012 + i * 0.15) % 1);
               const tx = p.x + (p2.x - p.x) * progress;
               const ty = p.y + (p2.y - p.y) * progress;
-              ctx.fillStyle = pulseColor;
+              ctx.fillStyle = p.color;
               ctx.beginPath();
-              ctx.arc(tx, ty, 1.4, 0, Math.PI * 2);
+              ctx.arc(tx, ty, 2, 0, Math.PI * 2);
               ctx.fill();
             }
           }
         }
 
         // Draw node
-        ctx.fillStyle = nodeColor;
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = isDarkMode ? 8 : 4;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
       if (!prefersReducedMotion) {
