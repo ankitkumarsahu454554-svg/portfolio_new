@@ -23,24 +23,16 @@ export function AboutView() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5 flex justify-center lg:justify-start"
           >
-            <div className="relative group w-full max-w-[340px] conic-rainbow-border shadow-2xl">
-              <div className="relative rounded-[1.6rem] bg-white dark:bg-mc-surface p-3.5 shadow-xl transition-all duration-500">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-mc-surface-elevated">
-                  <Image
-                    src={SITE_CONFIG.profileImagePath}
-                    alt="Ankit Kumar Sahu - Portrait"
-                    fill
-                    sizes="(max-width: 640px) 300px, 340px"
-                    priority
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  />
-                </div>
-
-                {/* Verified Student Badge */}
-                <div className="mt-3.5 pt-3 border-t border-mc-border flex items-center justify-between font-mono text-xs">
-                  <span className="text-mc-text-muted font-medium">NIST UNIVERSITY</span>
-                  <span className="text-emerald-800 dark:text-emerald-400 font-bold">CGPA: 8.75 / 10.0</span>
-                </div>
+            <div className="relative group w-full max-w-[270px] sm:max-w-[290px] conic-rainbow-border shadow-2xl">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-white dark:bg-mc-surface">
+                <Image
+                  src={SITE_CONFIG.profileImagePath}
+                  alt="Ankit Kumar Sahu - Portrait"
+                  fill
+                  sizes="(max-width: 640px) 270px, 290px"
+                  priority
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
               </div>
             </div>
           </motion.div>

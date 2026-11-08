@@ -120,7 +120,7 @@ export function Hero() {
                 rotateY: isTouch ? 0 : rotateY,
                 transformStyle: 'preserve-3d',
               }}
-              className="relative w-full max-w-[330px] sm:max-w-[360px] conic-rainbow-border shadow-2xl group"
+              className="relative w-full max-w-[270px] sm:max-w-[290px] conic-rainbow-border shadow-2xl group"
               data-cursor="view"
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-white dark:bg-[#1E1B4B]">
@@ -129,29 +129,10 @@ export function Hero() {
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
-                  sizes="(max-width: 640px) 310px, 360px"
+                  sizes="(max-width: 640px) 270px, 290px"
                   priority
                   className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
-
-                {/* Subtle soft gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-75" />
-
-                {/* Bottom ID Badge inside portrait frame */}
-                <div className="absolute bottom-3 left-3 right-3 rounded-2xl border border-white/20 bg-white/90 dark:bg-[#14102E]/90 p-3 backdrop-blur-md font-mono text-xs flex items-center justify-between shadow-lg">
-                  <div>
-                    <p className="font-heading text-xs font-bold text-gray-900 dark:text-white leading-tight">
-                      {SITE_CONFIG.name}
-                    </p>
-                    <p className="text-[10px] text-pink-800 dark:text-pink-300 font-bold tracking-wider">
-                      B-Tech CSE (Data Science)
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] text-emerald-800 dark:text-emerald-400 font-bold block">8.75 CGPA</span>
-                    <span className="text-[8px] text-gray-700 dark:text-gray-400 font-semibold">NIST UNIVERSITY</span>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </motion.div>
