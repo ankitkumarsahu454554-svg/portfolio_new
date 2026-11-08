@@ -51,6 +51,8 @@ export interface EngineeringProject {
   featured: boolean;
 }
 
+export type Project = EngineeringProject;
+
 export const PROJECTS: EngineeringProject[] = [
   {
     id: '01',

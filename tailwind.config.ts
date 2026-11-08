@@ -10,49 +10,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#F8FAFC',
-        foreground: '#0F172A',
-        surface: {
-          50: '#FFFFFF',
-          100: '#F8FAFC',
-          200: '#F1F5F9',
-          300: '#E2E8F0',
-          400: '#CBD5E1',
-        },
-        azure: {
-          DEFAULT: '#0284C7',
-          hover: '#0369A1',
-          muted: 'rgba(2, 132, 199, 0.08)',
-          glow: 'rgba(2, 132, 199, 0.25)',
-        },
-        indigo: {
-          DEFAULT: '#4F46E5',
-          hover: '#4338CA',
-          muted: 'rgba(79, 70, 229, 0.08)',
-          glow: 'rgba(79, 70, 229, 0.25)',
-        },
-        emerald: {
-          DEFAULT: '#059669',
-          muted: 'rgba(5, 150, 105, 0.08)',
-        },
-        border: {
-          subtle: 'rgba(15, 23, 42, 0.08)',
-          medium: 'rgba(15, 23, 42, 0.14)',
-          highlight: 'rgba(15, 23, 42, 0.22)',
+        mc: {
+          bg: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          surface: 'var(--bg-surface)',
+          elevated: 'var(--bg-surface-elevated)',
+          glass: 'var(--bg-glass)',
+          text: 'var(--text-primary)',
+          'text-secondary': 'var(--text-secondary)',
+          'text-muted': 'var(--text-muted)',
+          'text-subtle': 'var(--text-subtle)',
+          cyan: 'var(--accent-cyan)',
+          amber: 'var(--accent-amber)',
+          border: 'var(--border-subtle)',
+          'border-medium': 'var(--border-medium)',
+          'border-highlight': 'var(--border-highlight)',
         },
       },
       fontFamily: {
         heading: ['var(--font-space-grotesk)', 'sans-serif'],
+        serif: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
-        mono: ['var(--font-ibm-plex-mono)', 'monospace'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       animation: {
+        'spin-slow': 'spin 20s linear infinite',
         'pulse-subtle': 'pulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'radar-sweep': 'radarSweep 4s linear infinite',
+        marquee: 'marquee 32s linear infinite',
+      },
+      keyframes: {
+        radarSweep: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       letterSpacing: {
-        tighter: '-0.04em',
-        tight: '-0.02em',
-        widest: '0.15em',
+        telemetry: '0.14em',
+        widest: '0.2em',
       },
     },
   },

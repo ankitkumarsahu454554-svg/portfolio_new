@@ -1,32 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================================
+   MISSION CONTROL DESIGN SYSTEM TOKENS (Dark-first with Light toggle)
+   ========================================================================= */
+
 :root {
   --font-space-grotesk: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-instrument-serif: 'Instrument Serif', Georgia, serif;
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
+  --font-mono: 'IBM Plex Mono', monospace;
 
-  /* Senior Designer Natural Light Palette */
-  --bg-base: #f8fafc;
+  /* DEFAULT / LIGHT THEME TOKENS */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
   --bg-surface: #ffffff;
-  --bg-elevated: #f1f5f9;
-  --bg-subtle: #e2e8f0;
+  --bg-surface-elevated: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.85);
 
-  --text-primary: #0f172a;
+  --text-primary: #040711;
   --text-secondary: #334155;
   --text-muted: #64748b;
+  --text-subtle: #94a3b8;
 
-  /* Natural Lighting Accents */
   --accent-cyan: #0284c7;
-  --accent-indigo: #4f46e5;
-  --accent-emerald: #059669;
+  --accent-cyan-glow: rgba(2, 132, 199, 0.25);
+  --accent-amber: #d97706;
+  --accent-amber-glow: rgba(217, 119, 6, 0.25);
 
   --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-hover: rgba(2, 132, 199, 0.35);
-  --border-highlight: rgba(15, 23, 42, 0.15);
+  --border-medium: rgba(15, 23, 42, 0.15);
+  --border-highlight: rgba(2, 132, 199, 0.35);
+
+  --telemetry-grid: rgba(15, 23, 42, 0.04);
+  --film-grain-opacity: 0.025;
+}
+
+/* DARK THEME (MISSION CONTROL - DEFAULT ON LOAD) */
+.dark {
+  --bg-primary: #040711;
+  --bg-secondary: #070d1d;
+  --bg-surface: #0a1124;
+  --bg-surface-elevated: #0f1a36;
+  --bg-glass: rgba(10, 17, 36, 0.8);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8493a8;
+  --text-subtle: #4d5b70;
+
+  --accent-cyan: #00f0ff;
+  --accent-cyan-glow: rgba(0, 240, 255, 0.35);
+  --accent-amber: #f59e0b;
+  --accent-amber-glow: rgba(245, 158, 11, 0.35);
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-highlight: rgba(0, 240, 255, 0.45);
+
+  --telemetry-grid: rgba(255, 255, 255, 0.035);
+  --film-grain-opacity: 0.045;
 }
 
 * {
@@ -34,7 +70,7 @@
 }
 
 html {
-  background-color: var(--bg-base);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   text-rendering: optimizeLegibility;
@@ -44,69 +80,88 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: var(--bg-base);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Selection in natural soft sky blue */
+/* Custom Selection */
 ::selection {
-  background-color: rgba(2, 132, 199, 0.18);
-  color: #0f172a;
+  background-color: var(--accent-cyan);
+  color: #040711;
 }
 
-/* Scrollbar */
+/* Smooth Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-base);
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
+  background: var(--border-medium);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: var(--accent-cyan);
 }
 
-/* Natural Ambient Daylight Lighting Gradient Mesh */
-.bg-natural-light {
+/* Telemetry Grid Background Pattern */
+.bg-mission-grid {
   background-image: 
-    radial-gradient(at 15% 15%, rgba(254, 243, 199, 0.45) 0px, transparent 50%),
-    radial-gradient(at 85% 20%, rgba(224, 242, 254, 0.6) 0px, transparent 48%),
-    radial-gradient(at 50% 85%, rgba(238, 242, 255, 0.5) 0px, transparent 55%);
+    linear-gradient(to right, var(--telemetry-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--telemetry-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* Fine-dot matrix pattern for natural light */
-.bg-tech-grid {
-  background-image: radial-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* Subtle Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: var(--film-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Natural Light Card System with soft diffuse elevation */
-.premium-card {
-  background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+/* Mission Control Glass Panels */
+.mc-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.premium-card:hover {
-  border-color: rgba(2, 132, 199, 0.35);
-  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(2, 132, 199, 0.08);
-  transform: translateY(-3px);
+.mc-panel:hover {
+  border-color: var(--border-highlight);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.25), 0 0 20px -2px var(--accent-cyan-glow);
 }
 
-/* Utility for smooth image containers */
-.portrait-container {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.95));
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+/* Telemetry micro-tag */
+.telemetry-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
 }
 
-/* Smooth Focus Outlines */
-:focus-visible {
-  outline: 2px solid #0284c7;
-  outline-offset: 2px;
+/* Editorial Serif Emphasis */
+.font-serif-italic {
+  font-family: var(--font-instrument-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Glow effects */
+.cyan-glow {
+  box-shadow: 0 0 25px -4px var(--accent-cyan-glow);
+}
+
+.amber-glow {
+  box-shadow: 0 0 25px -4px var(--accent-amber-glow);
 }
