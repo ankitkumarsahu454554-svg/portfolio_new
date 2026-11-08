@@ -64,3 +64,4 @@ Place event images inside the `public/events/<slug>/` folder:
 Supported formats: `.jpg`, `.png`, `.svg`, `.webp`.
 
 > **Note**: If an event has no images (`images: []`), the website will render a clean, branded fallback card with no broken images or empty modal galleries.
+
