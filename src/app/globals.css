@@ -287,4 +287,9 @@ body {
   .conic-rainbow-border {
     animation: none !important;
   }
+
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none !important;
+  }
 }

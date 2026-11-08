@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
 
     // 3. Resend Delivery
     if (resendApiKey) {
-      const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Mission Control <onboarding@resend.dev>';
+      const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Portfolio Dispatch <onboarding@resend.dev>';
       const resendRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -69,17 +69,17 @@ export async function POST(req: NextRequest) {
           from: fromEmail,
           to: [recipientEmail],
           reply_to: cleanEmail,
-          subject: `[Mission Control] ${cleanSubject} — from ${cleanName}`,
+          subject: `[Portfolio Dispatch] ${cleanSubject} — from ${cleanName}`,
           html: `
             <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
-              <div style="border-bottom: 2px solid #00F0FF; padding-bottom: 12px; margin-bottom: 20px;">
-                <h2 style="margin: 0; color: #040711; font-size: 20px;">Mission Control // New Contact Dispatch</h2>
-                <p style="margin: 4px 0 0; color: #64748B; font-size: 13px;">Received via ankit-kumar-sahu portfolio dispatch channel.</p>
+              <div style="border-bottom: 2px solid #FF3D81; padding-bottom: 12px; margin-bottom: 20px;">
+                <h2 style="margin: 0; color: #1B1A2E; font-size: 20px;">Portfolio // New Contact Dispatch</h2>
+                <p style="margin: 4px 0 0; color: #6E6A8A; font-size: 13px;">Received via ankit-kumar-sahu portfolio inquiry channel.</p>
               </div>
 
               <div style="margin-bottom: 16px;">
                 <strong style="color: #334155; font-size: 13px; text-transform: uppercase;">From:</strong>
-                <p style="margin: 4px 0; color: #0f172a; font-size: 15px;">${cleanName} &lt;<a href="mailto:${cleanEmail}" style="color: #0284c7;">${cleanEmail}</a>&gt;</p>
+                <p style="margin: 4px 0; color: #0f172a; font-size: 15px;">${cleanName} &lt;<a href="mailto:${cleanEmail}" style="color: #FF3D81;">${cleanEmail}</a>&gt;</p>
               </div>
 
               <div style="margin-bottom: 16px;">
@@ -87,12 +87,12 @@ export async function POST(req: NextRequest) {
                 <p style="margin: 4px 0; color: #0f172a; font-size: 15px;">${cleanSubject}</p>
               </div>
 
-              <div style="margin-bottom: 24px; padding: 16px; background-color: #f8fafc; border-radius: 8px; border: 1px solid #cbd5e1;">
+              <div style="margin-bottom: 24px; padding: 16px; background-color: #FFFDF8; border-radius: 8px; border: 1px solid #cbd5e1;">
                 <strong style="color: #334155; font-size: 13px; text-transform: uppercase; display: block; margin-bottom: 8px;">Message Content:</strong>
                 <p style="margin: 0; color: #1e293b; font-size: 14px; white-space: pre-wrap; line-height: 1.6;">${cleanMessage}</p>
               </div>
 
-              <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9; pt: 12px;">
+              <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 12px;">
                 Candidate: Ankit Kumar Sahu • NIST University • B.Tech CSE (Data Science)
               </div>
             </div>
@@ -101,10 +101,12 @@ export async function POST(req: NextRequest) {
       });
 
       if (!resendRes.ok) {
-        const errorData = await resendRes.json();
-        console.error('Resend delivery failed:', errorData);
         return NextResponse.json(
-          { ok: false, error: 'Failed to deliver message via email service. Please try again or email directly.' },
+          {
+            ok: false,
+            error: `Email transmission service failed. Please reach out to ${recipientEmail} directly.`,
+            fallbackMailto: `mailto:${recipientEmail}?subject=${encodeURIComponent(cleanSubject)}&body=${encodeURIComponent(`Hi Ankit,\n\n${cleanMessage}\n\nFrom,\n${cleanName} (${cleanEmail})`)}`,
+          },
           { status: 502 }
         );
       }
@@ -134,7 +136,11 @@ export async function POST(req: NextRequest) {
 
       if (!formspreeRes.ok) {
         return NextResponse.json(
-          { ok: false, error: 'Formspree delivery encountered an issue.' },
+          {
+            ok: false,
+            error: `Formspree delivery encountered an issue. Please email ${recipientEmail} directly.`,
+            fallbackMailto: `mailto:${recipientEmail}?subject=${encodeURIComponent(cleanSubject)}&body=${encodeURIComponent(`Hi Ankit,\n\n${cleanMessage}\n\nFrom,\n${cleanName} (${cleanEmail})`)}`,
+          },
           { status: 502 }
         );
       }
@@ -146,30 +152,24 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 5. Development or Unconfigured Warning Mode
-    // If no API key is provided yet, return clear telemetry instructions so the UI confirms receipt
-    // and guides the developer to configure Vercel env variables
-    console.log('[DISPATCH TELEMETRY LOG]', {
-      name: cleanName,
-      email: cleanEmail,
-      subject: cleanSubject,
-      message: cleanMessage,
-      timestamp: new Date().toISOString(),
-      recipient: recipientEmail,
-    });
-
-    return NextResponse.json({
-      ok: true,
-      simulated: true,
-      message:
-        'Dispatch received. (Set RESEND_API_KEY in Vercel Environment Variables to activate instant direct email delivery).',
-    });
-  } catch (error) {
-    console.error('Contact API Error:', error);
+    // 5. Graceful Fallback Mode if env variables are not set
     return NextResponse.json(
-      { ok: false, error: 'An unexpected server error occurred. Please contact ankitkumarsahu488526@gmail.com directly.' },
+      {
+        ok: false,
+        error: `Direct dispatch service is not currently configured. Please send your message directly via email to ${recipientEmail}.`,
+        fallbackMailto: `mailto:${recipientEmail}?subject=${encodeURIComponent(cleanSubject)}&body=${encodeURIComponent(`Hi Ankit,\n\n${cleanMessage}\n\nFrom,\n${cleanName} (${cleanEmail})`)}`,
+      },
+      { status: 503 }
+    );
+  } catch {
+    const fallbackRecipient = 'ankitkumarsahu488526@gmail.com';
+    return NextResponse.json(
+      {
+        ok: false,
+        error: `An unexpected error occurred. Please contact ${fallbackRecipient} directly.`,
+        fallbackMailto: `mailto:${fallbackRecipient}`,
+      },
       { status: 500 }
     );
   }
 }
-

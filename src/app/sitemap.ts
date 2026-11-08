@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://liquidform.studio';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-new.vercel.app';
   const lastModified = new Date();
 
   return [

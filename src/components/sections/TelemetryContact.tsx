@@ -35,6 +35,7 @@ export function TelemetryContact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+  const [fallbackMailto, setFallbackMailto] = useState<string | null>(null);
 
   const handleCopyEmail = async () => {
     try {
@@ -72,6 +73,7 @@ export function TelemetryContact() {
       if (res.ok && data.ok) {
         setSubmitStatus('success');
         setStatusMessage(data.message || 'Dispatch successfully transmitted.');
+        setFallbackMailto(null);
         showToast('Message transmitted successfully!', 'success');
         setFormState({ name: '', email: '', subject: '', message: '', fax_number: '' });
 
@@ -84,13 +86,18 @@ export function TelemetryContact() {
         });
       } else {
         setSubmitStatus('error');
-        setStatusMessage(data.error || 'Failed to dispatch message. Please retry or email directly.');
-        showToast('Failed to send dispatch.', 'info');
+        setStatusMessage(data.error || 'Failed to dispatch message. Direct email fallback ready below.');
+        if (data.fallbackMailto) {
+          setFallbackMailto(data.fallbackMailto);
+        } else {
+          setFallbackMailto(`mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(formState.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Hi Ankit,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`)}`);
+        }
+        showToast('Direct email dispatch ready.', 'info');
       }
-    } catch (err) {
-      console.error('Submission error:', err);
+    } catch {
       setSubmitStatus('error');
-      setStatusMessage('Network connectivity issue. Please reach out to ankitkumarsahu488526@gmail.com directly.');
+      setStatusMessage('Network connectivity issue. You can transmit directly via your mail client:');
+      setFallbackMailto(`mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(formState.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Hi Ankit,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`)}`);
       showToast('Network error occurred.', 'info');
     } finally {
       setIsSubmitting(false);
@@ -331,9 +338,23 @@ export function TelemetryContact() {
                   </div>
 
                   {submitStatus === 'error' && (
-                    <div className="p-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 text-rose-500 font-mono text-xs flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
-                      <span>{statusMessage}</span>
+                    <div className="p-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 font-mono text-xs space-y-3">
+                      <div className="flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 shrink-0 text-rose-600 dark:text-rose-400" />
+                        <span>{statusMessage}</span>
+                      </div>
+                      {fallbackMailto && (
+                        <div>
+                          <a
+                            href={fallbackMailto}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#FF3D81] to-[#FF8A00] text-white font-mono text-xs font-bold hover:opacity-90 transition-opacity shadow-xs"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>Open Mail Client with Message</span>
+                            <ArrowUpRight className="w-3 h-3" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   )}
 
