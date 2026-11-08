@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, MapPin, Award, ExternalLink, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { X, Calendar, MapPin, Award, ExternalLink, ChevronLeft, ChevronRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { FlightLogEvent } from '@/data/events';
 
 interface FlightLogModalProps {
@@ -21,7 +21,7 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      if (!event || event.images.length <= 1) return;
+      if (!event || !event.images || event.images.length <= 1) return;
       if (e.key === 'ArrowRight') {
         setActiveImageIndex((prev) => (prev + 1) % event.images.length);
       }
@@ -55,30 +55,25 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
           {/* Modal Container */}
           <motion.div
             layoutId={`event-card-${event.id}`}
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-mc-border bg-mc-surface p-6 sm:p-9 mc-panel shadow-2xl z-10 space-y-6"
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-mc-border bg-white dark:bg-mc-surface p-6 sm:p-9 shadow-2xl z-10 space-y-6"
           >
             {/* Header */}
             <div className="flex items-start justify-between border-b border-mc-border pb-4">
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-                  <span className="text-mc-cyan font-bold uppercase">{event.type}</span>
+                  <span className="text-violet-700 dark:text-violet-400 font-bold uppercase">{event.type}</span>
                   <span className="text-mc-border">•</span>
-                  <span className="text-mc-amber font-semibold uppercase">{event.myRole}</span>
-                  {event.isPlaceholder && (
-                    <span className="rounded bg-rose-500/20 px-1.5 py-0.5 text-[9px] font-bold text-rose-400">
-                      TODO PLACEHOLDER
-                    </span>
-                  )}
+                  <span className="text-pink-700 dark:text-pink-400 font-bold uppercase">{event.myRole}</span>
                 </div>
                 <h2 className="font-heading text-2xl sm:text-3xl font-bold text-mc-text">
                   {event.title}
                 </h2>
-                <p className="font-mono text-xs text-mc-text-muted">{event.organizer}</p>
+                <p className="font-mono text-xs text-mc-text-muted font-medium">{event.organizer}</p>
               </div>
 
               <button
                 onClick={onClose}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-mc-border bg-mc-bg text-mc-text hover:border-mc-cyan hover:text-mc-cyan transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-mc-border bg-mc-surface-elevated text-mc-text hover:border-violet-500 hover:text-violet-600 transition-colors cursor-pointer"
                 aria-label="Close modal"
                 data-cursor="pointer"
               >
@@ -86,38 +81,28 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
               </button>
             </div>
 
-            {/* Placeholder Warning Banner */}
-            {event.isPlaceholder && (
-              <div className="p-3.5 rounded-xl border border-mc-amber/50 bg-mc-amber/10 text-xs font-mono text-mc-amber flex items-start gap-2.5">
-                <span className="font-bold shrink-0">[UNVERIFIED PLACEHOLDER]:</span>
-                <span>
-                  This item is a designated template slot. To populate this record with your authentic credentials, certificates, and photos, update <code className="text-mc-cyan font-bold">src/data/events.ts</code>.
-                </span>
-              </div>
-            )}
-
             {/* Event Telemetry Bar */}
-            <div className="flex flex-wrap items-center gap-4 rounded-xl border border-mc-border/70 bg-mc-surface-elevated/50 p-3 font-mono text-xs text-mc-text-secondary">
+            <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-mc-border bg-mc-surface-elevated p-3.5 font-mono text-xs text-mc-text-secondary font-medium">
               <div className="flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5 text-mc-cyan" />
+                <Calendar className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
                 <span>{event.date}</span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1.5">
-                <MapPin className="h-3.5 w-3.5 text-mc-amber" />
+                <MapPin className="h-3.5 w-3.5 text-pink-600 dark:text-pink-400" />
                 <span>{event.location}</span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1.5">
-                <Award className="h-3.5 w-3.5 text-mc-cyan" />
+                <Award className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>Role: {event.myRole}</span>
               </div>
             </div>
 
-            {/* Image Gallery / Lightbox */}
-            {event.images.length > 0 && (
+            {/* Image Gallery / Lightbox (only rendered if event has images) */}
+            {event.images && event.images.length > 0 && (
               <div className="space-y-2">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-mc-border bg-mc-surface-raised flex items-center justify-center">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-mc-border bg-mc-surface-elevated flex items-center justify-center">
                   <Image
                     src={event.images[activeImageIndex].src}
                     alt={event.images[activeImageIndex].alt}
@@ -133,7 +118,7 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                           e.stopPropagation();
                           setActiveImageIndex((prev) => (prev - 1 + event.images.length) % event.images.length);
                         }}
-                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-surface/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm border border-mc-border transition-colors"
+                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white/90 dark:bg-black/80 text-mc-text hover:bg-violet-600 hover:text-white backdrop-blur-sm border border-mc-border transition-colors cursor-pointer"
                         aria-label="Previous Image"
                       >
                         <ChevronLeft className="h-4 w-4" />
@@ -143,7 +128,7 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                           e.stopPropagation();
                           setActiveImageIndex((prev) => (prev + 1) % event.images.length);
                         }}
-                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-surface/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm border border-mc-border transition-colors"
+                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white/90 dark:bg-black/80 text-mc-text hover:bg-violet-600 hover:text-white backdrop-blur-sm border border-mc-border transition-colors cursor-pointer"
                         aria-label="Next Image"
                       >
                         <ChevronRight className="h-4 w-4" />
@@ -155,7 +140,7 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                 <div className="flex items-center justify-between px-1 text-xs font-mono text-mc-text-muted">
                   <span className="italic line-clamp-1">{event.images[activeImageIndex].caption}</span>
                   {event.images.length > 1 && (
-                    <span className="shrink-0 text-mc-cyan font-bold">
+                    <span className="shrink-0 text-violet-600 dark:text-violet-400 font-bold">
                       {activeImageIndex + 1} / {event.images.length}
                     </span>
                   )}
@@ -164,68 +149,82 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
             )}
 
             {/* Summary */}
-            <div className="space-y-2 font-sans">
-              <span className="font-mono text-[10px] text-mc-cyan uppercase tracking-wider font-bold block">
-                LOG SUMMARY:
-              </span>
+            <div className="space-y-2">
+              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-mc-text-muted">
+                Executive Overview
+              </h4>
               <p className="text-sm text-mc-text-secondary leading-relaxed">
                 {event.summary}
               </p>
             </div>
 
-            {/* What I Did */}
-            <div className="space-y-2">
-              <span className="font-mono text-[10px] text-mc-amber uppercase tracking-wider font-bold block">
-                ACTIVITIES & KEY CONTRIBUTIONS:
-              </span>
-              <ul className="space-y-1.5 font-sans text-xs sm:text-sm text-mc-text-secondary">
-                {event.whatIDid.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-mc-cyan flex-shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Key Deliverables / What I Did */}
+            {event.whatIDid && event.whatIDid.length > 0 && (
+              <div className="space-y-2.5">
+                <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-mc-text-muted">
+                  Technical Contributions & Activities
+                </h4>
+                <ul className="space-y-2">
+                  {event.whatIDid.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs text-mc-text-secondary leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-600 dark:bg-violet-400 mt-1.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-            {/* Outcome */}
-            <div className="rounded-xl border border-mc-cyan/30 bg-mc-cyan/8 p-3.5 font-mono text-xs text-mc-cyan">
-              <span className="font-bold block uppercase text-[10px] text-mc-text-muted mb-0.5">FINAL OUTCOME / RECOGNITION:</span>
-              <span className="text-mc-text font-normal">{event.outcome}</span>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {event.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-lg border border-mc-border bg-mc-bg px-2.5 py-1 font-mono text-[10px] text-mc-text-muted"
-                >
-                  #{tag}
+            {/* Outcome Callout */}
+            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <span className="font-mono text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-400 block mb-0.5">
+                  Verified Outcome
                 </span>
-              ))}
+                <p className="text-xs text-mc-text leading-relaxed font-medium">
+                  {event.outcome}
+                </p>
+              </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center justify-between border-t border-mc-border pt-4">
-              {event.link ? (
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full bg-mc-cyan px-4 py-2 font-mono text-xs font-bold text-[#040711] uppercase tracking-wider shadow-sm hover:shadow-cyan-glow"
-                >
-                  <span>EVENT PORTAL</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              ) : <div />}
+            {/* Footer with Tags and External Links */}
+            <div className="pt-4 border-t border-mc-border flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap gap-1.5">
+                {event.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2.5 py-1 rounded-lg bg-mc-surface-elevated border border-mc-border font-mono text-[11px] text-mc-text font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-              <button
-                onClick={onClose}
-                className="rounded-full border border-mc-border px-4 py-2 font-mono text-xs text-mc-text-secondary hover:text-mc-text"
-              >
-                CLOSE ENTRY [ESC]
-              </button>
+              <div className="flex items-center gap-3 font-mono text-xs">
+                {event.link && (
+                  <a
+                    href={event.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-mc-border hover:border-violet-500 text-mc-text hover:text-violet-600 transition-colors font-semibold"
+                  >
+                    <span>Event Website</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {event.certificateUrl && (
+                  <a
+                    href={event.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#FF3D81] to-[#8B5CF6] text-white font-bold transition-all shadow-sm hover:opacity-95"
+                  >
+                    <span>View Certificate</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -233,4 +232,3 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
     </AnimatePresence>
   );
 }
-

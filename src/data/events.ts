@@ -1,3 +1,53 @@
+/**
+ * ============================================================================
+ * FLIGHT LOG EVENTS DATA STORE
+ * ============================================================================
+ * 
+ * HOW TO ADD A NEW EVENT:
+ * 1. Copy the template block below.
+ * 2. Fill in your real event details, date, role, outcome, and tags.
+ * 3. Place your images in `/public/events/<slug>/`
+ *    - Cover: `/public/events/<slug>/cover.jpg` (or .svg/.png)
+ *    - Additional shots: `/public/events/<slug>/01.jpg`
+ *    - Certificate: `/public/events/<slug>/certificate.jpg`
+ * 4. Set `draft: false` when you are ready to publish it publicly.
+ *    Any event with `draft: true` will NEVER appear in the public UI.
+ * 
+ * --- COPY-PASTE EVENT TEMPLATE ---
+ * {
+ *   id: 'fl-XX',
+ *   slug: 'my-event-slug',
+ *   title: 'Event / Hackathon / Conference Title',
+ *   organizer: 'Hosting Organization or Company',
+ *   date: 'Month Year',
+ *   year: 2026,
+ *   location: 'City, Country or Online',
+ *   type: 'Competition', // 'Competition' | 'Hackathon' | 'Workshop' | 'Conference' | 'Training' | 'Certification'
+ *   myRole: 'Finalist', // 'Finalist' | 'Winner' | 'Participant' | 'Speaker' | 'Certified' | 'Attendee'
+ *   summary: 'High-level description of what this event was and its significance.',
+ *   whatIDid: [
+ *     'Key technical accomplishment or responsibility 1.',
+ *     'Key technical accomplishment or responsibility 2.',
+ *     'Key technical accomplishment or responsibility 3.',
+ *   ],
+ *   outcome: 'Measurable recognition, award, or verified outcome achieved.',
+ *   tags: ['Tag 1', 'Tag 2', 'Machine Learning', 'Python'],
+ *   folderPath: '/events/my-event-slug/',
+ *   images: [
+ *     {
+ *       src: '/events/my-event-slug/cover.jpg',
+ *       alt: 'Event photo description',
+ *       caption: 'Caption describing what is shown.',
+ *     },
+ *   ],
+ *   certificateUrl: '/events/my-event-slug/certificate.jpg',
+ *   link: 'https://official-event-link.com',
+ *   featured: true,
+ *   draft: false,
+ * },
+ * ---------------------------------
+ */
+
 export type EventType =
   | 'Hackathon'
   | 'Workshop'
@@ -40,10 +90,11 @@ export interface FlightLogEvent {
   link?: string;
   featured: boolean;
   folderPath: string;
-  isPlaceholder?: boolean;
+  draft?: boolean;
 }
 
 export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
+  // 1. Google for Developers Prompt Wars (VERIFIED REAL EVENT)
   {
     id: 'fl-01',
     slug: 'google-prompt-wars',
@@ -79,7 +130,10 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     ],
     link: 'https://developers.google.com',
     featured: true,
+    draft: false,
   },
+
+  // 2. India Space Lab (UNCONFIRMED ENTRY - DRAFT MODE)
   {
     id: 'fl-02',
     slug: 'india-space-lab',
@@ -91,14 +145,14 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     type: 'Training',
     myRole: 'Participant',
     summary:
-      'Intensive aerospace technology training gaining hands-on exposure to drone technology, CanSat/CubeSat micro-payload systems, remote sensing (GIS), rocketry, and disaster management.',
+      'Aerospace technology training gaining hands-on exposure to drone technology, CanSat micro-payload architecture, atmospheric sensor telemetry, and recovery systems.',
     whatIDid: [
-      'Configured micro-payload sensor arrays for environmental monitoring (temperature, pressure, barometric altitude).',
+      'Configured micro-payload sensor arrays for environmental monitoring.',
       'Implemented real-time sensor data telemetry packets and radio downlink processing routines.',
       'Studied satellite GIS remote sensing datasets and orbital flight trajectory logging.',
     ],
     outcome:
-      'Successfully completed the aerospace technical training program with practical CanSat sensor integration.',
+      'Completed aerospace technical training program with practical CanSat sensor integration.',
     tags: ['India Space Lab', 'CanSat/CubeSat', 'GIS Remote Sensing', 'Telemetry', 'Aerospace'],
     folderPath: '/events/india-space-lab/',
     images: [
@@ -110,11 +164,14 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
       {
         src: '/events/india-space-lab/certificate.svg',
         alt: 'Training Completion Certificate',
-        caption: 'Official Certificate of Space Technology & Systems Training.',
+        caption: 'Certificate of Space Technology & Systems Training.',
       },
     ],
-    featured: true,
+    featured: false,
+    draft: true, // Marked draft until confirmed
   },
+
+  // 3. Internshala AI/ML (UNCONFIRMED ENTRY - DRAFT MODE)
   {
     id: 'fl-03',
     slug: 'internshala-ai-ml',
@@ -126,30 +183,22 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     type: 'Certification',
     myRole: 'Certified',
     summary:
-      'Comprehensive technical curriculum covering supervised learning algorithms, convolutional neural networks (CNNs), NLP foundations, and statistical model evaluation.',
+      'Curriculum covering supervised learning algorithms, neural network foundations, and statistical model evaluation.',
     whatIDid: [
-      'Implemented regression, classification, and clustering pipelines using Scikit-learn and Python.',
-      'Constructed exploratory data visualization workflows with feature engineering and cross-validation.',
-      'Trained deep learning models using PyTorch and evaluated accuracy/loss curves.',
+      'Implemented regression, classification, and clustering pipelines using Scikit-learn.',
+      'Constructed exploratory data visualization workflows with feature engineering.',
+      'Trained deep learning models using PyTorch.',
     ],
     outcome:
-      'Successfully verified and certified in Artificial Intelligence & Machine Learning foundations.',
-    tags: ['Machine Learning', 'PyTorch', 'Scikit-learn', 'Feature Engineering'],
+      'Certified in Artificial Intelligence & Machine Learning foundations.',
+    tags: ['Machine Learning', 'PyTorch', 'Scikit-learn'],
     folderPath: '/events/internshala-ai-ml/',
-    images: [
-      {
-        src: '/events/internshala-ai-ml/cover.svg',
-        alt: 'AI & ML Training Track Overview',
-        caption: 'Machine learning fundamentals, deep learning, and practical modeling.',
-      },
-      {
-        src: '/events/internshala-ai-ml/certificate.svg',
-        alt: 'Internshala AI/ML Certificate',
-        caption: 'Verified Certificate of Excellence in Artificial Intelligence & Machine Learning.',
-      },
-    ],
+    images: [],
     featured: false,
+    draft: true,
   },
+
+  // 4. Cisco Data Science (UNCONFIRMED ENTRY - DRAFT MODE)
   {
     id: 'fl-04',
     slug: 'cisco-data-science',
@@ -161,30 +210,22 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     type: 'Certification',
     myRole: 'Certified',
     summary:
-      'Industry-accredited foundational certification in computational data science, exploratory data analysis, and statistical programming using Python.',
+      'Foundational certification in computational data science and statistical programming using Python.',
     whatIDid: [
-      'Mastered NumPy and Pandas vectorized operations on high-dimensional datasets.',
-      'Formulated statistical hypotheses and evaluated distributions, variance, and correlation matrices.',
-      'Constructed reproducible data pipelines for automated dataset preprocessing.',
+      'NumPy and Pandas operations on high-dimensional datasets.',
+      'Statistical distributions and correlation matrices.',
+      'Data cleaning and preprocessing pipelines.',
     ],
     outcome:
-      'Achieved verified accreditation from Cisco Networking Academy in Python Data Science Essentials.',
-    tags: ['Cisco', 'Data Science', 'Python', 'NumPy', 'Pandas'],
+      'Completed Cisco Networking Academy Data Science Essentials course.',
+    tags: ['Cisco', 'Data Science', 'Python', 'Pandas'],
     folderPath: '/events/cisco-data-science/',
-    images: [
-      {
-        src: '/events/cisco-data-science/cover.svg',
-        alt: 'Cisco Data Science Essentials',
-        caption: 'Python data analysis, statistical modeling, and pipeline development.',
-      },
-      {
-        src: '/events/cisco-data-science/certificate.svg',
-        alt: 'Cisco Academy Certificate',
-        caption: 'Official Cisco Networking Academy credential in Data Science Essentials.',
-      },
-    ],
+    images: [],
     featured: false,
+    draft: true,
   },
+
+  // 5. NIST Data Analytics (UNCONFIRMED ENTRY - DRAFT MODE)
   {
     id: 'fl-05',
     slug: 'nist-data-analytics',
@@ -196,30 +237,21 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     type: 'Workshop',
     myRole: 'Participant',
     summary:
-      'Academic and practical analytics workshop focusing on business intelligence pipelines, visual storytelling, and dashboard generation combining Python, Power BI, and Tableau.',
+      'Analytics workshop focusing on business intelligence pipelines and dashboard generation combining Python, Power BI, and Tableau.',
     whatIDid: [
-      'Constructed automated ETL workflows in Python to transform raw transactional data.',
-      'Designed interactive business intelligence dashboards in Power BI and Tableau with dynamic KPI filters.',
-      'Delivered data-driven presentations on operational metrics and cohort behavior.',
+      'Constructed automated ETL workflows in Python.',
+      'Designed interactive business intelligence dashboards.',
     ],
     outcome:
-      'Awarded university credentials for technical excellence in Data Analytics and visual BI pipelines.',
-    tags: ['Power BI', 'Tableau', 'Data Analytics', 'Python', 'ETL'],
+      'Participated in NIST University technical workshop on Data Analytics.',
+    tags: ['Power BI', 'Tableau', 'Data Analytics', 'Python'],
     folderPath: '/events/nist-data-analytics/',
-    images: [
-      {
-        src: '/events/nist-data-analytics/cover.svg',
-        alt: 'NIST Data Analytics Workshop',
-        caption: 'Interactive dashboard engineering in Power BI and Tableau with Python backend.',
-      },
-      {
-        src: '/events/nist-data-analytics/certificate.svg',
-        alt: 'Data Analytics Certificate',
-        caption: 'NIST University Course Certificate in Data Analytics & Visual Intelligence.',
-      },
-    ],
+    images: [],
     featured: false,
+    draft: true,
   },
+
+  // 6. NIST OOP with C++ (UNCONFIRMED ENTRY - DRAFT MODE)
   {
     id: 'fl-06',
     slug: 'nist-cpp-oop',
@@ -231,57 +263,23 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     type: 'Training',
     myRole: 'Participant',
     summary:
-      'Rigorous software engineering course on object-oriented programming principles in C++, memory management, pointer manipulation, and standard template library (STL) data structures.',
+      'Software engineering course on object-oriented programming principles in C++, memory management, and data structures.',
     whatIDid: [
-      'Implemented custom memory-safe container classes and pointer architectures.',
-      'Constructed algorithmic benchmarks for search, sort, and graph traversal in C++.',
-      'Applied design patterns (Factory, Observer, Singleton) to modular systems.',
+      'Implemented custom memory-safe container classes.',
+      'Constructed algorithmic benchmarks in C++.',
     ],
     outcome:
-      'Achieved academic honors and completed all foundational C++ engineering evaluations.',
-    tags: ['C++', 'OOP', 'Data Structures', 'STL', 'Systems'],
+      'Completed Object Oriented Programming in C++ course evaluations.',
+    tags: ['C++', 'OOP', 'Data Structures'],
     folderPath: '/events/nist-cpp-oop/',
-    images: [
-      {
-        src: '/events/nist-cpp-oop/cover.svg',
-        alt: 'Object Oriented Programming C++',
-        caption: 'C++ memory management, algorithms, and modular OOP architecture.',
-      },
-      {
-        src: '/events/nist-cpp-oop/certificate.svg',
-        alt: 'NIST OOP Certificate',
-        caption: 'Academic recognition for Object Oriented Programming in C++.',
-      },
-    ],
+    images: [],
     featured: false,
-  },
-  {
-    id: 'fl-07',
-    slug: 'todo-candidate-hackathon',
-    title: '[TODO: Add Hackathon or Research Paper]',
-    organizer: 'TODO: Hosting Organization',
-    date: 'TODO: 2026',
-    year: 2026,
-    location: 'TODO: Location',
-    type: 'Hackathon',
-    myRole: 'Participant',
-    summary:
-      '[TODO: Candidate to provide actual event details. Edit in /src/data/events.ts]',
-    whatIDid: [
-      'TODO: Describe project or problem solved during this event.',
-      'TODO: List tools and algorithms implemented.',
-    ],
-    outcome: '[TODO: Add outcome or award]',
-    tags: ['TODO', 'Candidate Slot'],
-    folderPath: '/events/todo-candidate-hackathon/',
-    images: [
-      {
-        src: '/events/todo-candidate-hackathon/cover.svg',
-        alt: 'Placeholder Slot',
-        caption: 'TODO: Drop your photo in /public/events/todo-candidate-hackathon/cover.svg',
-      },
-    ],
-    featured: false,
-    isPlaceholder: true,
+    draft: true,
   },
 ];
+
+/**
+ * Filtered helper that returns ONLY publicly published events.
+ * Drafts and unconfirmed records are strictly excluded from public view.
+ */
+export const PUBLIC_FLIGHT_LOG_EVENTS = FLIGHT_LOG_EVENTS.filter((e) => !e.draft);

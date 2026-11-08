@@ -62,15 +62,6 @@ const REEL_ITEMS: ReelCard[] = [
     caption: 'Low-level block write patterns compliant with NIST SP 800-88 sanitization verification algorithms.',
     accent: '#00C48C',
   },
-  {
-    id: 'reel-6',
-    title: 'Cisco Data Science Essentials',
-    category: 'CISCO ACADEMY // CREDENTIAL',
-    date: '2026',
-    image: '/events/cisco-data-science/cover.svg',
-    caption: 'Foundational certification in Python computational data science and statistical pipeline development.',
-    accent: '#3D5AFE',
-  },
 ];
 
 export function PhotoReelStrip() {
