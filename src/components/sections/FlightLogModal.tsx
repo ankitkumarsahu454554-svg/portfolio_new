@@ -86,6 +86,16 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
               </button>
             </div>
 
+            {/* Placeholder Warning Banner */}
+            {event.isPlaceholder && (
+              <div className="p-3.5 rounded-xl border border-mc-amber/50 bg-mc-amber/10 text-xs font-mono text-mc-amber flex items-start gap-2.5">
+                <span className="font-bold shrink-0">[UNVERIFIED PLACEHOLDER]:</span>
+                <span>
+                  This item is a designated template slot. To populate this record with your authentic credentials, certificates, and photos, update <code className="text-mc-cyan font-bold">src/data/events.ts</code>.
+                </span>
+              </div>
+            )}
+
             {/* Event Telemetry Bar */}
             <div className="flex flex-wrap items-center gap-4 rounded-xl border border-mc-border/70 bg-mc-surface-elevated/50 p-3 font-mono text-xs text-mc-text-secondary">
               <div className="flex items-center gap-1.5">
@@ -107,13 +117,13 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
             {/* Image Gallery / Lightbox */}
             {event.images.length > 0 && (
               <div className="space-y-2">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-mc-border bg-mc-bg">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-mc-border bg-mc-surface-raised flex items-center justify-center">
                   <Image
                     src={event.images[activeImageIndex].src}
                     alt={event.images[activeImageIndex].alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 800px"
-                    className="object-cover"
+                    className="object-contain p-2"
                   />
 
                   {event.images.length > 1 && (
@@ -123,7 +133,8 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                           e.stopPropagation();
                           setActiveImageIndex((prev) => (prev - 1 + event.images.length) % event.images.length);
                         }}
-                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-bg/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm"
+                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-surface/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm border border-mc-border transition-colors"
+                        aria-label="Previous Image"
                       >
                         <ChevronLeft className="h-4 w-4" />
                       </button>
@@ -132,7 +143,8 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                           e.stopPropagation();
                           setActiveImageIndex((prev) => (prev + 1) % event.images.length);
                         }}
-                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-bg/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm"
+                        className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-mc-surface/80 text-mc-text hover:bg-mc-cyan hover:text-[#040711] backdrop-blur-sm border border-mc-border transition-colors"
+                        aria-label="Next Image"
                       >
                         <ChevronRight className="h-4 w-4" />
                       </button>
@@ -140,9 +152,14 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
                   )}
                 </div>
 
-                <p className="font-mono text-[11px] text-mc-text-muted text-center italic">
-                  {event.images[activeImageIndex].caption}
-                </p>
+                <div className="flex items-center justify-between px-1 text-xs font-mono text-mc-text-muted">
+                  <span className="italic line-clamp-1">{event.images[activeImageIndex].caption}</span>
+                  {event.images.length > 1 && (
+                    <span className="shrink-0 text-mc-cyan font-bold">
+                      {activeImageIndex + 1} / {event.images.length}
+                    </span>
+                  )}
+                </div>
               </div>
             )}
 
@@ -216,3 +233,4 @@ export function FlightLogModal({ event, onClose }: FlightLogModalProps) {
     </AnimatePresence>
   );
 }
+

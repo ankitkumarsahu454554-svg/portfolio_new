@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/Toast';
+import { SITE_CONFIG, SOCIAL_LINKS } from '@/lib/constants';
 import {
   Mail,
   Copy,
@@ -11,40 +12,13 @@ import {
   Send,
   Github,
   Linkedin,
-  Code2,
   ArrowUpRight,
   ChevronUp,
   Sparkles,
   Check,
+  AlertCircle,
+  Loader2,
 } from 'lucide-react';
-
-const CONTACT_INFO = {
-  name: 'Ankit Kumar Sahu',
-  email: 'ankitkumarsahu488526@gmail.com',
-  phone: '+91 93489 74587',
-  location: 'Berhampur, Odisha, India',
-  role: 'B.Tech CSE (Data Science) — NIST University',
-  profiles: [
-    {
-      name: 'GitHub',
-      label: 'github.com/AnkitSahu0',
-      href: 'https://github.com/AnkitSahu0',
-      icon: Github,
-    },
-    {
-      name: 'LinkedIn',
-      label: 'linkedin.com/in/ankit-kumar-sahu',
-      href: 'https://www.linkedin.com/in/ankit-kumar-sahu-01258b301',
-      icon: Linkedin,
-    },
-    {
-      name: 'LeetCode',
-      label: 'leetcode.com/u/AnkitSahu0',
-      href: 'https://leetcode.com/u/AnkitSahu0/',
-      icon: Code2,
-    },
-  ],
-};
 
 export function TelemetryContact() {
   const { showToast } = useToast();
@@ -54,43 +28,63 @@ export function TelemetryContact() {
     email: '',
     subject: '',
     message: '',
+    fax_number: '', // Honeypot field
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(CONTACT_INFO.email);
+      await navigator.clipboard.writeText(SITE_CONFIG.email);
       setCopied(true);
-      showToast(`Copied ${CONTACT_INFO.email} to clipboard!`, 'success');
+      showToast(`Copied ${SITE_CONFIG.email} to clipboard!`, 'success');
       setTimeout(() => setCopied(false), 2500);
     } catch {
       showToast('Could not access clipboard.', 'info');
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formState.name || !formState.email || !formState.message) {
       showToast('Please fill in all required fields.', 'info');
       return;
     }
 
     setIsSubmitting(true);
-    // Client-side fallback: open direct mailto link with entered subject & body
-    setTimeout(() => {
+    setSubmitStatus('idle');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.ok) {
+        setSubmitStatus('success');
+        setStatusMessage(data.message || 'Dispatch successfully transmitted.');
+        showToast('Message sent successfully!', 'success');
+        setFormState({ name: '', email: '', subject: '', message: '', fax_number: '' });
+      } else {
+        setSubmitStatus('error');
+        setStatusMessage(data.error || 'Failed to dispatch message. Please retry or email directly.');
+        showToast('Failed to send dispatch.', 'info');
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+      setStatusMessage('Network connectivity issue. Please reach out to ankitkumarsahu488526@gmail.com directly.');
+      showToast('Network error occurred.', 'info');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      showToast('Preparing dispatch...', 'success');
-
-      const mailtoLink = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
-        formState.subject || `Inquiry from ${formState.name}`
-      )}&body=${encodeURIComponent(
-        `From: ${formState.name} (${formState.email})\n\n${formState.message}`
-      )}`;
-
-      window.location.href = mailtoLink;
-    }, 600);
+    }
   };
 
   const scrollToTop = () => {
@@ -104,7 +98,7 @@ export function TelemetryContact() {
         <div className="mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-mc-cyan/30 bg-mc-cyan/5 text-mc-cyan font-mono text-xs uppercase tracking-wider mb-6">
             <span className="w-2 h-2 rounded-full bg-mc-cyan animate-pulse" />
-            <span>Open Channel • Let&apos;s Connect</span>
+            <span>Open Telemetry Link • Direct Inquiry</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-mc-text-primary leading-[1.1] max-w-4xl">
@@ -113,8 +107,8 @@ export function TelemetryContact() {
           </h2>
 
           <p className="mt-5 text-base sm:text-xl text-mc-text-secondary max-w-2xl leading-relaxed">
-            Interested in data science, machine learning models, or collaborative software engineering?
-            Reach out directly or initiate a communication channel below.
+            Interested in data science, predictive machine learning models, or collaborative software engineering?
+            Reach out directly or transmit a dispatch through the channel below.
           </p>
         </div>
 
@@ -133,7 +127,7 @@ export function TelemetryContact() {
               </div>
 
               <p className="font-mono text-sm sm:text-base font-semibold text-mc-text-primary break-all mb-4">
-                {CONTACT_INFO.email}
+                {SITE_CONFIG.email}
               </p>
 
               <button
@@ -161,10 +155,10 @@ export function TelemetryContact() {
                 <div>
                   <span className="font-mono text-xs text-mc-text-muted block">Direct Phone</span>
                   <a
-                    href="tel:+919348974587"
+                    href={`tel:${SITE_CONFIG.phone.replace(/\s+/g, '')}`}
                     className="font-mono text-sm text-mc-text-primary hover:text-mc-cyan transition-colors"
                   >
-                    {CONTACT_INFO.phone}
+                    {SITE_CONFIG.phone}
                   </a>
                 </div>
               </div>
@@ -174,7 +168,7 @@ export function TelemetryContact() {
                 <div>
                   <span className="font-mono text-xs text-mc-text-muted block">Station / Location</span>
                   <span className="font-mono text-sm text-mc-text-primary">
-                    {CONTACT_INFO.location}
+                    {SITE_CONFIG.location}
                   </span>
                 </div>
               </div>
@@ -183,29 +177,38 @@ export function TelemetryContact() {
             {/* Social / Technical Networks */}
             <div className="p-6 rounded-2xl border border-mc-border/80 bg-mc-surface">
               <span className="font-mono text-xs uppercase tracking-wider text-mc-text-muted block mb-3">
-                Technical Profiles
+                Verified Technical Profiles
               </span>
               <div className="space-y-2">
-                {CONTACT_INFO.profiles.map((p) => {
-                  const Icon = p.icon;
-                  return (
-                    <a
-                      key={p.name}
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between p-2.5 rounded-xl bg-mc-surface-raised border border-mc-border/60 hover:border-mc-cyan/50 hover:bg-mc-surface transition-all duration-200"
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="w-4 h-4 text-mc-text-muted group-hover:text-mc-cyan transition-colors" />
-                        <span className="font-mono text-xs font-medium text-mc-text-primary group-hover:text-mc-cyan transition-colors">
-                          {p.name}
-                        </span>
-                      </div>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-mc-text-muted group-hover:text-mc-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    </a>
-                  );
-                })}
+                <a
+                  href={SITE_CONFIG.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-2.5 rounded-xl bg-mc-surface-raised border border-mc-border/60 hover:border-mc-cyan/50 hover:bg-mc-surface transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Github className="w-4 h-4 text-mc-text-muted group-hover:text-mc-cyan transition-colors" />
+                    <span className="font-mono text-xs font-medium text-mc-text-primary group-hover:text-mc-cyan transition-colors">
+                      GitHub (ankitkumarsahu454554-svg)
+                    </span>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-mc-text-muted group-hover:text-mc-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </a>
+
+                <a
+                  href={SITE_CONFIG.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-2.5 rounded-xl bg-mc-surface-raised border border-mc-border/60 hover:border-mc-cyan/50 hover:bg-mc-surface transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Linkedin className="w-4 h-4 text-mc-text-muted group-hover:text-mc-cyan transition-colors" />
+                    <span className="font-mono text-xs font-medium text-mc-text-primary group-hover:text-mc-cyan transition-colors">
+                      LinkedIn Profile
+                    </span>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-mc-text-muted group-hover:text-mc-cyan group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </a>
               </div>
             </div>
           </div>
@@ -219,27 +222,27 @@ export function TelemetryContact() {
                     Send Direct Dispatch
                   </h3>
                   <p className="font-mono text-xs text-mc-text-muted mt-0.5">
-                    Transmits directly to ankitkumarsahu488526@gmail.com
+                    Transmits directly to {SITE_CONFIG.email}
                   </p>
                 </div>
                 <Sparkles className="w-5 h-5 text-mc-amber" />
               </div>
 
-              {isSubmitted ? (
+              {submitStatus === 'success' ? (
                 <div className="py-12 text-center space-y-3">
                   <div className="w-12 h-12 rounded-full bg-mc-cyan/10 border border-mc-cyan/40 text-mc-cyan flex items-center justify-center mx-auto">
                     <Check className="w-6 h-6" />
                   </div>
                   <h4 className="font-display text-lg font-bold text-mc-text-primary">
-                    Dispatch Prepared
+                    Dispatch Confirmed
                   </h4>
                   <p className="text-sm text-mc-text-secondary max-w-sm mx-auto font-mono text-xs">
-                    Your email client should launch with the pre-filled dispatch. You can also reach out directly at {CONTACT_INFO.email}.
+                    {statusMessage}
                   </p>
                   <button
                     onClick={() => {
-                      setIsSubmitted(false);
-                      setFormState({ name: '', email: '', subject: '', message: '' });
+                      setSubmitStatus('idle');
+                      setStatusMessage('');
                     }}
                     className="mt-4 px-4 py-2 rounded-lg bg-mc-surface-raised border border-mc-border font-mono text-xs text-mc-cyan hover:underline"
                   >
@@ -248,6 +251,18 @@ export function TelemetryContact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot Spam Trap (Hidden from users) */}
+                  <div style={{ display: 'none' }} aria-hidden="true">
+                    <input
+                      type="text"
+                      name="fax_number"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formState.fax_number}
+                      onChange={(e) => setFormState({ ...formState, fax_number: e.target.value })}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block font-mono text-xs text-mc-text-secondary mb-1.5 uppercase">
@@ -305,13 +320,29 @@ export function TelemetryContact() {
                     />
                   </div>
 
+                  {submitStatus === 'error' && (
+                    <div className="p-3 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-400 font-mono text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{statusMessage}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-mc-cyan text-black font-mono text-xs font-bold tracking-wider uppercase hover:bg-mc-cyan/90 transition-all duration-200 shadow-lg shadow-mc-cyan/20 active:scale-[0.99] disabled:opacity-50"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>{isSubmitting ? 'Transmitting...' : 'Dispatch Message'}</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Transmitting Dispatch...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>Dispatch Message</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

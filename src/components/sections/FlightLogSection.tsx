@@ -293,8 +293,9 @@ export function FlightLogSection() {
 
                 {/* Developer log note if marked placeholder */}
                 {event.isPlaceholder && (
-                  <div className="mt-2 text-[10px] font-mono text-mc-amber/70 border-t border-mc-border/30 pt-1">
-                    [DATA EDITABLE IN /data/events.ts]
+                  <div className="mt-3 py-1.5 px-2.5 rounded-xl bg-mc-amber/10 border border-mc-amber/40 text-[10px] font-mono text-mc-amber font-semibold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-mc-amber animate-pulse shrink-0" />
+                    <span>[UNVERIFIED PLACEHOLDER // TODO: EDIT IN /src/data/events.ts]</span>
                   </div>
                 )}
               </motion.article>

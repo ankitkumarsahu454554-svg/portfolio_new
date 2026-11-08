@@ -218,12 +218,12 @@ export function Hero() {
               </div>
 
               <div className="col-span-2 sm:col-span-1 rounded-2xl border border-mc-border bg-mc-surface/70 p-4 mc-panel backdrop-blur-md">
-                <span className="text-mc-text-muted block text-[10px] tracking-wider uppercase font-semibold">ENGINEERING</span>
-                <div className="text-mc-text font-heading text-2xl font-bold mt-0.5 flex items-center gap-1.5">
+                <span className="text-mc-text-muted block text-[10px] tracking-wider uppercase font-semibold">CREDENTIALS</span>
+                <div className="text-mc-cyan font-heading text-2xl font-bold mt-0.5 flex items-center gap-1.5">
                   <ShieldCheck className="h-5 w-5 text-mc-cyan" />
-                  <span>100%</span>
+                  <span>6+</span>
                 </div>
-                <span className="text-mc-text-muted block text-[10px] mt-0.5">Open Source Systems</span>
+                <span className="text-mc-text-muted block text-[10px] mt-0.5">Verified Certifications</span>
               </div>
             </motion.div>
 

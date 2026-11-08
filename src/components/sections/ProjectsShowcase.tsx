@@ -115,3 +115,4 @@ export function ProjectsShowcase() {
     </section>
   );
 }
+

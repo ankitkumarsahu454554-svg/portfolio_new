@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Ankit Kumar Sahu' }],
   creator: 'Ankit Kumar Sahu',
-  metadataBase: new URL('https://liquidform.studio'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-new.vercel.app'),
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',

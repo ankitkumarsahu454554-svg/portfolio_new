@@ -7,6 +7,7 @@ import { GraduationCap, Download, Mail, ArrowUpRight, Award, BookOpen, Sparkles 
 import { SITE_CONFIG, EDUCATION_DATA } from '@/lib/constants';
 import { PinnedAboutSection } from '@/components/sections/PinnedAboutSection';
 import { BentoSkills } from '@/components/sections/BentoSkills';
+import { PhotoReelStrip } from '@/components/sections/PhotoReelStrip';
 import Link from 'next/link';
 
 export function AboutView() {
@@ -96,6 +97,9 @@ export function AboutView() {
 
       {/* 3-Chapter Pinned Storytelling Dossier */}
       <PinnedAboutSection />
+
+      {/* Visual Telemetry Photo Reel Strip */}
+      <PhotoReelStrip />
 
       {/* Bento Skills Grid */}
       <BentoSkills />

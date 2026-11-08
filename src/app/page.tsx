@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
 import { PinnedAboutSection } from '@/components/sections/PinnedAboutSection';
+import { PhotoReelStrip } from '@/components/sections/PhotoReelStrip';
 import { BentoSkills } from '@/components/sections/BentoSkills';
 import { ProjectsShowcase } from '@/components/sections/ProjectsShowcase';
 import { FlightLogSection } from '@/components/sections/FlightLogSection';
@@ -32,6 +33,9 @@ export default function HomePage() {
 
       {/* 2. Pinned 3-Chapter Storytelling About Dossier */}
       <PinnedAboutSection />
+
+      {/* 2.5 Visual Photo-Reel Filmstrip */}
+      <PhotoReelStrip />
 
       {/* 3. Bento Grid Skills & Infinite Marquee */}
       <BentoSkills />
