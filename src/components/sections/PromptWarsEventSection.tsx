@@ -29,8 +29,7 @@ interface EventPhoto {
 
 interface EventData {
   id: string;
-  tabLabel: string;
-  tabSubtitle: string;
+  eventNumber: string;
   badgeTag: string;
   badgeColorClass: string;
   title: string;
@@ -52,8 +51,7 @@ interface EventData {
 const EVENTS: EventData[] = [
   {
     id: 'event-01',
-    tabLabel: '01 // Google Prompt Wars',
-    tabSubtitle: 'Google Bengaluru Campus • Finalist',
+    eventNumber: 'EVENT 01',
     badgeTag: 'Google for Developers • Bengaluru Campus',
     badgeColorClass: 'border-cyan-300 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300',
     title: 'Prompt Wars: ',
@@ -113,8 +111,7 @@ const EVENTS: EventData[] = [
   },
   {
     id: 'event-02',
-    tabLabel: '02 // GDG Prompt to Product',
-    tabSubtitle: 'RTIH Visakhapatnam • 1st Rank Champion',
+    eventNumber: 'EVENT 02',
     badgeTag: 'GDG Vizag & RTIH • 1st Rank Winners',
     badgeColorClass: 'border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-300',
     title: 'Prompt to Product: ',
@@ -188,40 +185,33 @@ const EVENTS: EventData[] = [
   },
 ];
 
-export function PromptWarsEventSection() {
-  const [activeEventIndex, setActiveEventIndex] = useState(0);
+function EventShowcaseCard({ event, index }: { event: EventData; index: number }) {
   const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const currentEvent = EVENTS[activeEventIndex];
-  const currentPhoto = currentEvent.photos[activePhotoIndex];
+  const currentPhoto = event.photos[activePhotoIndex];
 
   // Auto-advance photos every 2.0 seconds silently in the background
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
-      setActivePhotoIndex((prev) => (prev + 1) % currentEvent.photos.length);
+      setActivePhotoIndex((prev) => (prev + 1) % event.photos.length);
     }, 2000);
 
     return () => clearInterval(timer);
-  }, [isPaused, currentEvent.photos.length]);
+  }, [isPaused, event.photos.length]);
 
   const handleNextPhoto = useCallback(() => {
-    setActivePhotoIndex((prev) => (prev + 1) % currentEvent.photos.length);
-  }, [currentEvent.photos.length]);
+    setActivePhotoIndex((prev) => (prev + 1) % event.photos.length);
+  }, [event.photos.length]);
 
   const handlePrevPhoto = useCallback(() => {
-    setActivePhotoIndex((prev) => (prev - 1 + currentEvent.photos.length) % currentEvent.photos.length);
-  }, [currentEvent.photos.length]);
+    setActivePhotoIndex((prev) => (prev - 1 + event.photos.length) % event.photos.length);
+  }, [event.photos.length]);
 
-  const handleSelectEvent = (index: number) => {
-    setActiveEventIndex(index);
-    setActivePhotoIndex(0);
-  };
-
-  const lightboxItems: LightboxItem[] = currentEvent.photos.map((p) => ({
+  const lightboxItems: LightboxItem[] = event.photos.map((p) => ({
     src: p.src,
     alt: p.alt,
     title: p.title,
@@ -229,14 +219,205 @@ export function PromptWarsEventSection() {
   }));
 
   return (
+    <div className="relative rounded-3xl border border-mc-border bg-white/70 dark:bg-mc-surface/70 p-6 sm:p-10 shadow-xl backdrop-blur-xs">
+      {/* Event Header Bar with Number & Venue Metadata */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-mc-border">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="font-mono text-xs font-bold text-pink-700 dark:text-pink-300 px-3 py-1 rounded-full bg-pink-50 dark:bg-pink-950/50 border border-pink-200 dark:border-pink-800">
+            {event.eventNumber}
+          </span>
+          <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-mc-text">
+            {event.title}
+            <span className="font-serif italic font-normal text-gradient-rainbow">
+              {event.highlightWord}
+            </span>
+          </h3>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl border font-mono text-xs font-bold ${event.badgeColorClass}`}>
+            <Award className="w-3.5 h-3.5" />
+            <span>{event.achievement}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border font-mono text-xs text-mc-text font-semibold">
+            <Building className="w-3.5 h-3.5 text-[#00B8D9]" />
+            <span>{event.venue}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border font-mono text-xs text-mc-text font-semibold">
+            <Calendar className="w-3.5 h-3.5 text-[#FF3D81]" />
+            <span>{event.timeline}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Split Grid: 2-Second Slider (Left) & Storytelling (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* Left Column: 2-Second Animated Photo Carousel (6 cols) */}
+        <div
+          className="lg:col-span-6 relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="relative rounded-2xl border border-mc-border bg-white dark:bg-mc-surface p-3 shadow-lg overflow-hidden">
+            {/* Photo Window */}
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-xl bg-mc-surface-elevated">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentPhoto.src}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-full h-full cursor-pointer group"
+                  onClick={() => setLightboxOpen(true)}
+                >
+                  <Image
+                    src={currentPhoto.src}
+                    alt={currentPhoto.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 550px"
+                    priority
+                    className="object-cover object-center"
+                  />
+
+                  {/* Gradient Overlay for Top Tag & Bottom Caption */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/40" />
+
+                  {/* Top Tag & Expand Pill */}
+                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20">
+                      {currentPhoto.tag}
+                    </span>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLightboxOpen(true);
+                      }}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 text-white hover:bg-black/80 backdrop-blur-md border border-white/20 font-mono text-[10px] transition-all cursor-pointer"
+                      aria-label="View Fullscreen"
+                    >
+                      <Maximize2 className="w-3 h-3" />
+                      <span className="hidden sm:inline">Expand</span>
+                    </button>
+                  </div>
+
+                  {/* Bottom Caption Overlay */}
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 z-10 text-white">
+                    <p className="font-heading text-base sm:text-lg font-bold leading-tight drop-shadow-sm">
+                      {currentPhoto.title}
+                    </p>
+                    <p className="font-sans text-xs text-white/90 mt-1 leading-snug drop-shadow-sm">
+                      {currentPhoto.caption}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Left / Right Nav Arrows */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevPhoto();
+                }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
+                aria-label="Previous Photo"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextPhoto();
+                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
+                aria-label="Next Photo"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Silent Progress Indicator Bar (Clean, no text labels) */}
+            <div className="mt-3 px-1 flex items-center gap-2">
+              {event.photos.map((photo, pIdx) => {
+                const isActive = pIdx === activePhotoIndex;
+                return (
+                  <button
+                    key={photo.src}
+                    onClick={() => setActivePhotoIndex(pIdx)}
+                    className="relative flex-1 h-1.5 rounded-full overflow-hidden bg-mc-border/80 cursor-pointer transition-all"
+                    aria-label={`Photo ${pIdx + 1}`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        key={`prog-${event.id}-${activePhotoIndex}`}
+                        initial={{ width: '0%' }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 2, ease: 'linear' }}
+                        className="h-full bg-gradient-to-r from-[#FF3D81] via-[#00B8D9] to-[#8B5CF6]"
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Story & 3 Core Pillars (6 cols) */}
+        <div className="lg:col-span-6 space-y-5">
+          <p className="text-sm sm:text-base text-mc-text font-medium leading-relaxed">
+            {event.subtitle}
+          </p>
+
+          {/* Narrative Story */}
+          <div className="space-y-3 font-sans text-sm text-mc-text-secondary leading-relaxed">
+            {event.paragraphs.map((p, pIdx) => (
+              <p key={pIdx}>{p}</p>
+            ))}
+          </div>
+
+          {/* 3 Core Experience Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            {event.pillars.map((pillar, pilIdx) => (
+              <div key={pilIdx} className="p-3.5 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
+                <div className={`flex h-7 w-7 items-center justify-center rounded-xl mb-2 ${pillar.colorClass}`}>
+                  {pillar.icon}
+                </div>
+                <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
+                  {pillar.title}
+                </h4>
+                <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
+                  {pillar.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Lightbox for this event */}
+      <Lightbox
+        items={lightboxItems}
+        initialIndex={activePhotoIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
+    </div>
+  );
+}
+
+export function PromptWarsEventSection() {
+  return (
     <section id="events" className="relative py-24 sm:py-32 overflow-hidden border-t border-mc-border bg-mc-bg">
       {/* Subtle Aurora Ambient Glow */}
-      <div className="pointer-events-none absolute top-1/2 -left-48 w-96 h-96 bg-gradient-to-tr from-[#00B8D9]/15 to-[#8B5CF6]/15 rounded-full blur-[120px] -z-10" />
-      <div className="pointer-events-none absolute bottom-10 right-0 w-80 h-80 bg-gradient-to-br from-[#FF3D81]/15 to-[#FF8A00]/15 rounded-full blur-[120px] -z-10" />
+      <div className="pointer-events-none absolute top-1/3 -left-48 w-96 h-96 bg-gradient-to-tr from-[#00B8D9]/15 to-[#8B5CF6]/15 rounded-full blur-[120px] -z-10" />
+      <div className="pointer-events-none absolute bottom-1/4 -right-48 w-96 h-96 bg-gradient-to-br from-[#FF3D81]/15 to-[#FF8A00]/15 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-10 md:mb-14">
+        <div className="mb-14 md:mb-18 text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-pink-300 dark:border-pink-800 bg-pink-50 dark:bg-pink-950/40 text-pink-900 dark:text-pink-300 font-mono text-xs uppercase tracking-wider mb-4 font-bold">
             <span className="w-2 h-2 rounded-full bg-pink-600 dark:bg-pink-400 animate-pulse" />
             <span>Hackathons & Tech Milestones</span>
@@ -249,225 +430,18 @@ export function PromptWarsEventSection() {
             </span>
           </h2>
 
-          <p className="mt-4 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
-            Hands-on generative AI innovation, award-winning team sprints, and community learning across India&apos;s leading technology hubs.
+          <p className="mt-4 text-base sm:text-lg text-mc-text-secondary leading-relaxed">
+            Hands-on generative AI innovation, award-winning team sprints, and community leadership across India&apos;s leading technology hubs.
           </p>
         </div>
 
-        {/* Event Selector Tabs */}
-        <div className="flex flex-wrap gap-3 mb-10">
-          {EVENTS.map((event, index) => {
-            const isSelected = index === activeEventIndex;
-            return (
-              <button
-                key={event.id}
-                onClick={() => handleSelectEvent(index)}
-                className={`flex-1 sm:flex-initial text-left px-5 py-3.5 rounded-2xl border transition-all cursor-pointer ${
-                  isSelected
-                    ? 'border-[#00B8D9] bg-white dark:bg-mc-surface shadow-lg shadow-[#00B8D9]/10'
-                    : 'border-mc-border bg-mc-surface-elevated hover:border-mc-border-medium'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  {index === 0 ? (
-                    <Sparkles className={`w-4 h-4 ${isSelected ? 'text-[#00B8D9]' : 'text-mc-text-muted'}`} />
-                  ) : (
-                    <Trophy className={`w-4 h-4 ${isSelected ? 'text-amber-500' : 'text-mc-text-muted'}`} />
-                  )}
-                  <span className={`font-heading text-sm font-bold block ${isSelected ? 'text-mc-text' : 'text-mc-text-secondary'}`}>
-                    {event.tabLabel}
-                  </span>
-                </div>
-                <span className="font-mono text-[11px] text-mc-text-muted mt-0.5 block">
-                  {event.tabSubtitle}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Interactive Showcase Grid: 2-Second Slider (Left) & Narrative (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: 2-Second Animated Photo Carousel (6 cols) */}
-          <div
-            className="lg:col-span-6 relative"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div className="relative rounded-3xl border border-mc-border bg-white dark:bg-mc-surface p-3.5 shadow-2xl overflow-hidden">
-              {/* Photo Display Window */}
-              <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden rounded-2xl bg-mc-surface-elevated">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentPhoto.src}
-                    initial={{ opacity: 0, scale: 0.97 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-full h-full cursor-pointer group"
-                    onClick={() => setLightboxOpen(true)}
-                  >
-                    <Image
-                      src={currentPhoto.src}
-                      alt={currentPhoto.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 550px"
-                      priority
-                      className="object-cover object-center"
-                    />
-
-                    {/* Gradient Overlay for Top Tag & Bottom Caption */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/40" />
-
-                    {/* Top Tag & Expand Pill */}
-                    <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20">
-                        {currentPhoto.tag}
-                      </span>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setLightboxOpen(true);
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/60 text-white hover:bg-black/80 backdrop-blur-md border border-white/20 font-mono text-[10px] transition-all cursor-pointer"
-                        aria-label="View Fullscreen"
-                      >
-                        <Maximize2 className="w-3 h-3" />
-                        <span className="hidden sm:inline">Expand</span>
-                      </button>
-                    </div>
-
-                    {/* Bottom Caption Overlay */}
-                    <div className="absolute bottom-3.5 left-3.5 right-3.5 z-10 text-white">
-                      <p className="font-heading text-base sm:text-lg font-bold leading-tight drop-shadow-sm">
-                        {currentPhoto.title}
-                      </p>
-                      <p className="font-sans text-xs text-white/90 mt-1 leading-snug drop-shadow-sm">
-                        {currentPhoto.caption}
-                      </p>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Left / Right Nav Arrows */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevPhoto();
-                  }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
-                  aria-label="Previous Photo"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextPhoto();
-                  }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
-                  aria-label="Next Photo"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Progress Indicator Bar (Clean, no text labels) */}
-              <div className="mt-3.5 px-1 flex items-center gap-2">
-                {currentEvent.photos.map((photo, index) => {
-                  const isActive = index === activePhotoIndex;
-                  return (
-                    <button
-                      key={photo.src}
-                      onClick={() => setActivePhotoIndex(index)}
-                      className="relative flex-1 h-1.5 rounded-full overflow-hidden bg-mc-border/80 cursor-pointer transition-all"
-                      aria-label={`Photo ${index + 1}`}
-                    >
-                      {isActive && (
-                        <motion.div
-                          key={`prog-${activeEventIndex}-${activePhotoIndex}`}
-                          initial={{ width: '0%' }}
-                          animate={{ width: '100%' }}
-                          transition={{ duration: 2, ease: 'linear' }}
-                          className="h-full bg-gradient-to-r from-[#FF3D81] via-[#00B8D9] to-[#8B5CF6]"
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Authentic Storytelling & Key Takeaways (6 cols) */}
-          <div className="lg:col-span-6 space-y-6">
-            {/* Context Badges */}
-            <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl border font-bold ${currentEvent.badgeColorClass}`}>
-                <Award className="w-3.5 h-3.5" />
-                <span>{currentEvent.achievement}</span>
-              </span>
-
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border text-mc-text font-semibold">
-                <Building className="w-3.5 h-3.5 text-[#00B8D9]" />
-                <span>{currentEvent.venue}</span>
-              </span>
-
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border text-mc-text font-semibold">
-                <Calendar className="w-3.5 h-3.5 text-[#FF3D81]" />
-                <span>{currentEvent.timeline}</span>
-              </span>
-            </div>
-
-            {/* Event Title */}
-            <div>
-              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-mc-text">
-                {currentEvent.title}
-                <span className="font-serif italic font-normal text-gradient-rainbow">
-                  {currentEvent.highlightWord}
-                </span>
-              </h3>
-              <p className="mt-2 text-sm text-mc-text-secondary leading-relaxed">
-                {currentEvent.subtitle}
-              </p>
-            </div>
-
-            {/* Narrative Story */}
-            <div className="space-y-3.5 font-sans text-sm sm:text-base text-mc-text-secondary leading-relaxed">
-              {currentEvent.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-
-            {/* 3 Core Experience Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-              {currentEvent.pillars.map((pillar, i) => (
-                <div key={i} className="p-4 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
-                  <div className={`flex h-8 w-8 items-center justify-center rounded-xl mb-2.5 ${pillar.colorClass}`}>
-                    {pillar.icon}
-                  </div>
-                  <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
-                    {pillar.title}
-                  </h4>
-                  <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
-                    {pillar.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Events Stacked Sequentially ("under by under", no tab selection needed) */}
+        <div className="space-y-12 sm:space-y-16">
+          {EVENTS.map((event, index) => (
+            <EventShowcaseCard key={event.id} event={event} index={index} />
+          ))}
         </div>
       </div>
-
-      {/* Fullscreen Lightbox for In-Depth Viewing */}
-      <Lightbox
-        items={lightboxItems}
-        initialIndex={activePhotoIndex}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-      />
     </section>
   );
 }
