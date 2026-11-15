@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Mail, ArrowUpRight, Activity, Terminal, ShieldCheck, Sparkles } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Counter } from '@/components/ui/Counter';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { SITE_CONFIG } from '@/lib/constants';
 import { NeuralFlowCanvas } from './NeuralFlowCanvas';
-import { useIsTouchDevice } from '@/hooks/useMediaQuery';
 import confetti from 'canvas-confetti';
 
 const ROLES = [
@@ -21,7 +20,6 @@ const ROLES = [
 ];
 
 export function Hero() {
-  const isTouch = useIsTouchDevice();
   const [roleIndex, setRoleIndex] = useState(0);
 
   // Rotating roles
@@ -31,28 +29,6 @@ export function Hero() {
     }, 2800);
     return () => clearInterval(timer);
   }, []);
-
-  // Cursor-reactive parallax for portrait
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 200 };
-  const rotateX = useSpring(useTransform(mouseY, [-300, 300], [8, -8]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-8, 8]), springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTouch) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
 
   // Subtle confetti burst on Contact click
   const triggerConfetti = () => {
@@ -104,37 +80,25 @@ export function Hero() {
         </motion.div>
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
-          {/* Left Column: Masked Portrait with Animated Conic-Gradient Rainbow Border (5 cols) */}
+          {/* Left Column: Authentic Portrait (5 cols) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center lg:justify-start"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ perspective: 1000 }}
           >
-            <motion.div
-              style={{
-                rotateX: isTouch ? 0 : rotateX,
-                rotateY: isTouch ? 0 : rotateY,
-                transformStyle: 'preserve-3d',
-              }}
-              className="relative w-full max-w-[270px] sm:max-w-[290px] conic-rainbow-border shadow-2xl group"
-              data-cursor="view"
-            >
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-white dark:bg-[#1E1B4B]">
-                {/* Unaltered Authentic Portrait */}
+            <div className="relative w-full max-w-[270px] sm:max-w-[290px] overflow-hidden rounded-[1.5rem] border border-mc-border bg-white dark:bg-mc-surface shadow-xl">
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
                   sizes="(max-width: 640px) 270px, 290px"
                   priority
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className="object-cover object-top"
                 />
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right Column: Masked Name Reveal, Rotating Roles & Callouts (7 cols) */}

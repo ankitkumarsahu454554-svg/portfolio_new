@@ -16,22 +16,22 @@ export function AboutView() {
       {/* Narrative & Cinematic Portrait Row (Portrait on Left, Information on Right) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 items-center">
-          {/* Left Column: Portrait with Rotating Conic Rainbow Border */}
+          {/* Left Column: Authentic Portrait */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
             className="lg:col-span-5 flex justify-center lg:justify-start"
           >
-            <div className="relative group w-full max-w-[270px] sm:max-w-[290px] conic-rainbow-border shadow-2xl">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-white dark:bg-mc-surface">
+            <div className="relative w-full max-w-[270px] sm:max-w-[290px] overflow-hidden rounded-[1.5rem] border border-mc-border bg-white dark:bg-mc-surface shadow-xl">
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
                   src={SITE_CONFIG.profileImagePath}
                   alt="Ankit Kumar Sahu - Portrait"
                   fill
                   sizes="(max-width: 640px) 270px, 290px"
                   priority
-                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className="object-cover object-top"
                 />
               </div>
             </div>
