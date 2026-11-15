@@ -18,7 +18,7 @@ const NAV_LINKS: NavLink[] = [
   { title: 'About', href: '/#about' },
   { title: 'Skills', href: '/#skills' },
   { title: 'Projects', href: '/#projects' },
-  { title: 'Flight Log', href: '/#flight-log' },
+  { title: 'Events', href: '/#events' },
   { title: 'Trajectory', href: '/#experience' },
   { title: 'Resume', href: '/resume' },
   { title: 'Contact', href: '/#contact' },
@@ -54,7 +54,7 @@ export function FloatingNavbar() {
       return;
     }
 
-    const sections = ['contact', 'experience', 'flight-log', 'projects', 'skills', 'about', 'hero'];
+    const sections = ['contact', 'experience', 'events', 'projects', 'skills', 'about', 'hero'];
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
       for (const sectionId of sections) {
@@ -64,7 +64,7 @@ export function FloatingNavbar() {
           else if (sectionId === 'about') setActiveSection('About');
           else if (sectionId === 'skills') setActiveSection('Skills');
           else if (sectionId === 'projects') setActiveSection('Projects');
-          else if (sectionId === 'flight-log') setActiveSection('Flight Log');
+          else if (sectionId === 'events') setActiveSection('Events');
           else if (sectionId === 'experience') setActiveSection('Trajectory');
           else if (sectionId === 'contact') setActiveSection('Contact');
           break;

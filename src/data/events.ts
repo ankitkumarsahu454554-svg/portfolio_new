@@ -118,14 +118,19 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     folderPath: '/events/google-prompt-wars/',
     images: [
       {
-        src: '/events/google-prompt-wars/cover.svg',
-        alt: 'Google for Developers Prompt Wars Cover',
-        caption: 'Prompt Wars: Bengaluru national AI hackathon stage and telemetry stream.',
+        src: '/events/google-prompt-wars/google-office-reception.jpg',
+        alt: 'Ankit Kumar Sahu at Google Bengaluru Office Reception Desk',
+        caption: 'At Google Bengaluru Office (RMZ Infinity) for the Prompt Wars event during my 2nd year of B.Tech.',
       },
       {
-        src: '/events/google-prompt-wars/certificate.svg',
-        alt: 'Finalist Credential Certificate',
-        caption: 'Official Finalist credential awarded by Google for Developers.',
+        src: '/events/google-prompt-wars/promptwars-banner.jpg',
+        alt: 'Welcome to PromptWars banner',
+        caption: "Official Google for Developers stage banner: 'Build, pitch & win in one day' — Build with AI.",
+      },
+      {
+        src: '/events/google-prompt-wars/google-guest-pass.jpg',
+        alt: 'Official Google Guest Pass issued to Ankit Kumar Sahu',
+        caption: 'Official Google Guest Pass issued to Ankit Kumar Sahu at RMZ Infinity Bengaluru.',
       },
     ],
     link: 'https://developers.google.com',

@@ -40,9 +40,9 @@ const CHAPTERS = [
     lead: 'Pushing computational boundaries in applied AI, robust distributed backends, and safety-critical intelligence.',
     paragraphs: [
       'I am driven to build production-grade systems that withstand real-world chaos—whether processing high-throughput clinical telemetry or optimizing edge neural inferences.',
-      'Actively exploring advanced model evaluations, LLM prompt architectures (recognized as a Finalist in Google for Developers Prompt Wars), and aerospace sensor telemetry.',
+      'Actively exploring advanced model evaluations, generative AI architectures, and aerospace sensor telemetry.',
     ],
-    highlight: 'Google Prompt Wars Finalist • CanSat Telemetry • Scalable Architectures',
+    highlight: 'Applied AI & ML • CanSat Telemetry • Scalable Architectures',
   },
 ];
 

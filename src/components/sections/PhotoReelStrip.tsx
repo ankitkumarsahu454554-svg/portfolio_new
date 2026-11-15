@@ -18,15 +18,6 @@ interface ReelCard {
 
 const REEL_ITEMS: ReelCard[] = [
   {
-    id: 'reel-1',
-    title: 'Google for Developers Prompt Wars',
-    category: 'AI HACKATHON // FINALIST',
-    date: '2026',
-    image: '/events/google-prompt-wars/cover.svg',
-    caption: 'Official National Finalist recognition by Google for Developers for computational prompt architecture.',
-    accent: '#FF3D81',
-  },
-  {
     id: 'reel-2',
     title: 'India Space Lab Aerospace Session',
     category: 'CANSAT TELEMETRY // TRAINING',

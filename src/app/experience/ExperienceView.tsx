@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { TrajectorySection } from '@/components/sections/TrajectorySection';
-import { FlightLogSection } from '@/components/sections/FlightLogSection';
+import { PromptWarsEventSection } from '@/components/sections/PromptWarsEventSection';
 
 export function ExperienceView() {
   return (
@@ -10,8 +10,8 @@ export function ExperienceView() {
       {/* 1. Academic & Industry Trajectory Timeline */}
       <TrajectorySection />
 
-      {/* 2. Full Flight Log (Events, Competitions, Workshops) */}
-      <FlightLogSection />
+      {/* 2. Featured Events: Google Prompt Wars */}
+      <PromptWarsEventSection />
     </div>
   );
 }

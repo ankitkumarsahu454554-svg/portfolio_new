@@ -5,7 +5,7 @@ import { PinnedAboutSection } from '@/components/sections/PinnedAboutSection';
 import { PhotoReelStrip } from '@/components/sections/PhotoReelStrip';
 import { BentoSkills } from '@/components/sections/BentoSkills';
 import { ProjectsShowcase } from '@/components/sections/ProjectsShowcase';
-import { FlightLogSection } from '@/components/sections/FlightLogSection';
+import { PromptWarsEventSection } from '@/components/sections/PromptWarsEventSection';
 import { TrajectorySection } from '@/components/sections/TrajectorySection';
 import { TelemetryContact } from '@/components/sections/TelemetryContact';
 
@@ -43,8 +43,8 @@ export default function HomePage() {
       {/* 4. Projects Showcase with Shared-Element Case Study Modals */}
       <ProjectsShowcase />
 
-      {/* 5. Flight Log (Competitions, Events, Hackathons & Workshops) */}
-      <FlightLogSection />
+      {/* 5. Prompt Wars Event (Google for Developers Bengaluru Campus) */}
+      <PromptWarsEventSection />
 
       {/* 6. Academic & Industry Trajectory Timeline */}
       <TrajectorySection />
