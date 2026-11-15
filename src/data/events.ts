@@ -102,7 +102,7 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
     organizer: 'Google for Developers',
     date: '2026',
     year: 2026,
-    location: 'Bengaluru, India',
+    location: 'Google Office (RMZ Infinity), Bengaluru',
     type: 'Competition',
     myRole: 'Finalist',
     summary:
@@ -134,6 +134,59 @@ export const FLIGHT_LOG_EVENTS: FlightLogEvent[] = [
       },
     ],
     link: 'https://developers.google.com',
+    featured: true,
+    draft: false,
+  },
+
+  // 2. GDG Vizag — Prompt to Product (VERIFIED REAL EVENT - 1ST RANK)
+  {
+    id: 'fl-02',
+    slug: 'gdg-vizag-prompt-to-product',
+    title: 'Prompt to Product (MSME RAMP) — 1st Rank Champion',
+    organizer: 'Google Developer Groups (GDG) Vizag & RTIH',
+    date: 'Oct 2026',
+    year: 2026,
+    location: 'Ratan Tata Innovation Hub (RTIH), Visakhapatnam',
+    type: 'Competition',
+    myRole: 'Winner',
+    summary:
+      'Entrepreneurship & skill development program conducted by GDG Vizag in collaboration with RTIH Visakhapatnam, developing functional products from prompts using Google AI tools.',
+    whatIDid: [
+      'Engineered an end-to-end product prototype from natural language prompt specifications using Google AI developer tools.',
+      'Collaborated closely with group teammates to formulate architecture, split core feature development, and refine user flow.',
+      'Pitched and demonstrated the working solution live to mentors, evaluators, and industry dignitaries at Ratan Tata Innovation Hub.',
+    ],
+    outcome:
+      'Secured 1st Rank / 1st Place in the workshop competition, recognized with certificates of excellence and official GDG Vizag accolades.',
+    tags: ['GDG Vizag', 'RTIH Visakhapatnam', 'Google AI Tools', 'Prompt to Product', '1st Rank', 'MSME RAMP'],
+    folderPath: '/events/gdg-vizag-prompt-to-product/',
+    images: [
+      {
+        src: '/events/gdg-vizag-prompt-to-product/team-winners-stage.jpg',
+        alt: 'Team receiving 1st Rank Certificates on Stage at RTIH',
+        caption: 'Team receiving 1st Place certificates from mentors and dignitaries at Ratan Tata Innovation Hub, Visakhapatnam.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/team-banner-group.jpg',
+        alt: 'Team group photo at Prompt to Product Banner',
+        caption: 'Group teammates standing proudly in front of the Prompt to Product MSME RAMP banner at RTIH.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/ratan-tata-mural.jpg',
+        alt: 'Ankit at the Ratan Tata inspirational mural at RTIH',
+        caption: 'At the iconic Ratan Tata mural ("If you want to walk far, walk together") at Ratan Tata Innovation Hub.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/prompt-to-product-ankit.jpg',
+        alt: 'Ankit thumbs up at Prompt to Product Banner',
+        caption: 'At the Prompt to Product event banner: Imagine it. Build it. Ship it.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/gdg-vizag-swag.jpg',
+        alt: 'Google Developer Groups Vizag official swag smart bottle',
+        caption: 'Official Google Developer Groups Vizag branded smart bottle received at the event.',
+      },
+    ],
     featured: true,
     draft: false,
   },

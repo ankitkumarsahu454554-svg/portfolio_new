@@ -12,11 +12,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Maximize2,
-  Code,
   Zap,
-  CheckCircle2,
   Brain,
   Building,
+  Award,
 } from 'lucide-react';
 import { Lightbox, LightboxItem } from '@/components/ui/Lightbox';
 
@@ -28,57 +27,201 @@ interface EventPhoto {
   tag: string;
 }
 
-const EVENT_PHOTOS: EventPhoto[] = [
+interface EventData {
+  id: string;
+  tabLabel: string;
+  tabSubtitle: string;
+  badgeTag: string;
+  badgeColorClass: string;
+  title: string;
+  highlightWord: string;
+  subtitle: string;
+  venue: string;
+  timeline: string;
+  achievement: string;
+  paragraphs: string[];
+  pillars: {
+    icon: React.ReactNode;
+    colorClass: string;
+    title: string;
+    desc: string;
+  }[];
+  photos: EventPhoto[];
+}
+
+const EVENTS: EventData[] = [
   {
-    src: '/events/google-prompt-wars/google-office-reception.jpg',
-    alt: 'Ankit Kumar Sahu at Google Bengaluru Office Reception Desk',
-    title: 'Google Bengaluru Campus',
-    tag: 'CAMPUS ARRIVAL',
-    caption: 'At Google Bengaluru Office (RMZ Infinity) for the Prompt Wars event during my 2nd year of B.Tech.',
+    id: 'event-01',
+    tabLabel: '01 // Google Prompt Wars',
+    tabSubtitle: 'Google Bengaluru Campus • Finalist',
+    badgeTag: 'Google for Developers • Bengaluru Campus',
+    badgeColorClass: 'border-cyan-300 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300',
+    title: 'Prompt Wars: ',
+    highlightWord: 'Build with AI',
+    subtitle: 'A milestone at Google’s Bengaluru Campus during my 2nd year of B.Tech CSE (Data Science), advancing computational prompt engineering and forging lifelong industry connections.',
+    venue: 'Google RMZ Infinity, Bengaluru',
+    timeline: '2nd Year B.Tech CSE (Data Science)',
+    achievement: 'National Finalist',
+    paragraphs: [
+      'During the second year of my B.Tech CSE (Data Science) degree at NIST University, attending Prompt Wars at Google’s Bengaluru campus was one of the most defining learning milestones of my engineering journey.',
+      'Stepping inside Google’s offices, I participated in an intensive hackathon challenge designed to push the boundaries of computational prompt architectures, reasoning chains, and real-time LLM application development. It was where I learned the most practical aspects of modern generative AI workflows under strict time constraints.',
+      'Beyond the competition, it was an invaluable environment to connect with mentors and build lasting friendships with software engineers, startup builders, and fellow developers across the Indian IT industry.',
+    ],
+    pillars: [
+      {
+        icon: <Brain className="w-4 h-4" />,
+        colorClass: 'bg-pink-500/15 text-pink-700 dark:text-pink-300',
+        title: 'AI & Prompt Design',
+        desc: 'Structured few-shot chains & robust adversarial evaluation.',
+      },
+      {
+        icon: <Users className="w-4 h-4" />,
+        colorClass: 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-300',
+        title: 'IT Industry Network',
+        desc: 'Built strong friendships & mentorship ties across tech.',
+      },
+      {
+        icon: <Zap className="w-4 h-4" />,
+        colorClass: 'bg-amber-500/15 text-amber-700 dark:text-amber-300',
+        title: 'Rapid Prototyping',
+        desc: 'Ideated, built, and pitched an AI solution in a single day.',
+      },
+    ],
+    photos: [
+      {
+        src: '/events/google-prompt-wars/google-office-reception.jpg',
+        alt: 'Ankit Kumar Sahu at Google Bengaluru Office Reception Desk',
+        title: 'Google Bengaluru Campus',
+        tag: 'CAMPUS ARRIVAL',
+        caption: 'At Google Bengaluru Office (RMZ Infinity) for the Prompt Wars event during my 2nd year of B.Tech.',
+      },
+      {
+        src: '/events/google-prompt-wars/promptwars-banner.jpg',
+        alt: 'Prompt Wars Banner - Build, pitch & win in one day',
+        title: 'Prompt Wars Arena',
+        tag: 'EVENT STAGE',
+        caption: "Official Google for Developers stage banner: 'Build, pitch & win in one day' — Build with AI.",
+      },
+      {
+        src: '/events/google-prompt-wars/google-guest-pass.jpg',
+        alt: 'Official Google Guest Pass issued to Ankit Kumar Sahu',
+        title: 'Google Guest Security Badge',
+        tag: 'VERIFIED CREDENTIAL',
+        caption: 'Official Google Guest Pass issued to Ankit Kumar Sahu at the RMZ Infinity Bengaluru office.',
+      },
+    ],
   },
   {
-    src: '/events/google-prompt-wars/promptwars-banner.jpg',
-    alt: 'Prompt Wars Banner - Build, pitch & win in one day',
-    title: 'Prompt Wars Arena',
-    tag: 'EVENT STAGE',
-    caption: "Official Google for Developers stage banner: 'Build, pitch & win in one day' — Build with AI.",
-  },
-  {
-    src: '/events/google-prompt-wars/google-guest-pass.jpg',
-    alt: 'Official Google Guest Pass issued to Ankit Kumar Sahu',
-    title: 'Google Guest Security Badge',
-    tag: 'VERIFIED CREDENTIAL',
-    caption: 'Official Google Guest Pass issued to Ankit Kumar Sahu at the RMZ Infinity Bengaluru office.',
+    id: 'event-02',
+    tabLabel: '02 // GDG Prompt to Product',
+    tabSubtitle: 'RTIH Visakhapatnam • 1st Rank Champion',
+    badgeTag: 'GDG Vizag & RTIH • 1st Rank Winners',
+    badgeColorClass: 'border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-300',
+    title: 'Prompt to Product: ',
+    highlightWord: '1st Rank Champions',
+    subtitle: 'Secured 1st Place with our team in the generative AI product competition conducted by Google Developer Groups Vizag in collaboration with Ratan Tata Innovation Hub.',
+    venue: 'Ratan Tata Innovation Hub (RTIH), Visakhapatnam',
+    timeline: 'MSME RAMP Activity • Skill & Entrepreneurship',
+    achievement: '1st Place / 1st Rank Winners',
+    paragraphs: [
+      'Conducted by Google Developer Groups (GDG) Vizag in collaboration with the Ratan Tata Innovation Hub (RTIH), Visakhapatnam, the "Prompt to Product" MSME RAMP program challenged innovators to conceptualize, engineer, and ship a full product starting from prompt architectures using Google AI tools.',
+      'Collaborating closely with my group teammates, we developed an end-to-end working product that addressed real-world workflows, securing 1st Rank in the competitive workshop sprint.',
+      'From multi-modal prompt engineering to rapid front-to-back integration, our team learned all aspects of production AI product delivery and proudly presented our working solution before mentors and industry dignitaries at RTIH.',
+    ],
+    pillars: [
+      {
+        icon: <Trophy className="w-4 h-4" />,
+        colorClass: 'bg-amber-500/15 text-amber-700 dark:text-amber-300',
+        title: '1st Rank Champions',
+        desc: 'Ranked 1st place in the competitive workshop product sprint.',
+      },
+      {
+        icon: <Sparkles className="w-4 h-4" />,
+        colorClass: 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300',
+        title: 'Google AI Tooling',
+        desc: 'Engineered a working software product from natural language prompts.',
+      },
+      {
+        icon: <Users className="w-4 h-4" />,
+        colorClass: 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-300',
+        title: 'Teamwork & Synergy',
+        desc: 'High-synergy teamwork, rapid ideation & stage presentation.',
+      },
+    ],
+    photos: [
+      {
+        src: '/events/gdg-vizag-prompt-to-product/team-winners-stage.jpg',
+        alt: 'Team receiving 1st Rank Certificates on Stage at RTIH',
+        title: '1st Rank Award Ceremony',
+        tag: '1ST RANK WINNERS',
+        caption: 'Our team receiving 1st Place certificates from mentors and dignitaries at Ratan Tata Innovation Hub, Visakhapatnam.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/team-banner-group.jpg',
+        alt: 'Team group photo at Prompt to Product Banner',
+        title: 'Team Product Group',
+        tag: 'TEAM SPRINT',
+        caption: 'Our group teammates standing together in front of the Prompt to Product MSME RAMP banner at RTIH.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/ratan-tata-mural.jpg',
+        alt: 'Ankit at the Ratan Tata inspirational mural at RTIH',
+        title: 'Ratan Tata Innovation Hub',
+        tag: 'INNOVATION HUB',
+        caption: 'At the inspirational Mr. Ratan Tata mural ("If you want to walk far, walk together") at RTIH Visakhapatnam.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/prompt-to-product-ankit.jpg',
+        alt: 'Ankit at the Prompt to Product event banner',
+        title: 'Prompt to Product Sprint',
+        tag: 'GDG VIZAG',
+        caption: 'At the official event banner: Imagine it. Build it. Ship it.',
+      },
+      {
+        src: '/events/gdg-vizag-prompt-to-product/gdg-vizag-swag.jpg',
+        alt: 'Google Developer Groups Vizag official smart bottle swag',
+        title: 'GDG Vizag Winner Swag',
+        tag: 'EVENT RECOGNITION',
+        caption: 'Official Google Developer Groups Vizag branded smart flask swag received at the event.',
+      },
+    ],
   },
 ];
 
 export function PromptWarsEventSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeEventIndex, setActiveEventIndex] = useState(0);
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  // Auto-advance photos every 2.0 seconds (as requested)
+  const currentEvent = EVENTS[activeEventIndex];
+  const currentPhoto = currentEvent.photos[activePhotoIndex];
+
+  // Auto-advance photos every 2.0 seconds silently in the background
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % EVENT_PHOTOS.length);
+      setActivePhotoIndex((prev) => (prev + 1) % currentEvent.photos.length);
     }, 2000);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, currentEvent.photos.length]);
 
-  const handleNext = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % EVENT_PHOTOS.length);
-  }, []);
+  const handleNextPhoto = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev + 1) % currentEvent.photos.length);
+  }, [currentEvent.photos.length]);
 
-  const handlePrev = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + EVENT_PHOTOS.length) % EVENT_PHOTOS.length);
-  }, []);
+  const handlePrevPhoto = useCallback(() => {
+    setActivePhotoIndex((prev) => (prev - 1 + currentEvent.photos.length) % currentEvent.photos.length);
+  }, [currentEvent.photos.length]);
 
-  const currentPhoto = EVENT_PHOTOS[activeIndex];
+  const handleSelectEvent = (index: number) => {
+    setActiveEventIndex(index);
+    setActivePhotoIndex(0);
+  };
 
-  const lightboxItems: LightboxItem[] = EVENT_PHOTOS.map((p) => ({
+  const lightboxItems: LightboxItem[] = currentEvent.photos.map((p) => ({
     src: p.src,
     alt: p.alt,
     title: p.title,
@@ -93,23 +236,54 @@ export function PromptWarsEventSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-14 md:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-cyan-300 dark:border-cyan-800 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-300 font-mono text-xs uppercase tracking-wider mb-4 font-bold">
-            <span className="w-2 h-2 rounded-full bg-cyan-600 dark:bg-cyan-400 animate-pulse" />
-            <span>Featured Milestone • Google for Developers</span>
+        <div className="mb-10 md:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-pink-300 dark:border-pink-800 bg-pink-50 dark:bg-pink-950/40 text-pink-900 dark:text-pink-300 font-mono text-xs uppercase tracking-wider mb-4 font-bold">
+            <span className="w-2 h-2 rounded-full bg-pink-600 dark:bg-pink-400 animate-pulse" />
+            <span>Hackathons & Tech Milestones</span>
           </div>
 
           <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-mc-text leading-tight">
-            Prompt Wars:{' '}
+            Events &{' '}
             <span className="font-serif italic font-normal text-gradient-rainbow">
-              Build with AI
+              Achievements
             </span>
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-mc-text-secondary max-w-2xl leading-relaxed">
-            A milestone at Google&apos;s Bengaluru Campus during my 2nd year of B.Tech CSE (Data Science),
-            advancing computational prompt engineering and forging lifelong industry connections.
+            Hands-on generative AI innovation, award-winning team sprints, and community learning across India&apos;s leading technology hubs.
           </p>
+        </div>
+
+        {/* Event Selector Tabs */}
+        <div className="flex flex-wrap gap-3 mb-10">
+          {EVENTS.map((event, index) => {
+            const isSelected = index === activeEventIndex;
+            return (
+              <button
+                key={event.id}
+                onClick={() => handleSelectEvent(index)}
+                className={`flex-1 sm:flex-initial text-left px-5 py-3.5 rounded-2xl border transition-all cursor-pointer ${
+                  isSelected
+                    ? 'border-[#00B8D9] bg-white dark:bg-mc-surface shadow-lg shadow-[#00B8D9]/10'
+                    : 'border-mc-border bg-mc-surface-elevated hover:border-mc-border-medium'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  {index === 0 ? (
+                    <Sparkles className={`w-4 h-4 ${isSelected ? 'text-[#00B8D9]' : 'text-mc-text-muted'}`} />
+                  ) : (
+                    <Trophy className={`w-4 h-4 ${isSelected ? 'text-amber-500' : 'text-mc-text-muted'}`} />
+                  )}
+                  <span className={`font-heading text-sm font-bold block ${isSelected ? 'text-mc-text' : 'text-mc-text-secondary'}`}>
+                    {event.tabLabel}
+                  </span>
+                </div>
+                <span className="font-mono text-[11px] text-mc-text-muted mt-0.5 block">
+                  {event.tabSubtitle}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Interactive Showcase Grid: 2-Second Slider (Left) & Narrative (Right) */}
@@ -126,10 +300,10 @@ export function PromptWarsEventSection() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentPhoto.src}
-                    initial={{ opacity: 0, scale: 0.96 }}
+                    initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="relative w-full h-full cursor-pointer group"
                     onClick={() => setLightboxOpen(true)}
                   >
@@ -143,7 +317,7 @@ export function PromptWarsEventSection() {
                     />
 
                     {/* Gradient Overlay for Top Tag & Bottom Caption */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/40" />
 
                     {/* Top Tag & Expand Pill */}
                     <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
@@ -180,7 +354,7 @@ export function PromptWarsEventSection() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handlePrev();
+                    handlePrevPhoto();
                   }}
                   className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
                   aria-label="Previous Photo"
@@ -191,7 +365,7 @@ export function PromptWarsEventSection() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleNext();
+                    handleNextPhoto();
                   }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer"
                   aria-label="Next Photo"
@@ -200,23 +374,23 @@ export function PromptWarsEventSection() {
                 </button>
               </div>
 
-              {/* 2-Second Animated Progress Bar */}
+              {/* Progress Indicator Bar (Clean, no text labels) */}
               <div className="mt-3.5 px-1 flex items-center gap-2">
-                {EVENT_PHOTOS.map((photo, index) => {
-                  const isActive = index === activeIndex;
+                {currentEvent.photos.map((photo, index) => {
+                  const isActive = index === activePhotoIndex;
                   return (
                     <button
                       key={photo.src}
-                      onClick={() => setActiveIndex(index)}
+                      onClick={() => setActivePhotoIndex(index)}
                       className="relative flex-1 h-1.5 rounded-full overflow-hidden bg-mc-border/80 cursor-pointer transition-all"
-                      aria-label={`Slide ${index + 1}: ${photo.title}`}
+                      aria-label={`Photo ${index + 1}`}
                     >
                       {isActive && (
                         <motion.div
-                          key={`prog-${activeIndex}-${isPaused}`}
+                          key={`prog-${activeEventIndex}-${activePhotoIndex}`}
                           initial={{ width: '0%' }}
-                          animate={{ width: isPaused ? '100%' : '100%' }}
-                          transition={{ duration: isPaused ? 0 : 2, ease: 'linear' }}
+                          animate={{ width: '100%' }}
+                          transition={{ duration: 2, ease: 'linear' }}
                           className="h-full bg-gradient-to-r from-[#FF3D81] via-[#00B8D9] to-[#8B5CF6]"
                         />
                       )}
@@ -224,91 +398,64 @@ export function PromptWarsEventSection() {
                   );
                 })}
               </div>
-
-              {/* Slideshow Metadata & Pause State */}
-              <div className="mt-2.5 px-1 flex items-center justify-between font-mono text-[11px] text-mc-text-muted">
-                <span>
-                  Photo {activeIndex + 1} of {EVENT_PHOTOS.length} • Slides every 2s
-                </span>
-                <span className="text-[10px] uppercase font-bold text-mc-text-secondary">
-                  {isPaused ? 'Paused on Hover' : 'Auto-Playing'}
-                </span>
-              </div>
             </div>
           </div>
 
           {/* Right Column: Authentic Storytelling & Key Takeaways (6 cols) */}
           <div className="lg:col-span-6 space-y-6">
-            {/* Context Badge */}
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
+            {/* Context Badges */}
+            <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl border font-bold ${currentEvent.badgeColorClass}`}>
+                <Award className="w-3.5 h-3.5" />
+                <span>{currentEvent.achievement}</span>
+              </span>
+
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border text-mc-text font-semibold">
                 <Building className="w-3.5 h-3.5 text-[#00B8D9]" />
-                <span>Google RMZ Infinity, Bengaluru</span>
+                <span>{currentEvent.venue}</span>
               </span>
 
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-mc-surface-elevated border border-mc-border text-mc-text font-semibold">
                 <Calendar className="w-3.5 h-3.5 text-[#FF3D81]" />
-                <span>2nd Year B.Tech CSE (Data Science)</span>
+                <span>{currentEvent.timeline}</span>
               </span>
             </div>
 
+            {/* Event Title */}
+            <div>
+              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-mc-text">
+                {currentEvent.title}
+                <span className="font-serif italic font-normal text-gradient-rainbow">
+                  {currentEvent.highlightWord}
+                </span>
+              </h3>
+              <p className="mt-2 text-sm text-mc-text-secondary leading-relaxed">
+                {currentEvent.subtitle}
+              </p>
+            </div>
+
             {/* Narrative Story */}
-            <div className="space-y-4 font-sans text-base text-mc-text-secondary leading-relaxed">
-              <p>
-                During the second year of my B.Tech CSE (Data Science) degree at NIST University,
-                attending <strong className="text-mc-text font-semibold">Prompt Wars at Google&apos;s Bengaluru campus</strong> was
-                one of the most defining learning milestones of my engineering journey.
-              </p>
-
-              <p>
-                Stepping inside Google&apos;s offices, I participated in an intensive hackathon challenge designed to
-                push the boundaries of computational prompt architectures, reasoning chains, and real-time LLM application development.
-                It was where I learned the most practical aspects of modern generative AI workflows under strict time constraints.
-              </p>
-
-              <p>
-                Beyond the competition, it was an invaluable environment to connect with mentors and build lasting friendships
-                with software engineers, startup builders, and fellow developers across the Indian IT industry.
-              </p>
+            <div className="space-y-3.5 font-sans text-sm sm:text-base text-mc-text-secondary leading-relaxed">
+              {currentEvent.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
 
             {/* 3 Core Experience Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-              <div className="p-4 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-500/15 text-pink-700 dark:text-pink-300 mb-2.5">
-                  <Brain className="w-4 h-4" />
+              {currentEvent.pillars.map((pillar, i) => (
+                <div key={i} className="p-4 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
+                  <div className={`flex h-8 w-8 items-center justify-center rounded-xl mb-2.5 ${pillar.colorClass}`}>
+                    {pillar.icon}
+                  </div>
+                  <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
+                    {pillar.title}
+                  </h4>
+                  <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
+                    {pillar.desc}
+                  </p>
                 </div>
-                <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
-                  AI & Prompt Design
-                </h4>
-                <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
-                  Structured few-shot chains & robust adversarial evaluation.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 mb-2.5">
-                  <Users className="w-4 h-4" />
-                </div>
-                <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
-                  IT Industry Network
-                </h4>
-                <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
-                  Built strong friendships & mentorship ties across tech.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-2xl border border-mc-border bg-white dark:bg-mc-surface shadow-xs">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/15 text-amber-700 dark:text-amber-300 mb-2.5">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <h4 className="font-heading text-xs font-bold text-mc-text uppercase tracking-wide">
-                  Rapid Prototyping
-                </h4>
-                <p className="font-sans text-[11px] text-mc-text-muted mt-1 leading-snug">
-                  Ideated, built, and pitched an AI solution in a single day.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -317,7 +464,7 @@ export function PromptWarsEventSection() {
       {/* Fullscreen Lightbox for In-Depth Viewing */}
       <Lightbox
         items={lightboxItems}
-        initialIndex={activeIndex}
+        initialIndex={activePhotoIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
       />

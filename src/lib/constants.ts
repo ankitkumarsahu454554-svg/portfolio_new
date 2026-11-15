@@ -256,6 +256,12 @@ export const EXPERIENCE_DATA = [
 
 export const ACHIEVEMENTS = [
   {
+    title: 'Prompt to Product (GDG Vizag & RTIH) — 1st Rank Champion',
+    organization: 'Google Developer Groups Vizag & Ratan Tata Innovation Hub',
+    description:
+      'Ranked 1st in the team product competition developing working software prototypes from prompts using Google AI tools.',
+  },
+  {
     title: 'Prompt Wars: Bengaluru (AI Hackathon) — Finalist',
     organization: 'Google for Developers',
     description:
